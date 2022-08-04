@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7032162788418018403}
   - component: {fileID: 8043080937498548651}
   m_Layer: 0
-  m_Name: Ability G
+  m_Name: Visual Amount R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cafc93c6130c4374b848181dbdb5a436, type: 2}
+  - {fileID: 2100000, guid: 1b724a7803e3e0444a3b9bc2fc7f1f31, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,4 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b92276337550f46b3529ee8977c2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: G
+  id: R

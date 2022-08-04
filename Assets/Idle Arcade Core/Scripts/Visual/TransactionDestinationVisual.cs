@@ -13,7 +13,7 @@ public class TransactionDestinationVisual : TransactionVisualCore
     {
         for (int i = 0; i < UnityEngine.Mathf.Abs(delta); i++)
         {
-            var amount = Pull_UsingLIFO("G");
+            var amount = Pull_UsingLIFO(A.GetID);
             Destroy(amount.gameObject);
         }
 
