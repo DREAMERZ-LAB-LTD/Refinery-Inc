@@ -58,9 +58,12 @@ namespace IdleArcade.Core
                 {
                     if (!A.willCrossLimit(-delta) && !B.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
                     {
-                        A.TransactFrom(-delta, B);
-                        B.TransactFrom(delta, A);
-                        transactionLimit.Transact(delta * sign);
+                        if (A.enabled && B.enabled)
+                        { 
+                            A.TransactFrom(-delta, B);
+                            B.TransactFrom(delta, A);
+                            transactionLimit.Transact(delta * sign);
+                        }
 
                         if (timeIntervalLimit)
                             yield return new WaitForSeconds(timeIntervalLimit.GetCurrent);
@@ -77,8 +80,11 @@ namespace IdleArcade.Core
                 {
                     if (!A.willCrossLimit(-delta) && !B.willCrossLimit(delta))
                     {
-                        A.TransactFrom(-delta, B);
-                        B.TransactFrom(delta, A);
+                        if (A.enabled && B.enabled)
+                        {
+                            A.TransactFrom(-delta, B);
+                            B.TransactFrom(delta, A);
+                        }
                         if (timeIntervalLimit)
                             yield return new WaitForSeconds(timeIntervalLimit.GetCurrent);
                         else

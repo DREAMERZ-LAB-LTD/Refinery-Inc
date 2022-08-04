@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MovementController : MonoBehaviour
@@ -10,8 +7,15 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float maxVelocity = 3;
     [SerializeField] private float turnSpeed = 1;
     [SerializeField] private float maxTrackdOffset = 3;
+
     private Rigidbody rb;
     private Joystick joystick;
+
+    //Cache to optimize Dynamic memory allocation
+    private Vector3 inputDir;
+    private Vector3 moveDir;
+    private Vector3 velocity;
+
 
     void Start()
     {
@@ -24,23 +28,44 @@ public class MovementController : MonoBehaviour
         if (joystick == null || rb == null)
             return;
 
+        velocity = rb.velocity;
         if (joystick.Horizontal == 0 && joystick.Vertical == 0)
         {
-            if (Vector3.Dot(rb.velocity.normalized, transform.forward) > 0.35f)
-                rb.velocity = transform.forward * rb.velocity.magnitude;
-            rb.velocity *= (1 - Time.fixedDeltaTime * 5);
+            moveDir = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+            velocity.y = 0;
+            if (Vector3.Dot(velocity.normalized, moveDir) > 0.01f)
+            {
+                velocity = moveDir * velocity.magnitude;
+                velocity.y = rb.velocity.y;
+                rb.velocity = velocity;
+            }
+            var friction = 1 - Time.fixedDeltaTime * 5;
+            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
+            rb.angularVelocity *= friction;
         }
         else
         { 
-            var inputDir = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-         //   rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.LookRotation(inputDir), turnSpeed * Time.deltaTime);
+            inputDir = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
             rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(inputDir), turnSpeed * Time.fixedDeltaTime);
 
-            rb.AddForce(transform.forward * inputDir.magnitude * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-            if (Vector3.Dot(rb.velocity.normalized, transform.forward) > 0.35f)
-                rb.velocity = transform.forward * rb.velocity.magnitude;
-            if (rb.velocity.magnitude > maxVelocity)
-                rb.velocity = rb.velocity.normalized * maxVelocity;
+            moveDir = new Vector3(transform.forward.x, 0, transform.forward.z);
+            rb.AddForce(moveDir * inputDir.magnitude * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+            velocity = rb.velocity;
+            velocity.y = 0;
+            if (Vector3.Dot(velocity.normalized, moveDir) > 0.01f)
+            {
+                velocity = moveDir * velocity.magnitude;
+                velocity.y = rb.velocity.y;
+                rb.velocity = velocity;
+            }
+            velocity.y = 0;
+            if (velocity.magnitude > maxVelocity)
+            {
+                velocity = velocity.normalized * maxVelocity;
+                velocity.y = rb.velocity.y;
+                rb.velocity = velocity;
+            }
         }
 
     }
