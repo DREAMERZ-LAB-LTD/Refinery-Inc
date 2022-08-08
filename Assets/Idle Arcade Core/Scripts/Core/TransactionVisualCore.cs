@@ -5,6 +5,9 @@ namespace IdleArcade.Core
 {
     public class TransactionVisualCore : MonoBehaviour
     {
+        public delegate void ChangedVisual(List<Entity> totalEntitys);
+        public ChangedVisual OnChangedVisual;
+
         [Tooltip("Collection of visual objects to represent how many amounts already stored")]
         protected List<Entity> visualAmounts = new List<Entity>();
 
@@ -35,9 +38,17 @@ namespace IdleArcade.Core
         private void OnChanging(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
         {
             if (delta > 0)
+            { 
                 OnAdding(delta, A);
+                if(OnChangedVisual != null)
+                    OnChangedVisual.Invoke(visualAmounts);
+            }
             if (delta < 0)
+            { 
                 OnRemoving(delta, A);
+                if(OnChangedVisual != null)
+                    OnChangedVisual.Invoke(visualAmounts);
+            }
         }
 
         /// <summary>
