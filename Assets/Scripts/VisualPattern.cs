@@ -5,22 +5,20 @@ using UnityEngine;
 public class VisualPattern : MonoBehaviour
 {
     [SerializeField] Vector3 scale;
-    [SerializeField] int sizeX;
-    [SerializeField] int sizeY;
-    public GameObject[] visualStack;
+    [SerializeField] Vector2 gride;
 
     public int index;
     void Start()
     {
-        
+
     }
 
-    public Vector3 GetPosition(int index, int sizeX, int sizeY, Vector3 scale)
+    public Vector3 GetLocalPositionBy(int index, Vector2 gride, Vector3 scale)
     {
-        int x = index / (sizeX * sizeY);
-        int gridOffset = x * sizeX * sizeX;
-        int z = (index - gridOffset) / sizeY;
-        int y = (index - gridOffset) - z * sizeY;
+        int x = Mathf.FloorToInt(index / (gride.x * gride.y));
+        int gridOffset = Mathf.FloorToInt(x * gride.x * gride.y);
+        int z = Mathf.FloorToInt((index - gridOffset) / gride.y);
+        int y = Mathf.FloorToInt((index - gridOffset) - z * gride.y);
 
         return new Vector3(x * scale.x, y * scale.y, z * scale.z);
     }
@@ -29,15 +27,16 @@ public class VisualPattern : MonoBehaviour
     void Update()
     {
         var origine = transform.position;
-        var localPoint = GetPosition(index, sizeX, sizeY, scale);
-        Debug.DrawLine(origine, origine + localPoint);
+        var localPoint = GetLocalPositionBy(index, gride, scale);
+        Debug.DrawLine(origine, transform.TransformPoint(localPoint));
 
         if (Input.GetMouseButtonDown(1))
         {
             var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.localScale = scale;
-            cube.transform.position = origine + localPoint;
             cube.transform.parent = transform;
+            cube.transform.localScale = scale;
+            cube.transform.localPosition = localPoint;
+            cube.transform.localRotation = Quaternion.identity;
             index++;
         }
     }
