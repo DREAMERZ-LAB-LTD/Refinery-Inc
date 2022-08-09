@@ -114,6 +114,48 @@ namespace IdleArcade.Core
         }
 
         /// <summary>
+        /// return next pullable Entity from the collection Usning FiFO
+        /// </summary>
+        /// <param name="id">Entity ID</param>
+        /// <returns></returns>
+        public Entity NextPullElement_UsingFIFO(string id)
+        {
+            if (visualAmounts.Count == 0)
+                return null;
+
+            Entity result = null;
+            for (int i = visualAmounts.Count - 1; i >= 0; i--)
+            {
+                result = visualAmounts[i];
+                if (result.GetID == id)
+                    return result;
+            }
+            return null;
+        }
+                
+
+
+        /// <summary>
+        /// return next pullable Entity from the collection Usning LIFO
+        /// </summary>
+        /// <param name="id">Entity ID</param>
+        /// <returns></returns>
+        public Entity NextPullElement_UsingLIFO(string id)
+        {
+            if (visualAmounts.Count == 0)
+                return null;
+
+            Entity result = null;
+            for (int i = 0; i < visualAmounts.Count; i++)
+            {
+                result = visualAmounts[i];
+                if (result.GetID == id)
+                    return result;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Push Entity to the collection
         /// </summary>
         /// <param name="visualEntity">Entity item</param>

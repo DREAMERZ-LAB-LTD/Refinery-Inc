@@ -58,7 +58,9 @@ namespace IdleArcade.Core
                 {
                     if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta))
                     {
-                        OnConvertBegin.Invoke(delay);
+                        if(OnConvertBegin!= null)
+                            OnConvertBegin.Invoke(delay);
+
                         OnProcessBegin();
                         from.TransactFrom(-delta, from);
                     }
