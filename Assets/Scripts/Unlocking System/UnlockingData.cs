@@ -14,7 +14,7 @@ public class UnlockingData : ScriptableObject
     {
         if (unlocked) return false;
 
-        if (ScoreManager.instance.AddScore(price, coinID))
+        if (ScoreManager.instance.AddScore(-Mathf.Abs(price), coinID))
         {
             unlocked = true;
             return true;

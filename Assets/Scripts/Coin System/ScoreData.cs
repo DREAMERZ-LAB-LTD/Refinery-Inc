@@ -15,7 +15,7 @@ namespace General.Library
         public bool AddScore(int dt)
         {
             if (dt < 0)
-                if (dt < score)
+                if (score + dt < 0)
                     return false;
             score += dt;
             score = (int)Mathf.Clamp(score, 0, Mathf.Infinity);

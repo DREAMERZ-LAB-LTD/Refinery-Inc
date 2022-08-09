@@ -12,11 +12,5 @@ namespace General.Library
             if (enabled)
                 ScoreManager.instance.AddScore(amount, targetID);
         }
-
-        private void Update()
-        {
-            if(Input.GetMouseButtonDown(1))
-                ScoreManager.instance.AddScore(amount, targetID);
-        }
     }
 }

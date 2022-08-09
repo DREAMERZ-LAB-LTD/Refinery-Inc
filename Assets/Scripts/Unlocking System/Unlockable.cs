@@ -5,7 +5,7 @@ using UnityEngine;
 public class Unlockable : MonoBehaviour
 {
     [SerializeField] private UnlockingData data;
-    GameObject unlockableObject;
+    [SerializeField] private GameObject unlockableObject;
 
     private void Awake()
     {
@@ -24,5 +24,11 @@ public class Unlockable : MonoBehaviour
             if(data.Unlock())
                 unlockableObject.SetActive(true);
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+            Unlock();
     }
 }
