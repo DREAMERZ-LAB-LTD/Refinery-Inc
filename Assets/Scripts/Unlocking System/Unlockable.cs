@@ -25,10 +25,4 @@ public class Unlockable : MonoBehaviour
                 unlockableObject.SetActive(true);
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-            Unlock();
-    }
 }

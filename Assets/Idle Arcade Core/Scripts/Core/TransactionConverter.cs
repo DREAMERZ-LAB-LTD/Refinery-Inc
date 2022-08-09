@@ -4,6 +4,9 @@ namespace IdleArcade.Core
 {
     public class TransactionConverter : MonoBehaviour
     {
+        public delegate void OnConvert(float delay);
+        public OnConvert OnConvertBegin;
+
         [SerializeField] private string timeIntervalLimitID;
         protected Limiter timeintervallimit;
 
@@ -48,12 +51,14 @@ namespace IdleArcade.Core
         /// <returns></returns>
         private IEnumerator ConversionRoutine()
         {
+            float delay = timeintervallimit ? timeintervallimit.GetCurrent : 0;
             while (from && to)
             {
                 while (from.Getamount > 0)
                 {
                     if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta))
-                    { 
+                    {
+                        OnConvertBegin.Invoke(delay);
                         OnProcessBegin();
                         from.TransactFrom(-delta, from);
                     }
