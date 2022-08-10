@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using IdleArcade.Core;
 
-public class ConvertingVisualFlow : MonoBehaviour, TransactionConverter.IConverter
+public class ConverterVisualFlow : MonoBehaviour, TransactionConverter.IConverter
 {
     [SerializeField, Range(0f, 1f)] private float processingDelay = 0.5f;
     [SerializeField] private Entity convertedPrefab;
