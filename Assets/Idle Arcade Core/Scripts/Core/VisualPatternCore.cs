@@ -12,7 +12,8 @@ namespace IdleArcade.Core
         {
             tarnsactionVisual = GetComponentInChildren<TransactionVisualCore>();
             if(tarnsactionVisual == null)
-                tarnsactionVisual = GetComponentInParent<TransactionVisualCore>();
+                if(transform.parent)
+                    tarnsactionVisual = transform.parent.GetComponent<TransactionVisualCore>();
 
             if(tarnsactionVisual)
                 tarnsactionVisual.OnChangedVisual += OnChanged;

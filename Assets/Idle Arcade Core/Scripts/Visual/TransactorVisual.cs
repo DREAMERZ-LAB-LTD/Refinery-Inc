@@ -15,9 +15,6 @@ public class TransactorVisual : TransactionVisualCore
             Push(visualEntity);
             visualEntity.transform.parent = transform;
         }
-
-
-        Rearrange();
     }
 
     protected override void OnRemoving(int delta, TransactionContainer A)
@@ -32,7 +29,5 @@ public class TransactorVisual : TransactionVisualCore
             destination.Push(visualEntity);
             visualEntity.transform.parent = destination.transform;
         }
-
-        Rearrange();
     }
 }

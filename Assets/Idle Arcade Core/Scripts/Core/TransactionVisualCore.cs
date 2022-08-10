@@ -38,17 +38,11 @@ namespace IdleArcade.Core
         private void OnChanging(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
         {
             if (delta > 0)
-            { 
                 OnAdding(delta, A);
-                if(OnChangedVisual != null)
-                    OnChangedVisual.Invoke(visualAmounts);
-            }
+            
             if (delta < 0)
-            { 
                 OnRemoving(delta, A);
-                if(OnChangedVisual != null)
-                    OnChangedVisual.Invoke(visualAmounts);
-            }
+            
         }
 
         /// <summary>
@@ -82,6 +76,8 @@ namespace IdleArcade.Core
                 if (result.GetID == id)
                 { 
                     visualAmounts.RemoveAt(i);
+
+                    Refresh();
                     return result;
                 }
             }
@@ -106,6 +102,8 @@ namespace IdleArcade.Core
                 if (result.GetID == id)
                 {
                     visualAmounts.RemoveAt(i);
+
+                    Refresh();
                     return result;
                 }
             }
@@ -166,26 +164,32 @@ namespace IdleArcade.Core
                 return false;
 
             visualAmounts.Add(visualEntity);
+            Refresh();
             return true;
         }
 
 
 
-        public void Rearrange()
+        protected void Refresh()
         {
             if (visualAmounts.Count == 0) return;
-            
-            var rotation = transform.rotation;
-            var position = transform.position;
-            var height = visualAmounts[0].transform.localScale.y;
-            position.y += visualAmounts.Count * height + 1;
 
-            for (int i = visualAmounts.Count - 1; i >= 0; i--)
-            {
-                var amount = visualAmounts[i];
-                position.y -= height;
-                amount.transform.SetPositionAndRotation(position, rotation);
+            if (OnChangedVisual == null)
+            { 
+                var rotation = transform.rotation;
+                var position = transform.position;
+                var height = visualAmounts[0].transform.localScale.y;
+                position.y += visualAmounts.Count * height + 1;
+
+                for (int i = visualAmounts.Count - 1; i >= 0; i--)
+                {
+                    var amount = visualAmounts[i];
+                    position.y -= height;
+                    amount.transform.SetPositionAndRotation(position, rotation);
+                }
             }
+            else
+                OnChangedVisual.Invoke(visualAmounts);
         }
     }
 }
