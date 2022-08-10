@@ -4,6 +4,13 @@ namespace IdleArcade.Core
 {
     public class TransactionConverter : MonoBehaviour
     {
+        public interface IConverter
+        {
+            public void OnConvertBegin(float delay);
+            public void OnConverted();
+
+        }
+
         public delegate void OnConvert(float delay);
         public OnConvert OnConvertBegin;
 
@@ -18,6 +25,8 @@ namespace IdleArcade.Core
         private Coroutine routine = null;
         private int delta = 1;
 
+        protected IConverter[] converterResponses;
+
         protected virtual void Awake()
         {
             var limits = GetComponents<Limiter>();
@@ -27,6 +36,8 @@ namespace IdleArcade.Core
                     timeintervallimit = limit;
                     break;
                 }
+
+            converterResponses = GetComponentsInChildren<IConverter>();
         }
 
         protected virtual void OnEnable()
@@ -42,7 +53,7 @@ namespace IdleArcade.Core
         }
        
 
-        protected virtual void OnProcessBegin() { }
+        protected virtual void OnProcessBegin(float delay) { }
         protected virtual void OnProcessEnd() { }
 
         /// <summary>
@@ -58,20 +69,23 @@ namespace IdleArcade.Core
                 {
                     if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta))
                     {
+                        OnProcessBegin(delay);
+                        for (int i = 0; i < converterResponses.Length; i++)
+                            converterResponses[i].OnConvertBegin(delay);
                         if(OnConvertBegin!= null)
                             OnConvertBegin.Invoke(delay);
 
-                        OnProcessBegin();
                         from.TransactFrom(-delta, from);
                     }
-                    if (timeintervallimit)
-                        yield return new WaitForSeconds(timeintervallimit.GetCurrent);
+                    if (delay > 0)
+                        yield return new WaitForSeconds(delay);
                     else
                         yield return null;
 
-
                     to.Add(delta);
                     OnProcessEnd();
+                    for (int i = 0; i < converterResponses.Length; i++)
+                        converterResponses[i].OnConverted();
                 }
                 yield return new WaitForSeconds(1);
             }

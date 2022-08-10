@@ -170,7 +170,7 @@ namespace IdleArcade.Core
 
 
 
-        protected void Refresh()
+        public void Refresh()
         {
             if (visualAmounts.Count == 0) return;
 
