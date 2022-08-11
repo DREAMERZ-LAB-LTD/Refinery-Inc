@@ -381,6 +381,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   responseMode: 0
   tags: []
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &47904069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,7 +803,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2a9c35043ec1fa043a99fce7cad65d06, type: 2}
+  - {fileID: 2100000, guid: 59e4faf24927edf4a82f463ad16f1c37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

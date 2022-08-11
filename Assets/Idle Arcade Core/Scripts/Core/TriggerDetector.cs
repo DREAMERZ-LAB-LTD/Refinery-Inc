@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace IdleArcade.Core
 {
@@ -35,6 +36,9 @@ namespace IdleArcade.Core
 
         [SerializeField, Tooltip("Masking the target object tags, which object is valid to trigger with this object")]
         private string[] tags;
+        [Header("Callback Events")]
+        [SerializeField] private UnityEvent OnEnter;
+        [SerializeField] private UnityEvent OnExit;
 
         private void Awake()
         {
@@ -88,6 +92,7 @@ namespace IdleArcade.Core
                         triggerable.OnEnter(other);
                     break;
             }
+            OnEnter.Invoke();
         }
 
         /// <summary>
@@ -134,6 +139,8 @@ namespace IdleArcade.Core
                         triggerable.OnExit(other);
                     break;
             }
+
+            OnExit.Invoke();
         }
 
         private void OnTriggerEnter(Collider other)
