@@ -2,14 +2,19 @@ using System.Collections;
 using UnityEngine;
 using SWS;
 using IdleArcade.Core;
+using UnityEngine.Events;
 
 public class NPC_CarBehaviour : MonoBehaviour
 {
     public splineMove mover;
-    public int aPointIndex;
-    public int bPointIndex;
+    public int importPoint;
+    public int exportPoint;
 
     public TransactionContainer selfContainer;
+
+    public UnityEvent onImportPoint;
+    public UnityEvent onExportPoint;
+    public UnityEvent onTheWay;
 
     private void OnEnable()
     {
@@ -27,23 +32,36 @@ public class NPC_CarBehaviour : MonoBehaviour
     private void OnChangePoint(int index)
     {
         Debug.Log("Point At=" + index);
-       
-        
-        if (aPointIndex == index)
+        StopAllCoroutines();
+
+        var insideImport = importPoint == index;
+        var insideExport = exportPoint == index;
+
+        if (insideImport)
         { 
-            StopAllCoroutines();
             Debug.Log("Point A");
-            StartCoroutine(OnSideA());
+
+            selfContainer.enabled = true;
+            StartCoroutine(OnImportSide());
+            onImportPoint.Invoke();
         }  
-        if (bPointIndex == index)
+        if (insideExport)
         { 
-            StopAllCoroutines();
             Debug.Log("Point B");
-            StartCoroutine(OnSideB());
+
+            selfContainer.enabled = true;
+            StartCoroutine(OnExportSide());
+            onExportPoint.Invoke();
+        }
+
+        if (!insideImport && !insideExport)
+        {
+            selfContainer.enabled = false;
+            onTheWay.Invoke();
         }
     }
 
-    private IEnumerator OnSideA()
+    private IEnumerator OnImportSide()
     {
         mover.Pause();
 
@@ -54,7 +72,7 @@ public class NPC_CarBehaviour : MonoBehaviour
 
         mover.Resume();
     }
-    private IEnumerator OnSideB()
+    private IEnumerator OnExportSide()
     {
         while (true)
         {

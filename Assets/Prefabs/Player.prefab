@@ -123,7 +123,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   responseMode: 0
-  tags: []
+  tags:
+  - Source
+  - Destination
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4829401762073456463
 MonoBehaviour:
   m_ObjectHideFlags: 0
