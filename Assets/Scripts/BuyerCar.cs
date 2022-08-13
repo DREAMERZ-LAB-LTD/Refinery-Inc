@@ -1,21 +1,15 @@
 using UnityEngine;
 using IdleArcade.Core;
 
-public class BuyerCar : MonoBehaviour
+public class BuyerCar : NPC_CarBehaviour
 {
-    public TransactionContainer carContainer;
     public TransactionVisualCore visual;
 
-    public void Update()
+    protected override void OnExportSIde()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            carContainer.Add(carContainer.Getamount);
-            visual.Clear();
-        }
+        base.OnExportSIde();
+
+        selfContainer.Add(-selfContainer.Getamount);
+        visual.Clear();
     }
-
-
-
-
 }

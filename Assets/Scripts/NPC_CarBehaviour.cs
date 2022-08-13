@@ -6,15 +6,11 @@ using UnityEngine.Events;
 
 public class NPC_CarBehaviour : MonoBehaviour
 {
-    public splineMove mover;
-    public int importPoint;
-    public int exportPoint;
+    [SerializeField] protected TransactionContainer selfContainer;
+    [SerializeField] protected splineMove mover;
+    [SerializeField] protected int importPoint;
+    [SerializeField] protected int exportPoint;
 
-    public TransactionContainer selfContainer;
-
-    public UnityEvent onImportPoint;
-    public UnityEvent onExportPoint;
-    public UnityEvent onTheWay;
 
     private void OnEnable()
     {
@@ -31,34 +27,37 @@ public class NPC_CarBehaviour : MonoBehaviour
 
     private void OnChangePoint(int index)
     {
-        Debug.Log("Point At=" + index);
         StopAllCoroutines();
 
         var insideImport = importPoint == index;
         var insideExport = exportPoint == index;
 
         if (insideImport)
-        { 
-            Debug.Log("Point A");
-
-            selfContainer.enabled = true;
-            StartCoroutine(OnImportSide());
-            onImportPoint.Invoke();
-        }  
+            OnImportSIde();
+    
         if (insideExport)
-        { 
-            Debug.Log("Point B");
-
-            selfContainer.enabled = true;
-            StartCoroutine(OnExportSide());
-            onExportPoint.Invoke();
-        }
-
+            OnExportSIde();
+        
         if (!insideImport && !insideExport)
-        {
-            selfContainer.enabled = false;
-            onTheWay.Invoke();
-        }
+            OnImportSide();
+        
+    }
+
+    protected virtual void OnImportSIde()
+    {
+        selfContainer.enabled = true;
+        StartCoroutine(OnImportSide());
+    }
+
+    protected virtual void OnExportSIde()
+    {
+        selfContainer.enabled = true;
+        StartCoroutine(OnExportSide());
+    }
+
+    protected virtual void OnTheWay()
+    { 
+        selfContainer.enabled = false;
     }
 
     private IEnumerator OnImportSide()
