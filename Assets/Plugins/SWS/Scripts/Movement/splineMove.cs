@@ -632,6 +632,12 @@ namespace SWS
             OnPaused.Invoke();
         }
 
+        public void Pause()
+        {
+            if (tween != null) tween.Pause();
+
+            OnPaused.Invoke();
+        }
 
         //waiting routine
         private IEnumerator Wait(float secs = 0f)
