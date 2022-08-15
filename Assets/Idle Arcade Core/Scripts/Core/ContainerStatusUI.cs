@@ -2,10 +2,14 @@ using UnityEngine;
 using TMPro;
 namespace IdleArcade.Core
 {
-    public class ContainerStattusUI : MonoBehaviour
+    public class ContainerStatusUI : MonoBehaviour
     {
         [SerializeField] protected TransactionContainer container;
         [SerializeField] protected TextMeshProUGUI statusText;
+        [Header("Text Message")]
+        [SerializeField] private string startMessage;
+        [SerializeField] private string centertMessage = " / ";
+        [SerializeField] private string endMessage;
         protected virtual void Awake()
         {
             container.OnChangedValue += OnContainerUpdate;
@@ -19,7 +23,7 @@ namespace IdleArcade.Core
 
         protected virtual void OnContainerUpdate(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
         {
-            statusText.text = currnet + " / " + max;
+            statusText.text = startMessage + currnet + centertMessage + max + endMessage;
         }
     }
 }

@@ -7,6 +7,7 @@ using IdleArcade.Core;
 public class Unlockable : MonoBehaviour
 {
     public UnlockingData unlockingData;
+    [SerializeField] protected UnityEvent OnLocked;
     [SerializeField] protected UnityEvent OnUnlocked;
 
     private TransactionContainer container;
@@ -21,6 +22,7 @@ public class Unlockable : MonoBehaviour
                 container = GetComponent<TransactionContainer>();
                 if(container)
                     container.OnFilled += Unlock;
+                OnLocked.Invoke();
             }
         }
     }
