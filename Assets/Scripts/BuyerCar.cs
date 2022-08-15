@@ -8,9 +8,9 @@ public class BuyerCar : NPC_CarBehaviour
     protected override void OnExportSIde()
     {
         base.OnExportSIde();
-        Debug.Log("Exported " + name);
-
+      
         selfContainer.TransactFrom(-selfContainer.Getamount, selfContainer);
+        selfContainer.enabled = false;
     }
-
 }
+

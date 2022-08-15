@@ -6,7 +6,10 @@ using UnityEngine.Events;
 
 public class NPC_CarBehaviour : MonoBehaviour
 {
+    [Header("Container Setup")]
     [SerializeField] protected TransactionContainer selfContainer;
+    [SerializeField] protected TransactionContainer sourceContainer;
+    [Header("Movement Setup")]
     [SerializeField] protected splineMove mover;
     [SerializeField] protected int importPoint;
     [SerializeField] protected int exportPoint;
@@ -23,8 +26,6 @@ public class NPC_CarBehaviour : MonoBehaviour
     }
 
 
-
-
     private void OnChangePoint(int index)
     {
         StopAllCoroutines();
@@ -39,7 +40,7 @@ public class NPC_CarBehaviour : MonoBehaviour
             OnExportSIde();
         
         if (!insideImport && !insideExport)
-            OnImportSide();
+            OnTheWay();
         
     }
 
@@ -78,8 +79,12 @@ public class NPC_CarBehaviour : MonoBehaviour
             mover.Pause();
 
             while (!selfContainer.isEmpty)
-            {
                 yield return new WaitForSeconds(1);
+
+            if (sourceContainer)
+            { 
+                while(sourceContainer.Getamount == 0)
+                    yield return new WaitForSeconds(1);
             }
 
             mover.Resume();

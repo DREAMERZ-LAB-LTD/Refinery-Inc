@@ -1,28 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Unlockable : MonoBehaviour
 {
     [SerializeField] private UnlockingData data;
-    [SerializeField] private GameObject unlockableObject;
+    [SerializeField, Tooltip("Invoked when object is already unlocked and try to set initial state on game start")] 
+    protected UnityEvent OnReinitialized;
+    [SerializeField, Tooltip("Invoked when object will begin to unlock")] 
+    protected UnityEvent OnUnlocked;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (data)
             if (data.IsUnlocked)
             {
-                unlockableObject.SetActive(true);
+                OnReinitialized.Invoke();
                 Destroy(this);
             }
     }
 
-    public void Unlock()
+    public virtual void Unlock()
     {
         if (data)
-        { 
-            if(data.Unlock())
-                unlockableObject.SetActive(true);
-        }
+            if (data.Unlock())
+               OnUnlocked.Invoke();
     }
 }
