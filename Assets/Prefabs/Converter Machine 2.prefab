@@ -1671,8 +1671,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2259526, y: 3.3539717, z: 14.697505}
-  m_Center: {x: 0.3602908, y: 1.711986, z: -0.017937243}
+  m_Size: {x: 2.5541637, y: 3.3539717, z: 14.697505}
+  m_Center: {x: 0.36028802, y: 1.711986, z: -0.017937183}
 --- !u!1 &6666429790524561813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,7 +2263,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8007556215414712120}
-  - component: {fileID: 1102794660}
   m_Layer: 0
   m_Name: Converter Machine 2
   m_TagString: Untagged
@@ -2290,73 +2289,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1102794660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8007556215414712122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096c828f62867a14b9470f0abd2d790d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: c87f557d5394b3746bcd7e5d95319b15, type: 2}
-  OnReinitialized:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5104854948544517541}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6250026855829764143}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnUnlocked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5104854948544517541}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6250026855829764143}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!1 &8398665778303204839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,16 +2676,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Converter System Core
       objectReference: {fileID: 0}
+    - target: {fileID: 6276420274537864999, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
 --- !u!4 &4782654501991633953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025009900435136163, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
-  m_PrefabInstance: {fileID: 1279660540020886146}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5104854948544517541 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6276420274537864999, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
   m_PrefabInstance: {fileID: 1279660540020886146}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1279660541208158672
@@ -2814,6 +2745,10 @@ PrefabInstance:
     - target: {fileID: 7732373775254772796, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
       propertyPath: m_Name
       value: NPC Car (Importer)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732373775254772796, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7732373775273966891, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
       propertyPath: m_RootOrder
@@ -3023,6 +2958,10 @@ PrefabInstance:
     - target: {fileID: 7732373775254772796, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
       propertyPath: m_Name
       value: NPC Car (Exporter)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732373775254772796, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}

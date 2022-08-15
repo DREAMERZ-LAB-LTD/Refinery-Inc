@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace IdleArcade.Core
 {
@@ -17,6 +18,12 @@ namespace IdleArcade.Core
         [SerializeField, Tooltip("Which limitter will assign to the amount limit field Based On ID Value")]
         private string amountLimitID;
         private Limiter amountLimit;
+
+        [Header("Callback Events")]
+        [SerializeField] protected UnityEvent m_OnAdding;
+        [SerializeField] protected UnityEvent m_OnRemoving;
+        [SerializeField] protected UnityEvent m_OnFilledUp;
+        [SerializeField] protected UnityEvent m_OnEmpty;
 
         /// <summary>
         /// return amount limiter of this point
@@ -123,12 +130,16 @@ namespace IdleArcade.Core
                 OnFilledUp();
                 if (OnFilled != null)
                     OnFilled.Invoke();
+
+                m_OnFilledUp.Invoke();
             }
             if (isEmpty)
             {
                 OnGetEmpty();
                 if (OnEmpty != null)
                     OnEmpty.Invoke();
+
+                m_OnEmpty.Invoke();
             }
 
             if (OnChangedValue != null)
@@ -138,6 +149,11 @@ namespace IdleArcade.Core
                 else
                     OnChangedValue.Invoke(delta, m_amount, m_amount, GetID, A, this);
             }
+
+            if (delta > 0)
+                m_OnAdding.Invoke();
+            if (delta < 0)
+                m_OnRemoving.Invoke();
         }
 
 

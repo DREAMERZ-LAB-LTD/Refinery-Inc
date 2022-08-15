@@ -1,28 +1,38 @@
 using UnityEngine;
 using UnityEngine.Events;
+using IdleArcade.Core;
+
+[RequireComponent(typeof(TransactionContainer))]
 
 public class Unlockable : MonoBehaviour
 {
-    [SerializeField] private UnlockingData data;
-    [SerializeField, Tooltip("Invoked when object is already unlocked and try to set initial state on game start")] 
-    protected UnityEvent OnReinitialized;
-    [SerializeField, Tooltip("Invoked when object will begin to unlock")] 
-    protected UnityEvent OnUnlocked;
+    public UnlockingData unlockingData;
+    [SerializeField] protected UnityEvent OnUnlocked;
 
-    protected virtual void Awake()
+    private TransactionContainer container;
+    private  void Awake()
     {
-        if (data)
-            if (data.IsUnlocked)
+        if (unlockingData)
+        {
+            if (unlockingData.isUnlocked)
+                OnUnlocked.Invoke();
+            else
             {
-                OnReinitialized.Invoke();
-                Destroy(this);
+                container = GetComponent<TransactionContainer>();
+                if(container)
+                    container.OnFilled += Unlock;
             }
+        }
     }
 
-    public virtual void Unlock()
+    protected void OnDestroy()
     {
-        if (data)
-            if (data.Unlock())
-               OnUnlocked.Invoke();
+        if (container)
+            container.OnFilled -= Unlock;
+    }
+    private void Unlock()
+    {
+        unlockingData.isUnlocked = true;
+        OnUnlocked.Invoke();
     }
 }
