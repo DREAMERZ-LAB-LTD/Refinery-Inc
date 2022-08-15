@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,36 +5,101 @@ namespace IdleArcade.Core
 {
     public class UpgradeSystem : MonoBehaviour
     {
-        [SerializeField] private UpgradeableField[] dataFields;
-
-        public UpgradeableField GetDataField(string id)
+        #region SingleTon
+        private static UpgradeSystem _instance = null;
+        public static UpgradeSystem instance
         {
-            for (int i = 0; i < dataFields.Length; i++)
-                if (id == dataFields[i].ID)
-                    return dataFields[i];
+            get
+            {
+                return _instance;
+            }
+        }
+        protected virtual void Awake()
+        {
+            if (_instance == null)
+                _instance = this;
+            else
+                Destroy(gameObject);
+        }
+        protected virtual void OnDestroy()
+        {
+            if (_instance == this)
+                _instance = null;
+        }
+        #endregion SingleTon
+
+        [SerializeField] private UpgradeableDataFields upgradeableData;
+        public List<UpgradeableDataFields.Data> activeFields = new List<UpgradeableDataFields.Data>();
+
+        [SerializeField] private Transform contentHolder;
+        [SerializeField] private UpgradeStatus statusPrefab;
+        private List<UpgradeStatus> activeStatus = new List<UpgradeStatus>();
+        public UpgradeableDataFields.Data GetDataField(string id)
+        {
+            for (int i = 0; i < upgradeableData.fields.Length; i++)
+                if (id == upgradeableData.fields[i].ID)
+                    return upgradeableData.fields[i];
 
             return null;
         }
-        public void OnChangedAddListner(string id, UpgradeableField.FieldChanged callback)
+
+        public void Add(string[] upgradeableIDs)
         {
-            var data = GetDataField(id);
-            data.OnFieldChanged += callback;
-        }
-        public void OnChangedRemoveListner(string id, UpgradeableField.FieldChanged callback)
-        {
-            var data = GetDataField(id);
-            data.OnFieldChanged -= callback;
+            for (int i = 0; i < upgradeableIDs.Length; i++)
+            { 
+                var data = GetDataField(upgradeableIDs[i]);
+                if (data == null) continue;
+                if (activeFields.Contains(data)) continue;
+
+                activeFields.Add(data);
+                AddStatus(data);
+            }
         }
 
-        public bool Upgrade(float dt, string id)
+        public void Remove(string[] upgradeableIDs)
         {
-            var data = GetDataField(id);
+            for (int i = 0; i < upgradeableIDs.Length; i++)
+            {
+                var data = GetDataField(upgradeableIDs[i]);
+                if (data == null) continue;
+                if (!activeFields.Contains(data)) continue;
 
-            if (data.ID != id) return false;
-            if (data.isUpgraded) return false;
-
-            data.T += Mathf.Abs(dt); 
-            return true;
+                activeFields.Remove(data);
+                RemoveStatus(data);
+            }
         }
+
+        private void AddStatus(UpgradeableDataFields.Data data)
+        {
+            var statusObj = Instantiate(statusPrefab.gameObject, contentHolder);
+            statusObj.SetActive(true);
+            var staus = statusObj.GetComponent<UpgradeStatus>();
+            if (staus == null)
+                Destroy(statusObj);
+            else
+            {
+                staus.Data = data;
+                activeStatus.Add(staus);
+            
+            }
+        }
+
+        private void RemoveStatus(UpgradeableDataFields.Data data)
+        {
+
+            for (int i = 0; i < activeStatus.Count; i++)
+            {
+                if (activeStatus[i].Data == data)
+                {
+                    var statusObj = activeStatus[i].gameObject;
+                    activeStatus.RemoveAt(i);
+                    Destroy(statusObj);
+                    break;
+                }
+            }
+
+            
+        }
+
     }
 }

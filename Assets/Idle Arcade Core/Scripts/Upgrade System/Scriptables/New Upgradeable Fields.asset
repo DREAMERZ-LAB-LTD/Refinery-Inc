@@ -10,7 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 481422d01cee6794bbe98b1887fbf88d, type: 3}
-  m_Name: New Upgradeable Field 1
+  m_Name: New Upgradeable Fields
   m_EditorClassIdentifier: 
-  iD: A
-  t: 0
+  fields:
+  - name: Timer
+    iD: time
+    t: 0.15
+  - name: Timer
+    iD: time1
+    t: 0.1
+  - name: Timer
+    iD: time2
+    t: 0.2
+  - name: Timer
+    iD: time3
+    t: 0.3
