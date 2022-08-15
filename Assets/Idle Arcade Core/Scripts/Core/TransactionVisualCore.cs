@@ -27,13 +27,6 @@ namespace IdleArcade.Core
                     point.OnChangedValue -= OnChanging;                
         }
 
-        public void Clear()
-        {
-            for (int i = 0; i < visualAmounts.Count; i++)
-                Destroy(visualAmounts[i].gameObject);
-            
-            visualAmounts.Clear();
-        }
 
         /// <summary>
         /// called each of the changes container transaction amount
