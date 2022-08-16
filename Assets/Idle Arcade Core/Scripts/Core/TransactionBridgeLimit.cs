@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace IdleArcade.Core
 { 
-    public class TransactionBridgeLimit : Limiter
+    public class TransactionBridgeLimit : UpgradeableLimiter
     {
         private int amount;
 

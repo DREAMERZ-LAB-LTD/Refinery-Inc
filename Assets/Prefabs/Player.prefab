@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 4829401762073456465}
   - component: {fileID: 4829401762073456470}
   - component: {fileID: 4829401762073456471}
+  - component: {fileID: 2031078882}
   m_Layer: 0
   m_Name: Transaction Bridge Setup
   m_TagString: Player
@@ -173,7 +174,6 @@ MonoBehaviour:
   id: Time Interval
   range: {x: 1, y: 0.02}
   t: 0.8
-  data: {fileID: 0}
 --- !u!114 &4829401762073456466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +216,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: A
   m_amount: 0
-  amountLimitID: 
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4829401762073456465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +243,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: B
   m_amount: 0
-  amountLimitID: 
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4829401762073456470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +270,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: C
   m_amount: 0
-  amountLimitID: 
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4829401762073456471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +297,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: D
   m_amount: 0
-  amountLimitID: 
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2031078882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829401762073456469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbf77dbdf1668d4cb7a9cbef37aff27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Player Capacity
+  range: {x: 0, y: 16}
+  t: 0.25
+  OnLocked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4829401762866282507
 GameObject:
   m_ObjectHideFlags: 0
