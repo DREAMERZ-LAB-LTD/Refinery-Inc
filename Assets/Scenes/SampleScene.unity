@@ -690,6 +690,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!1 &352570423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6733806543776840204, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+  m_PrefabInstance: {fileID: 3474455540628212515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &430150807 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7440920733968865446, guid: ede1558c4b2436d42868d688dffe6e95, type: 3}
@@ -1027,6 +1032,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2031078882, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
+      propertyPath: id
+      value: Player Capacity 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031078883, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
+      propertyPath: id
+      value: Player Picking Speed 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4829401762866282503, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3125,17 +3138,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453498099}
   m_CullTransparentMesh: 1
---- !u!114 &1465249322 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7315630800817025985, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
-  m_PrefabInstance: {fileID: 7315630801676801642}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1475848874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3639,6 +3641,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886462272}
   m_CullTransparentMesh: 1
+--- !u!1 &1959072344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7434858163649708428, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+  m_PrefabInstance: {fileID: 3474455540628212515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1967310710
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,6 +4051,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7775905201298669932, guid: 1585716cf926feb4191b40a36b2c61e0, type: 3}
+      propertyPath: exportPoint
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7775905201298669932, guid: 1585716cf926feb4191b40a36b2c61e0, type: 3}
+      propertyPath: importPoint
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7775905201298669932, guid: 1585716cf926feb4191b40a36b2c61e0, type: 3}
       propertyPath: sourceContainer
       value: 
       objectReference: {fileID: 1418297421}
@@ -4156,6 +4171,38 @@ PrefabInstance:
       propertyPath: sourceContainer
       value: 
       objectReference: {fileID: 1836921438}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: id
+      value: machine Unlocker 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: OnUnlocked.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: OnLocked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 352570423}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: OnLocked.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5151777351910307517}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: OnLocked.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1959072344}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: OnLocked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: OnLocked.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733806543776840198, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: OnLocked.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
 --- !u!1001 &3595832897608132170
@@ -4219,6 +4266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d724cc7e6ba3414b9052452659b6543, type: 3}
+--- !u!1 &5151777351910307517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8595529813694643614, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+  m_PrefabInstance: {fileID: 3474455540628212515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7315630801676801642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4273,18 +4325,6 @@ PrefabInstance:
     - target: {fileID: 1065311934060013771, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315630800817025984, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
-      propertyPath: amountLimit
-      value: 
-      objectReference: {fileID: 1465249322}
-    - target: {fileID: 7315630800817025985, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
-      propertyPath: id
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315630800817025996, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
-      propertyPath: targetID
-      value: coin1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}

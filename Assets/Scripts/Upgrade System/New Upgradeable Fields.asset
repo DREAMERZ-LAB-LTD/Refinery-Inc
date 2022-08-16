@@ -34,7 +34,7 @@ MonoBehaviour:
   - iD: Capacity Importer NPC 3
     name: Importer
     icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
-    m_isUnlocked: 1
+    m_isUnlocked: 0
     t: 0.5
     dt: 0.1
     coinID: coin1
@@ -43,7 +43,7 @@ MonoBehaviour:
   - iD: Capacity Importer NPC 4
     name: Exporter
     icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
-    m_isUnlocked: 1
+    m_isUnlocked: 0
     t: 0.6
     dt: 0.1
     coinID: coin1
@@ -76,21 +76,30 @@ MonoBehaviour:
     coinID: coin1
     unlockPrice: 60
     upgradePrice: 70
-  - iD: Player Capacity
+  - iD: Player Capacity 8
     name: Capacity
     icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
     m_isUnlocked: 1
-    t: 0.25
+    t: 0.35
     dt: 0.1
     coinID: coin1
     unlockPrice: 60
     upgradePrice: 70
-  - iD: Player Picking Speed
+  - iD: Player Picking Speed 9
     name: Picking Speed
     icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
     m_isUnlocked: 1
-    t: 0.25
+    t: 0.55
     dt: 0.1
     coinID: coin1
     unlockPrice: 60
     upgradePrice: 70
+  - iD: machine Unlocker 10
+    name: Picking Speed
+    icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
+    m_isUnlocked: 0
+    t: 0.25
+    dt: 0.1
+    coinID: coin1
+    unlockPrice: 0
+    upgradePrice: 0

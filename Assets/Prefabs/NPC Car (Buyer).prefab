@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfContainer: {fileID: 7315630800817025984}
+  sourceContainer: {fileID: 0}
   mover: {fileID: 1065311934825699247}
   importPoint: 1
   exportPoint: 3
@@ -1646,7 +1647,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: C
   m_amount: 0
-  amountLimitID: amount
+  amountLimit: {fileID: 7315630800817025985}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7315630800817025987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,7 +1697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a904d47f8a7e244a1750ab0b6e34c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetID: Player
+  targetID: coin1
   amount: 1
   OnAdding: 1
   OnRemoving: 0
@@ -1702,10 +1715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: amount
+  id: 
   range: {x: 0, y: 5}
   t: 1
-  data: {fileID: 0}
 --- !u!1 &7315630800998022941
 GameObject:
   m_ObjectHideFlags: 0

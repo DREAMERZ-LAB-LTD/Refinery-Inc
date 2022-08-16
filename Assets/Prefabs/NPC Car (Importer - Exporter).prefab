@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efa0cc1e85f6a14baffe4dd0c15b7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervalLimitID: Time Interval
+  timeIntervalLimit: {fileID: 7309979035822251489}
 --- !u!114 &7309979035822251488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5980fc3e990124783bcb97759b8561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervalLimitID: Time Interval
+  timeIntervalLimit: {fileID: 7309979035822251489}
 --- !u!114 &7309979035822251489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Time Interval
+  id: 
   range: {x: 1, y: 0.02}
   t: 0.8
 --- !u!114 &7309979035822251518

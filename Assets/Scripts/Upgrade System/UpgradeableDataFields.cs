@@ -36,7 +36,8 @@ namespace IdleArcade.Core
                 set
                 {
                     m_isUnlocked = value;
-                    OnUnlocking.Invoke(value);
+                    if(OnUnlocking!= null)
+                        OnUnlocking.Invoke(value);
                 }
             }
 
