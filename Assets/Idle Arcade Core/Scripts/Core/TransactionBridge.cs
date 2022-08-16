@@ -5,13 +5,10 @@ namespace IdleArcade.Core
 {
     public class TransactionBridge : MonoBehaviour
     {
-        [Tooltip("Which limitter will assign to the Time Interval limit field Based On ID Value")]
-        [SerializeField] private string timeIntervalLimitID;
-
         [Tooltip("How much amount transaction possible with help of this transiction bridge")]
         protected TransactionBridgeLimit transactionLimit;
         [Tooltip("How many time to delay in between transiction frame")]
-        protected Limiter timeIntervalLimit;
+        [SerializeField] protected Limiter timeIntervalLimit;
 
         [Tooltip("Where we will store all of the collection data based on Point ID")]
         protected TransactionContainer[] storePoints;
@@ -21,12 +18,6 @@ namespace IdleArcade.Core
         {
             //assign all of the points to use for store all of the collecting data
             storePoints = GetComponents<TransactionContainer>();
-
-            //Mask limit to assign for time interval limit
-            var limits = GetComponents<Limiter>();
-            for (int i = 0; i < limits.Length; i++)
-                if (timeIntervalLimitID == limits[i].GetID)
-                    timeIntervalLimit = limits[i];
 
             transactionLimit = GetComponent<TransactionBridgeLimit>();
         }

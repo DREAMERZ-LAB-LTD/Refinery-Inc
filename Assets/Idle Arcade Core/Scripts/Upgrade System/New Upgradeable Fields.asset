@@ -17,7 +17,7 @@ MonoBehaviour:
     name: Capacity
     icon: {fileID: 21300000, guid: 12ef7cbdfe0e143fa858a324456c8979, type: 3}
     m_isUnlocked: 1
-    t: 0.32
+    t: 0.52
     dt: 0.1
     coinID: coin1
     unlockPrice: 40
@@ -62,7 +62,7 @@ MonoBehaviour:
     name: Speed
     icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
     m_isUnlocked: 1
-    t: 0.5
+    t: 0.70000005
     dt: 0.1
     coinID: coin1
     unlockPrice: 60
@@ -80,7 +80,16 @@ MonoBehaviour:
     name: Capacity
     icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
     m_isUnlocked: 1
-    t: 0.5
+    t: 0.25
+    dt: 0.1
+    coinID: coin1
+    unlockPrice: 60
+    upgradePrice: 70
+  - iD: Player Picking Speed
+    name: Picking Speed
+    icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
+    m_isUnlocked: 1
+    t: 0.25
     dt: 0.1
     coinID: coin1
     unlockPrice: 60

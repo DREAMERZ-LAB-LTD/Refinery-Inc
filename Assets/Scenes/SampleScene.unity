@@ -2239,12 +2239,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3379143117504544972, guid: 2aab99d908bba59408635473b4854f82, type: 3}
       propertyPath: upgradeableLimiters.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3379143117504544972, guid: 2aab99d908bba59408635473b4854f82, type: 3}
       propertyPath: upgradeableLimiters.Array.data[0]
       value: 
       objectReference: {fileID: 2031078882}
+    - target: {fileID: 3379143117504544972, guid: 2aab99d908bba59408635473b4854f82, type: 3}
+      propertyPath: upgradeableLimiters.Array.data[1]
+      value: 
+      objectReference: {fileID: 2031078883}
     - target: {fileID: 3379143117504544973, guid: 2aab99d908bba59408635473b4854f82, type: 3}
       propertyPath: m_Name
       value: Upgradeable Point (Player)
@@ -3877,32 +3881,28 @@ MonoBehaviour:
   contentHolder: {fileID: 1164880914}
   statusPrefabs:
   - {fileID: 1657122652}
---- !u!1 &2031078868 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4829401762073456469, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
+--- !u!114 &2031078882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2031078882, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
   m_PrefabInstance: {fileID: 600933137}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2031078882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031078868}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cbf77dbdf1668d4cb7a9cbef37aff27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Player Capacity
-  range: {x: 0, y: 16}
-  t: 0.25
-  OnLocked:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUnlocked:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!114 &2031078883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2031078883, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
+  m_PrefabInstance: {fileID: 600933137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294e109c571a27144bdd49e125c4be76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2031580028
 GameObject:
   m_ObjectHideFlags: 0
