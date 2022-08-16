@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IdleArcade.Core
@@ -28,16 +27,17 @@ namespace IdleArcade.Core
         }
         #endregion SingleTon
 
+        public delegate void ChangeStatus(UpgradeableDataFields.Data data, string prefabID);
+        public ChangeStatus OnAddStatus;
+        public ChangeStatus OnRemoveStatus;
+        [SerializeField] private string prefabID;
         [SerializeField] private UpgradeableDataFields upgradeableData;
-        public List<UpgradeableDataFields.Data> activeFields = new List<UpgradeableDataFields.Data>();
 
-        [SerializeField] private Transform contentHolder;
-        [SerializeField] private UpgradeStatus statusPrefab;
-        private List<UpgradeStatus> activeStatus = new List<UpgradeStatus>();
+
         public UpgradeableDataFields.Data GetDataField(string id)
         {
             for (int i = 0; i < upgradeableData.fields.Length; i++)
-                if (id == upgradeableData.fields[i].ID)
+                if (id == upgradeableData.fields[i].iD)
                     return upgradeableData.fields[i];
 
             return null;
@@ -49,10 +49,9 @@ namespace IdleArcade.Core
             { 
                 var data = GetDataField(upgradeableIDs[i]);
                 if (data == null) continue;
-                if (activeFields.Contains(data)) continue;
 
-                activeFields.Add(data);
-                AddStatus(data);
+                if(OnAddStatus!= null)
+                    OnAddStatus.Invoke(data, prefabID);
             }
         }
 
@@ -62,44 +61,10 @@ namespace IdleArcade.Core
             {
                 var data = GetDataField(upgradeableIDs[i]);
                 if (data == null) continue;
-                if (!activeFields.Contains(data)) continue;
 
-                activeFields.Remove(data);
-                RemoveStatus(data);
+                if(OnRemoveStatus != null)
+                    OnRemoveStatus.Invoke(data, prefabID);
             }
         }
-
-        private void AddStatus(UpgradeableDataFields.Data data)
-        {
-            var statusObj = Instantiate(statusPrefab.gameObject, contentHolder);
-            statusObj.SetActive(true);
-            var staus = statusObj.GetComponent<UpgradeStatus>();
-            if (staus == null)
-                Destroy(statusObj);
-            else
-            {
-                staus.Data = data;
-                activeStatus.Add(staus);
-            
-            }
-        }
-
-        private void RemoveStatus(UpgradeableDataFields.Data data)
-        {
-
-            for (int i = 0; i < activeStatus.Count; i++)
-            {
-                if (activeStatus[i].Data == data)
-                {
-                    var statusObj = activeStatus[i].gameObject;
-                    activeStatus.RemoveAt(i);
-                    Destroy(statusObj);
-                    break;
-                }
-            }
-
-            
-        }
-
     }
 }

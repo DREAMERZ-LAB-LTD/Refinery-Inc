@@ -16,6 +16,9 @@ namespace IdleArcade.Core
             UpgradeSystem.instance.Remove(upgradeableIDs);
         }
 
+
+
+
         public KeyCode enter, exit;
         void Update()
         { 

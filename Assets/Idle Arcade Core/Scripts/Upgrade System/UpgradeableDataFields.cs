@@ -10,12 +10,22 @@ namespace IdleArcade.Core
         {
             public ChangedFieldValue OnFieldChanged;
 
-            [SerializeField] private string name;
-            [SerializeField] private string iD;
-            [SerializeField, Range(0, 1)] private float t = 0;
+            [Header("Visual Element")]
+            [SerializeField] public string iD;
+            [SerializeField] public string name;
+            [SerializeField] public Sprite icon;
 
-            public string Name => name;
-            public string ID => iD;
+            [Header("Pricing Setup")]
+            [SerializeField] public string coinID;
+            [SerializeField] public int unlockPrice = 10;
+            [SerializeField] public int upgradePrice = 10;
+
+            [Header("Upgrade & Unlocking Status")]
+            public bool isUnlocked = false;
+            [SerializeField] public float dt = 0.1f;
+            [SerializeField, Range(0, 1)] 
+            private float t = 0;
+
             public bool isUpgraded => t == 1;
 
             public float T

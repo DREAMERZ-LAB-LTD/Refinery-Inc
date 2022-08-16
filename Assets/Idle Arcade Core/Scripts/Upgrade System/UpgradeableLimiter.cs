@@ -14,6 +14,8 @@ namespace IdleArcade.Core
 
         protected virtual void OnDestroy()
         {
+            if (UpgradeSystem.instance == null) return;
+
             var data = UpgradeSystem.instance.GetDataField(GetID);
             if (data != null)
                 data.OnFieldChanged -= OnUpgraded;
