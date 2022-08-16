@@ -43,28 +43,22 @@ namespace IdleArcade.Core
             return null;
         }
 
-        public void Add(string[] upgradeableIDs)
+        public void Add(string upgradeableID)
         {
-            for (int i = 0; i < upgradeableIDs.Length; i++)
-            { 
-                var data = GetDataField(upgradeableIDs[i]);
-                if (data == null) continue;
+            var data = GetDataField(upgradeableID);
+            if (data == null) return;
 
-                if(OnAddStatus!= null)
-                    OnAddStatus.Invoke(data, prefabID);
-            }
+            if (OnAddStatus != null)
+                OnAddStatus.Invoke(data, prefabID);
         }
 
-        public void Remove(string[] upgradeableIDs)
+        public void Remove(string upgradeableID)
         {
-            for (int i = 0; i < upgradeableIDs.Length; i++)
-            {
-                var data = GetDataField(upgradeableIDs[i]);
-                if (data == null) continue;
+            var data = GetDataField(upgradeableID);
+            if (data == null) return;
 
-                if(OnRemoveStatus != null)
-                    OnRemoveStatus.Invoke(data, prefabID);
-            }
+            if (OnRemoveStatus != null)
+                OnRemoveStatus.Invoke(data, prefabID);
         }
     }
 }

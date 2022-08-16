@@ -169,10 +169,10 @@ GameObject:
   - component: {fileID: 2994271708230186725}
   - component: {fileID: 2994271708230186727}
   - component: {fileID: 3505623089886107367}
-  - component: {fileID: 1853155767438366122}
   - component: {fileID: 2994271708230186744}
   - component: {fileID: 2994271707829550121}
   - component: {fileID: 1951903667970749025}
+  - component: {fileID: 7000569211549257581}
   m_Layer: 0
   m_Name: Exporter
   m_TagString: Source
@@ -212,7 +212,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: B
   m_amount: 0
-  amountLimitID: amount
+  amountLimitID: 
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2994271708230186727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -238,25 +250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9daffec3d221e94eab7f0b3dd3670f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervalLimitID: Time Interval
+  timeIntervalLimitID: Export Delay A
   from: {fileID: 2994271709507061511}
   to: {fileID: 2994271708230186725}
---- !u!114 &1853155767438366122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2994271708230186746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: Time Interval
-  range: {x: 1.5, y: 0.02}
-  t: 0
-  data: {fileID: 0}
 --- !u!114 &2994271708230186744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +296,21 @@ MonoBehaviour:
   convertedPrefab: {fileID: 3324909748409890731, guid: 6ccb7f6a6bd1ee34da4d3eb44bd01674, type: 3}
   A: {fileID: 8709489463275049935}
   B: {fileID: 8983698246803521493}
+--- !u!114 &7000569211549257581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994271708230186746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6091b3867808fe4dbe6806032f0b775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Export Delay A
+  range: {x: 1.5, y: 0.02}
+  t: 0
 --- !u!1 &2994271708334281135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1088,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2994271709507061533}
-  - component: {fileID: 2994271709507061510}
+  - component: {fileID: 1383512921102810974}
   - component: {fileID: 2994271709507061511}
   - component: {fileID: 2994271709507061528}
   - component: {fileID: 2994271709507061529}
@@ -1105,7 +1116,7 @@ Transform:
   m_Father: {fileID: 6025009900435136163}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2994271709507061510
+--- !u!114 &1383512921102810974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1114,13 +1125,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2994271709507061534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
+  m_Script: {fileID: 11500000, guid: d6091b3867808fe4dbe6806032f0b775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: amount
-  range: {x: 0, y: 16}
-  t: 1
-  data: {fileID: 0}
+  id: Import Amount A
+  range: {x: 0, y: 50}
+  t: 0.12
 --- !u!114 &2994271709507061511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,7 +1145,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: A
   m_amount: 0
-  amountLimitID: amount
+  amountLimitID: Import Amount A
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2994271709507061528
 MonoBehaviour:
   m_ObjectHideFlags: 0

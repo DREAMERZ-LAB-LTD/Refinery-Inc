@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: New Upgradeable Fields
   m_EditorClassIdentifier: 
   fields:
-  - iD: time
-    name: Timer
+  - iD: Import Amount A
+    name: Capacity
     icon: {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
     coinID: coin1
     unlockPrice: 10
     upgradePrice: 20
     isUnlocked: 1
+    t: 0.12
     dt: 0.1
-    t: 0.55
-  - iD: time1
-    name: Timer 1
+  - iD: Export Delay A
+    name: Speed
     icon: {fileID: 21300002, guid: 8fb98a6035269e64a998f9b56828fc4f, type: 3}
     coinID: coin1
     unlockPrice: 20
     upgradePrice: 30
     isUnlocked: 0
+    t: 0
     dt: 0.1
-    t: 0.1
   - iD: time2
     name: Timer 2
     icon: {fileID: 21300000, guid: 12ef7cbdfe0e143fa858a324456c8979, type: 3}
@@ -38,14 +38,14 @@ MonoBehaviour:
     unlockPrice: 40
     upgradePrice: 50
     isUnlocked: 1
+    t: 0
     dt: 0.1
-    t: 0.5
   - iD: time3
     name: Timer 3
     icon: {fileID: 21300000, guid: fcd508110d7d7f74b9dfa45e141af43b, type: 3}
     coinID: coin1
     unlockPrice: 60
     upgradePrice: 70
-    isUnlocked: 0
+    isUnlocked: 1
+    t: 0.5
     dt: 0.1
-    t: 0.3

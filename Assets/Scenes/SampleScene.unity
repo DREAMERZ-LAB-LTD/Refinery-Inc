@@ -729,9 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4956e264da659a244bd48738f24c6b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeableIDs:
-  - time
-  - time2
+  upgradeableLimiters: []
   enter: 97
   exit: 114
 --- !u!114 &446029200
@@ -3984,6 +3982,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 515152972}
     m_Modifications:
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: exit
+      value: 114
+      objectReference: {fileID: 0}
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: enter
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: upgradeableIDs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: upgradeableIDs.Array.data[0]
+      value: time
+      objectReference: {fileID: 0}
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: upgradeableIDs.Array.data[1]
+      value: time3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: upgradeableLimiters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: upgradeableLimiters.Array.data[0]
+      value: 
+      objectReference: {fileID: 1279660541293776532}
+    - target: {fileID: 2168280157179856155, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+      propertyPath: upgradeableLimiters.Array.data[1]
+      value: 
+      objectReference: {fileID: 1279660541293776531}
     - target: {fileID: 8007556215414712120, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -4038,6 +4068,28 @@ PrefabInstance:
       objectReference: {fileID: 258198436}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+--- !u!114 &1279660541293776531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8134979633921230319, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+  m_PrefabInstance: {fileID: 1279660541293776530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6091b3867808fe4dbe6806032f0b775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1279660541293776532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 212088993485518300, guid: 74ecb96a18aa6e846a86435ab9b3ce2c, type: 3}
+  m_PrefabInstance: {fileID: 1279660541293776530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6091b3867808fe4dbe6806032f0b775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3595832897608132170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4126,7 +4178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4334565724570267379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

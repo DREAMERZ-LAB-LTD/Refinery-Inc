@@ -22,9 +22,8 @@ namespace IdleArcade.Core
 
             [Header("Upgrade & Unlocking Status")]
             public bool isUnlocked = false;
-            [SerializeField] public float dt = 0.1f;
-            [SerializeField, Range(0, 1)] 
-            private float t = 0;
+            [SerializeField, Range(0, 1)]  private float t = 0.2f;
+            [SerializeField, Range(0, 1)]  public float dt = 0.1f;
 
             public bool isUpgraded => t == 1;
 
@@ -36,8 +35,7 @@ namespace IdleArcade.Core
                 }
                 set
                 {
-                    t = value;
-                    Mathf.Clamp01(t);
+                    t = Mathf.Clamp01(value);
                 
                     if(OnFieldChanged!= null)
                         OnFieldChanged.Invoke(t);
