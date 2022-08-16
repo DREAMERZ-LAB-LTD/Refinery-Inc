@@ -1192,10 +1192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4956e264da659a244bd48738f24c6b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeableIDs:
-  - 
-  enter: 0
-  exit: 0
+  upgradeableLimiters:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2275445144974679207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,8 +2452,8 @@ Transform:
   m_Children:
   - {fileID: 1722086096714313533}
   - {fileID: 4782654501991633953}
-  - {fileID: 1279660540817637834}
   - {fileID: 8830622636855836131}
+  - {fileID: 1279660540817637834}
   - {fileID: 1279660540505253897}
   - {fileID: 2168280157179856149}
   m_Father: {fileID: 0}
@@ -2876,7 +2875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7732373775254772787, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7732373775254772787, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3089,7 +3088,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7732373775254772787, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7732373775254772787, guid: fd6e18a3021ad104fa25ef9063f09545, type: 3}
       propertyPath: m_LocalPosition.x

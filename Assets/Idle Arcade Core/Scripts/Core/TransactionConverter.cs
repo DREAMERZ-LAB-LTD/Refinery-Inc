@@ -14,8 +14,7 @@ namespace IdleArcade.Core
         public delegate void OnConvert(float delay);
         public OnConvert OnConvertBegin;
 
-        [SerializeField] private string timeIntervalLimitID;
-        protected Limiter timeintervallimit;
+        [SerializeField] protected Limiter timeintervallimit;
 
         [SerializeField, Tooltip("Source container where from the item convert to anoter")] 
         protected TransactionContainer from;
@@ -29,14 +28,6 @@ namespace IdleArcade.Core
 
         protected virtual void Awake()
         {
-            var limits = GetComponents<Limiter>();
-            foreach (var limit in limits)
-                if (limit.GetID == timeIntervalLimitID)
-                {
-                    timeintervallimit = limit;
-                    break;
-                }
-
             converterResponses = GetComponentsInChildren<IConverter>();
         }
 

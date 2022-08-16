@@ -15,8 +15,7 @@ namespace IdleArcade.Core
         [SerializeField, Tooltip("Current amount of this transaction point")]
         protected int m_amount;
 
-        [SerializeField, Tooltip("Which limitter will assign to the amount limit field Based On ID Value")]
-        private string amountLimitID;
+        [SerializeField, Tooltip("Which limitter will work to limit clamp the capacity of this container")]
         private Limiter amountLimit;
 
         [Header("Callback Events")]
@@ -101,11 +100,6 @@ namespace IdleArcade.Core
         /// </summary>
         protected virtual void Awake()
         {
-            var limits = GetComponents<Limiter>();
-            for (int i = 0; i < limits.Length; i++)
-                if (amountLimitID == limits[i].GetID)
-                    amountLimit = limits[i];
-
             Add(0);//update all of the UI just like initialize
         }
 

@@ -11,22 +11,13 @@ namespace IdleArcade.Core
         protected TransactionContainer container;
         public TransactionContainer GetContainer => container;
 
-        [SerializeField] private string timeIntervalLimitID;
-        protected Limiter timeIntervalLimit;
+        [SerializeField] protected Limiter timeIntervalLimit;
         protected const int delta = 1;
 
         protected Coroutine routine;
 
         protected virtual void Awake()
         {
-            var limits = GetComponents<Limiter>();
-            for (int i = 0; i < limits.Length; i++)
-                if (timeIntervalLimitID == limits[i].GetID)
-                { 
-                    timeIntervalLimit = limits[i];
-                    break;
-                }
-
             var containers = GetComponents<TransactionContainer>();
             for (int i = 0; i < containers.Length; i++)
                 if (containerID == containers[i].GetID)

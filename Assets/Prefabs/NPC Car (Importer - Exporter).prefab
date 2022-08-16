@@ -1180,7 +1180,7 @@ GameObject:
   - component: {fileID: 7309979035822251518}
   - component: {fileID: 7309979035822251519}
   - component: {fileID: 7309979035822251514}
-  - component: {fileID: 7309979035822251507}
+  - component: {fileID: 4012601529470228373}
   m_Layer: 0
   m_Name: Transaction Bridge Setup
   m_TagString: Untagged
@@ -1288,7 +1288,6 @@ MonoBehaviour:
   id: Time Interval
   range: {x: 1, y: 0.02}
   t: 0.8
-  data: {fileID: 0}
 --- !u!114 &7309979035822251518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,8 +1330,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: C
   m_amount: 0
-  amountLimitID: amount
---- !u!114 &7309979035822251507
+  amountLimit: {fileID: 4012601529470228373}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4012601529470228373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1341,13 +1352,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 7309979035822251513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 294e109c571a27144bdd49e125c4be76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: amount
-  range: {x: 0, y: 5}
-  t: 1
-  data: {fileID: 0}
+  id: Capacity NPC 1
+  range: {x: 0, y: 10}
+  t: 0.5
+  OnLocked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7732373775254772796}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnUnlocked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7732373775254772796}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 7732373775622071127}
+        m_TargetAssemblyTypeName: SWS.splineMove, Assembly-CSharp-firstpass
+        m_MethodName: StartMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &7309979036271092541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1796,6 @@ GameObject:
   - component: {fileID: 7732373775622071121}
   - component: {fileID: 7732373775622071127}
   - component: {fileID: 7732373775622071126}
-  - component: {fileID: 7732373775622071125}
   m_Layer: 10
   m_Name: NPC Car
   m_TagString: Player
@@ -1782,7 +1833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathContainer: {fileID: 7732373776513229722}
-  onStart: 1
+  onStart: 0
   moveToPath: 1
   reverse: 0
   startPoint: 0
@@ -1835,32 +1886,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea1d5666509504429badfee6120469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfContainer: {fileID: 7309979035822251514}
+  sourceContainer: {fileID: 0}
   mover: {fileID: 7732373775622071127}
   importPoint: 1
   exportPoint: 3
-  selfContainer: {fileID: 7309979035822251514}
-  onImportPoint:
-    m_PersistentCalls:
-      m_Calls: []
-  onExportPoint:
-    m_PersistentCalls:
-      m_Calls: []
-  onTheWay:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!65 &7732373775622071125
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7732373775622071122}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7022829, y: 2.221974, z: 4.338881}
-  m_Center: {x: 0.0021460732, y: 1.1346898, z: 0.81158614}
 --- !u!1 &7732373776466727538
 GameObject:
   m_ObjectHideFlags: 0
