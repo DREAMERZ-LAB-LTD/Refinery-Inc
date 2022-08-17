@@ -1032,14 +1032,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2031078882, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
-      propertyPath: id
-      value: Player Capacity 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2031078883, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
-      propertyPath: id
-      value: Player Picking Speed 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4829401762866282503, guid: c54735e93ee7d8947b77c41a42737fca, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -4050,6 +4042,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 146676830833410274, guid: 1585716cf926feb4191b40a36b2c61e0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 820a165f759361147a767dfb987a12fd, type: 2}
+    - target: {fileID: 1253474132725905580, guid: 1585716cf926feb4191b40a36b2c61e0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1351334550145309212, guid: 1585716cf926feb4191b40a36b2c61e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.24
+      objectReference: {fileID: 0}
     - target: {fileID: 7775905201298669932, guid: 1585716cf926feb4191b40a36b2c61e0, type: 3}
       propertyPath: exportPoint
       value: 3
@@ -4119,6 +4123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3646190861286639289, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 820a165f759361147a767dfb987a12fd, type: 2}
     - target: {fileID: 5680577824045261449, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -4167,6 +4175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Converter Machine B to C
       objectReference: {fileID: 0}
+    - target: {fileID: 6473704278980672144, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 820a165f759361147a767dfb987a12fd, type: 2}
     - target: {fileID: 6591394211958490935, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: sourceContainer
       value: 
@@ -4214,7 +4226,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3595832898788694226, guid: 7d724cc7e6ba3414b9052452659b6543, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3595832898788694226, guid: 7d724cc7e6ba3414b9052452659b6543, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4326,6 +4338,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7433251480248456736, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd59a89c4971f9b4cadffe3118e8dfa4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
 --- !u!1001 &7440920733922648112

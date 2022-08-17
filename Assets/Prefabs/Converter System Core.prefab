@@ -55,6 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1326204483325727604}
   - component: {fileID: 1326204483325727607}
+  - component: {fileID: 248082257852425756}
   m_Layer: 0
   m_Name: Visual Pattern
   m_TagString: Untagged
@@ -90,6 +91,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gride: {x: 4, y: 4}
+--- !u!114 &248082257852425756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326204483325727605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eeb2221f09754e4b9e5b1b167a468e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
 --- !u!1 &2870415383862857428
 GameObject:
   m_ObjectHideFlags: 0

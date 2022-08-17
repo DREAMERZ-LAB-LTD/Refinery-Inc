@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TransactorVisual : TransactionVisualCore
 {
-    protected override void OnAdding(int delta, TransactionContainer A)
+    protected override void OnAdding(int delta, TransactionContainer A, TransactionContainer B)
     {
         var source = A.GetComponent<TransactionSourceVisual>();
         if (source == null)
@@ -11,13 +11,11 @@ public class TransactorVisual : TransactionVisualCore
 
         var visualEntity = source.Pull_UsingLIFO(A.GetID);
         if (visualEntity)
-        {
             Push(visualEntity);
-            visualEntity.transform.parent = transform;
-        }
+        
     }
 
-    protected override void OnRemoving(int delta, TransactionContainer A)
+    protected override void OnRemoving(int delta, TransactionContainer A, TransactionContainer B)
     {
         var destination = A.GetComponent<TransactionDestinationVisual>();
         if (destination == null)
@@ -25,9 +23,7 @@ public class TransactorVisual : TransactionVisualCore
 
         var visualEntity = Pull_UsingLIFO(A.GetID);
         if (visualEntity)
-        {
             destination.Push(visualEntity);
-            visualEntity.transform.parent = destination.transform;
-        }
+        
     }
 }

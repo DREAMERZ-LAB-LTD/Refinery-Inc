@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace IdleArcade.Core
 {
-    public class TransactionVisualCore : MonoBehaviour
+
+    public abstract class TransactionVisualCore : MonoBehaviour
     {
         public delegate void ChangedVisual(List<Entity> totalEntitys);
         public ChangedVisual OnChangedVisual;
@@ -11,13 +13,18 @@ namespace IdleArcade.Core
         [Tooltip("Collection of visual objects to represent how many amounts already stored")]
         protected List<Entity> visualAmounts = new List<Entity>();
 
+        protected IVisualPattern visualPattern = null;
+        protected IVisualEffect visualEffect = null;
+
         protected virtual void Awake()
         {
             var storePoints = GetComponents<TransactionContainer>();
-
             if (storePoints.Length > 0)
                 foreach (var point in storePoints)
-                    point.OnChangedValue += OnChanging;                
+                    point.OnChangedValue += OnChanging;   
+            
+            visualPattern = GetComponentInChildren<IVisualPattern>();
+            visualEffect = GetComponentInChildren<IVisualEffect>();
         }
         private void OnDestroy()
         {
@@ -26,7 +33,6 @@ namespace IdleArcade.Core
                 foreach (var point in storePoints)
                     point.OnChangedValue -= OnChanging;                
         }
-
 
         /// <summary>
         /// called each of the changes container transaction amount
@@ -40,11 +46,10 @@ namespace IdleArcade.Core
         private void OnChanging(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
         {
             if (delta > 0)
-                OnAdding(delta, A);
+                OnAdding(delta, A, B);
             
             if (delta < 0)
-                OnRemoving(delta, A);
-            
+                OnRemoving(delta, A, B);
         }
 
         /// <summary>
@@ -52,14 +57,54 @@ namespace IdleArcade.Core
         /// </summary>
         /// <param name="delta">change rate</param>
         /// <param name="A">Source Container</param>
-        protected virtual void OnAdding(int delta, TransactionContainer A) { }
+        protected abstract void OnAdding(int delta, TransactionContainer A, TransactionContainer B);
 
         /// <summary>
         ///  Called when Removing transaction amount of the container
         /// </summary>
         /// <param name="delta">change rate</param>
         /// <param name="A">Source Containe</param>
-        protected virtual void OnRemoving(int delta, TransactionContainer A) { }
+        protected abstract void OnRemoving(int delta, TransactionContainer A, TransactionContainer B);
+
+        /// <summary>
+        /// return next pullable Entity from the collection Usning FiFO
+        /// </summary>
+        /// <param name="id">Entity ID</param>
+        /// <returns></returns>
+        public Entity PullNextElement_UsingFIFO(string id)
+        {
+            if (visualAmounts.Count == 0)
+                return null;
+
+            Entity result = null;
+            for (int i = visualAmounts.Count - 1; i >= 0; i--)
+            {
+                result = visualAmounts[i];
+                if (result.GetID == id)
+                    return result;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// return next pullable Entity from the collection Usning LIFO
+        /// </summary>
+        /// <param name="id">Entity ID</param>
+        /// <returns></returns>
+        public Entity PullNextElement_UsingLIFO(string id)
+        {
+            if (visualAmounts.Count == 0)
+                return null;
+
+            Entity result = null;
+            for (int i = 0; i < visualAmounts.Count; i++)
+            {
+                result = visualAmounts[i];
+                if (result.GetID == id)
+                    return result;
+            }
+            return null;
+        }
 
         /// <summary>
         /// return Entity and remove it from the collection Usning FIFO
@@ -76,9 +121,8 @@ namespace IdleArcade.Core
             {
                 result = visualAmounts[i];
                 if (result.GetID == id)
-                { 
+                {
                     visualAmounts.RemoveAt(i);
-
                     Refresh();
                     return result;
                 }
@@ -104,7 +148,6 @@ namespace IdleArcade.Core
                 if (result.GetID == id)
                 {
                     visualAmounts.RemoveAt(i);
-
                     Refresh();
                     return result;
                 }
@@ -114,83 +157,76 @@ namespace IdleArcade.Core
         }
 
         /// <summary>
-        /// return next pullable Entity from the collection Usning FiFO
-        /// </summary>
-        /// <param name="id">Entity ID</param>
-        /// <returns></returns>
-        public Entity NextPullElement_UsingFIFO(string id)
-        {
-            if (visualAmounts.Count == 0)
-                return null;
-
-            Entity result = null;
-            for (int i = visualAmounts.Count - 1; i >= 0; i--)
-            {
-                result = visualAmounts[i];
-                if (result.GetID == id)
-                    return result;
-            }
-            return null;
-        }
-                
-
-
-        /// <summary>
-        /// return next pullable Entity from the collection Usning LIFO
-        /// </summary>
-        /// <param name="id">Entity ID</param>
-        /// <returns></returns>
-        public Entity NextPullElement_UsingLIFO(string id)
-        {
-            if (visualAmounts.Count == 0)
-                return null;
-
-            Entity result = null;
-            for (int i = 0; i < visualAmounts.Count; i++)
-            {
-                result = visualAmounts[i];
-                if (result.GetID == id)
-                    return result;
-            }
-            return null;
-        }
-
-        /// <summary>
         /// Push Entity to the collection
         /// </summary>
-        /// <param name="visualEntity">Entity item</param>
+        /// <param name="entity">Entity item</param>
         /// <returns></returns>
-        public bool Push(Entity visualEntity)
+        public bool Push(Entity entity)
         {
-            if (visualEntity == null)
+            if (entity == null)
                 return false;
 
-            visualAmounts.Add(visualEntity);
-            Refresh();
+            visualAmounts.Add(entity);
+
+
+            if (visualPattern != null)
+            {
+                var parentMono = visualPattern as MonoBehaviour;
+                entity.transform.parent = parentMono.transform;
+            }
+            else
+                entity.transform.parent = transform;
+
+            if (visualEffect != null)
+            {
+                var from = entity.transform.localPosition;
+                var to = GetLocalPointOf(visualAmounts.Count-1, entity.transform.localScale);
+                visualEffect.OnAdding(entity, from, to, Refresh);
+            }
+            else
+                Refresh();
             return true;
         }
 
-
+        public Vector3 GetLocalPointOf(int index, Vector3 scale)
+        {
+            try
+            {
+                return visualPattern.GetLocalPointOf(index, scale);
+            }
+            catch (Exception e)
+            {
+                var y = index * scale.y + 1;
+                return new Vector3(0, y, 0);
+            }
+        }
 
         public void Refresh()
         {
             if (visualAmounts.Count == 0) return;
 
-            if (OnChangedVisual == null)
+            if (visualEffect != null)
+                visualEffect.OnChanged(visualAmounts);
+
+            try
+            {
+                visualPattern.OnChanged(visualAmounts);
+            }
+            catch (Exception e)
             { 
-                var rotation = transform.rotation;
-                var position = transform.position;
-                var height = visualAmounts[0].transform.localScale.y;
-                position.y += visualAmounts.Count * height + 1;
+                var scale = visualAmounts[0].transform.localScale;
 
                 for (int i = visualAmounts.Count - 1; i >= 0; i--)
                 {
                     var amount = visualAmounts[i];
-                    position.y -= height;
-                    amount.transform.SetPositionAndRotation(position, rotation);
+                    var position = GetLocalPointOf(i, scale);
+                    amount.transform.localPosition = position;
+                    amount.transform.localRotation = Quaternion.identity;
                 }
             }
-            else
+
+            
+            if (OnChangedVisual != null)
                 OnChangedVisual.Invoke(visualAmounts);
         }
     }

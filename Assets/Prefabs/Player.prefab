@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4829401761767346576}
   - component: {fileID: 4829401761767346579}
+  - component: {fileID: 796636530}
   m_Layer: 0
   m_Name: Visual Pattern
   m_TagString: Untagged
@@ -45,6 +46,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gride: {x: 2, y: 4}
+--- !u!114 &796636530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829401761767346577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eeb2221f09754e4b9e5b1b167a468e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.1
 --- !u!1 &4829401762073456469
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbf77dbdf1668d4cb7a9cbef37aff27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Player Capacity
+  id: Player Capacity 8
   range: {x: 0, y: 16}
   t: 0.25
   OnLocked:
@@ -328,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294e109c571a27144bdd49e125c4be76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Player Picking Speed
+  id: Player Picking Speed 9
   range: {x: 1.5, y: 0.02}
   t: 0.2
   OnLocked:
