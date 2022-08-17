@@ -11,9 +11,6 @@ namespace IdleArcade.Core
 
         }
 
-        public delegate void OnConvert(float delay);
-        public OnConvert OnConvertBegin;
-
         [SerializeField] protected Limiter timeintervallimit;
 
         [SerializeField, Tooltip("Source container where from the item convert to anoter")] 
@@ -63,8 +60,6 @@ namespace IdleArcade.Core
                         OnProcessBegin(delay);
                         for (int i = 0; i < converterResponses.Length; i++)
                             converterResponses[i].OnConvertBegin(delay);
-                        if(OnConvertBegin!= null)
-                            OnConvertBegin.Invoke(delay);
 
                         from.TransactFrom(-delta, from);
                     }
