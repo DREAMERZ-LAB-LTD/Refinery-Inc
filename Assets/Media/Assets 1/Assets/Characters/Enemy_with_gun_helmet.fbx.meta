@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: c212e88beabeb3741abeddcce6836b77
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: -7374882954300511861
+    second: Enemy_with_Gun_And_Helmet|Dance_1
+  - first:
+      74: -708237670870940473
+    second: Enemy_with_Gun_And_Helmet|Dance_2
+  - first:
+      74: -6204278181388524422
+    second: Enemy_with_Gun_And_Helmet|Dance_3
+  - first:
+      74: -1484161931668540896
+    second: Enemy_with_Gun_And_Helmet|Die
+  - first:
+      74: -4023144603863940125
+    second: Enemy_with_Gun_And_Helmet|Idle
+  - first:
+      74: 2736801437373456310
+    second: Enemy_with_Gun_And_Helmet|Kneel_Bazuka_Shoo
+  - first:
+      74: -466701997160301112
+    second: Enemy_with_Gun_And_Helmet|Kneel_Die
+  - first:
+      74: -1315590167560056956
+    second: Enemy_with_Gun_And_Helmet|Kneel_Fire
+  - first:
+      74: 9099809299666961427
+    second: Enemy_with_Gun_And_Helmet|Kneel_idle
+  - first:
+      74: 4470803042609813870
+    second: Enemy_with_Gun_And_Helmet|Kneel_Idle_Hiding
+  - first:
+      74: -4632669671878894216
+    second: Enemy_with_Gun_And_Helmet|Kneel_Pistol_Idle
+  - first:
+      74: -1461660472105107299
+    second: Enemy_with_Gun_And_Helmet|kneel_run
+  - first:
+      74: 1128849167317676607
+    second: Enemy_with_Gun_And_Helmet|Kneel_Tied_Up
+  - first:
+      74: 7064134863237989747
+    second: Enemy_with_Gun_And_Helmet|Kneel_Walking
+  - first:
+      74: 48878101619641724
+    second: Enemy_with_Gun_And_Helmet|Riffle_Run
+  - first:
+      74: -2417763207543549355
+    second: Enemy_with_Gun_And_Helmet|Riffle_Walk
+  - first:
+      74: 3873774909897288525
+    second: Enemy_with_Gun_And_Helmet|Senseless
+  - first:
+      74: 5851671035533067407
+    second: Enemy_with_Gun_And_Helmet|Shooting
+  - first:
+      74: 1367609754038593812
+    second: Enemy_with_Gun_And_Helmet|surrender
+  - first:
+      74: 8020247902941599416
+    second: Enemy_with_Gun_And_Helmet|T_Pose
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Enemy
+    second: {fileID: 2100000, guid: f242ea42eaa83284db872adf2c986774, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

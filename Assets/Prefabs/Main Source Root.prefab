@@ -378,7 +378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8128147987158140212
 Transform:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8128147987246911392
 Transform:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8128147987881761425
 Transform:
   m_ObjectHideFlags: 0
@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerID: A
-  timeIntervalLimitID: Time Interval
+  timeIntervalLimit: {fileID: 0}
 --- !u!114 &8128147988636724457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,7 +1118,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: A
   m_amount: 0
-  amountLimitID: amount
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8128147988636724459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,7 +1146,6 @@ MonoBehaviour:
   id: amount
   range: {x: 0, y: 125}
   t: 0.5
-  data: {fileID: 0}
 --- !u!114 &8128147988636724455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,7 +1161,6 @@ MonoBehaviour:
   id: Time Interval
   range: {x: 2, y: 0.02}
   t: 0.8
-  data: {fileID: 0}
 --- !u!114 &8128147988636724452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,7 +1254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8128147989023836040
 Transform:
   m_ObjectHideFlags: 0
