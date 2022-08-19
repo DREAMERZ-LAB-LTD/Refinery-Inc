@@ -21,7 +21,8 @@ namespace IdleArcade.Core
             while (Time.time < endTime)
             {
                 t = Mathf.InverseLerp(startTime, endTime, Time.time);
-                visualELemrnt.localPosition = Vector3.Lerp(from, to, t);
+                if(visualELemrnt)
+                    visualELemrnt.localPosition = Vector3.Lerp(from, to, t);
                 yield return null;
             }
             OnColpleted.Invoke();

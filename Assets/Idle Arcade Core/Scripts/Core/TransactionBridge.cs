@@ -10,10 +10,10 @@ namespace IdleArcade.Core
         [Tooltip("How many time to delay in between transiction frame")]
         [SerializeField] protected Limiter timeIntervalLimit;
 
+        [SerializeField] private bool useUserInput = false;
         [Tooltip("Where we will store all of the collection data based on Point ID")]
         protected TransactionContainer[] storePoints;
         private Coroutine routine; //store existin transiction routine
-
         protected virtual void Awake()
         {
             //assign all of the points to use for store all of the collecting data
@@ -47,6 +47,10 @@ namespace IdleArcade.Core
             {
                 while(useBridgeTransactionLimt)
                 {
+                    if(useUserInput)
+                        while (Input.GetMouseButton(0))
+                            yield return null;
+
                     if (!A.willCrossLimit(-delta) && !B.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
                     {
                         if (A.enabled && B.enabled)
@@ -69,6 +73,10 @@ namespace IdleArcade.Core
         
                 while(!useBridgeTransactionLimt)
                 {
+                    if (useUserInput)
+                        while (Input.GetMouseButton(0))
+                            yield return null;
+
                     if (!A.willCrossLimit(-delta) && !B.willCrossLimit(delta))
                     {
                         if (A.enabled && B.enabled)
