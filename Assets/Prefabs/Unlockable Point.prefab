@@ -203,12 +203,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c01dc860a914ad943ac0345866ca854a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 373986a38083f8d4ab0f07a06f7c9c0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.1, y: 2.65}
+  m_Size: {x: 2.65, y: 2.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -227,7 +227,6 @@ GameObject:
   - component: {fileID: 7873690419738214898}
   - component: {fileID: 7873690419738214910}
   - component: {fileID: 7873690419738214899}
-  - component: {fileID: 822093471}
   - component: {fileID: 7873690419738214897}
   m_Layer: 0
   m_Name: Unlockable Point
@@ -309,9 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: B
+  id: coin1
   m_amount: 0
-  amountLimit: {fileID: 0}
+  amountLimit: {fileID: 7873690419738214910}
   m_OnAdding:
     m_PersistentCalls:
       m_Calls: []
@@ -351,19 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131b561cac8efae4ab186ec47a3e3b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerID: B
---- !u!114 &822093471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7873690419738214911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f977b5579884ad048b03f4a4575fcf7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  containerID: coin1
 --- !u!65 &7873690419738214897
 BoxCollider:
   m_ObjectHideFlags: 0

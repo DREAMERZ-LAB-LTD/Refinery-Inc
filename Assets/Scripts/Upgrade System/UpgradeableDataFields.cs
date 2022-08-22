@@ -32,11 +32,22 @@ namespace IdleArcade.Core
 
             public bool isUnlocked
             {
-                get { return m_isUnlocked; }
+                get
+                {
+                    if (PlayerPrefs.HasKey(iD + "Unlock"))
+                    {
+                        int status = PlayerPrefs.GetInt(iD + "Unlock");
+                        return status == 1 ? true : false;
+                    }
+                    return m_isUnlocked;
+                }
                 set
                 {
                     m_isUnlocked = value;
-                    if(OnUnlocking!= null)
+                    int status = m_isUnlocked ? 1 : 0;
+                    PlayerPrefs.SetInt(iD + "Unlock", status);
+
+                    if (OnUnlocking != null)
                         OnUnlocking.Invoke(value);
                 }
             }
@@ -45,13 +56,17 @@ namespace IdleArcade.Core
             {
                 get
                 {
+                    if (PlayerPrefs.HasKey(iD + "upgrade"))
+                    {
+                         return PlayerPrefs.GetFloat(iD + "upgrade");
+                    }
                     return t;
                 }
                 set
                 {
                     t = Mathf.Clamp01(value);
-                
-                    if(OnChanged!= null)
+                    PlayerPrefs.SetFloat(iD + "upgrade", t);
+                    if (OnChanged!= null)
                         OnChanged.Invoke(t);
                 }
             }

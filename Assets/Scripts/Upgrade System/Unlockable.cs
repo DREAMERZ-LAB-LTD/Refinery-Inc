@@ -35,7 +35,11 @@ public class Unlockable : Entity
     private void Unlock()
     {
         var data = UpgradeSystem.instance.GetDataField(GetID);
-        if (data == null) return;
+        if (data == null)
+        {
+            Time.timeScale =0;
+            return;
+        }
 
         data.isUnlocked = true;
         UnlockStatus(true);

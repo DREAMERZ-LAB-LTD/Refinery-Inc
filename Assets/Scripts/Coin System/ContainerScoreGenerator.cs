@@ -4,31 +4,25 @@ using IdleArcade.Core;
 
 public class ContainerScoreGenerator : ScoreGenerator
 {
-    [SerializeField] bool OnAdding = true;
-    [SerializeField] bool OnRemoving = false;
-    [SerializeField] private TransactionContainer[] containers;
+    [Header("Container Setup")]
+    [SerializeField] TransactionContainer toContainer = null;
+    [SerializeField] private TransactionContainer fromContainer;
     private void Awake()
     {
-        for (int i = 0; i < containers.Length; i++)
-        {
-            containers[i].OnChangedValue += OnScoring;
-        }
+        fromContainer.OnChangedValue += OnChangeFroContainer;
     }
 
     private void OnDestroy()
     {
-        for (int i = 0; i < containers.Length; i++)
-        {
-            containers[i].OnChangedValue -= OnScoring;
-        }
+        fromContainer.OnChangedValue -= OnChangeFroContainer;
     }
 
-    private void OnScoring(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
+    private void OnChangeFroContainer(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
     {
-        if (delta > 0 && OnAdding)
-            GenerateScore();
+        Debug.Log("Changing  " + transform.parent.name + " Delata = " + delta);
+        if (delta <= 0) return;
+        toContainer.Add(delta);
+        GenerateScore();
 
-        if (delta < 0 && OnRemoving)
-            GenerateScore();
     }
 }

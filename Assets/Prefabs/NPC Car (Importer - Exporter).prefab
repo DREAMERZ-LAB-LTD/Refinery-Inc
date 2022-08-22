@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 4012601529470228373}
   m_Layer: 0
   m_Name: Transaction Bridge Setup
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1260,6 +1260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeIntervalLimit: {fileID: 7309979035822251489}
+  useUserInput: 0
 --- !u!114 &7309979035822251488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeIntervalLimit: {fileID: 7309979035822251489}
+  useUserInput: 0
 --- !u!114 &7309979035822251489
 MonoBehaviour:
   m_ObjectHideFlags: 0

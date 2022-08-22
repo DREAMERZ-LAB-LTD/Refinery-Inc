@@ -188,7 +188,7 @@ namespace IdleArcade.Core
             return true;
         }
 
-        public Vector3 GetLocalPointOf(int index, Vector3 scale)
+        public virtual Vector3 GetLocalPointOf(int index, Vector3 scale)
         {
             try
             {

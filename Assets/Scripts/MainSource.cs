@@ -13,11 +13,11 @@ public class MainSource : MonoBehaviour, TriggerDetector.ITriggerable
 
     private int GetLastAmount 
     {
-        set { PlayerPrefs.SetInt("LastProgress", value); }
+        set { PlayerPrefs.SetInt("Progress", value); }
         get
         {
-            if (PlayerPrefs.HasKey("LastProgress"))
-                return PlayerPrefs.GetInt("LastProgress");
+            if (PlayerPrefs.HasKey("Progress"))
+                return PlayerPrefs.GetInt("Progress");
             else
                 return initialAmount;
         }
