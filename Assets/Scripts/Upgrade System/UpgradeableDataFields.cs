@@ -39,7 +39,12 @@ namespace IdleArcade.Core
                         int status = PlayerPrefs.GetInt(iD + "Unlock");
                         return status == 1 ? true : false;
                     }
-                    return m_isUnlocked;
+                    else 
+                    {
+                        int status = m_isUnlocked ? 1 : 0;
+                        PlayerPrefs.SetInt(iD + "Unlock", status);
+                        return m_isUnlocked;
+                    }
                 }
                 set
                 {
@@ -60,7 +65,12 @@ namespace IdleArcade.Core
                     {
                          return PlayerPrefs.GetFloat(iD + "upgrade");
                     }
-                    return t;
+                    else
+                    {
+                        t = Mathf.Clamp01(t);
+                        PlayerPrefs.SetFloat(iD + "upgrade", t);
+                        return t;
+                    }
                 }
                 set
                 {

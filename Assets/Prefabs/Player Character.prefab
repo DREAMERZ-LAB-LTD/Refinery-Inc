@@ -52,9 +52,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5105319
-  m_Height: 2.3185992
+  m_Height: 2.496978
   m_Direction: 1
-  m_Center: {x: 0, y: 1.3597655, z: 0.11405277}
+  m_Center: {x: 0, y: 1.2584885, z: 0.11405277}
 --- !u!54 &301228047103828237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &301228047103828226
 MonoBehaviour:
@@ -83,9 +83,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8458bfa741520b42bab3541a21da558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  maxVelocity: 4
-  turnSpeed: 2
+  moveSpeed: 15
+  maxVelocity: 6
+  turnSpeed: 5
   maxTrackdOffset: 2
 --- !u!114 &301228047103828243
 MonoBehaviour:
@@ -165,9 +165,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5105319
-  m_Height: 2.3185992
+  m_Height: 2.496978
   m_Direction: 1
-  m_Center: {x: 0, y: 1.3597655, z: 0.11405277}
+  m_Center: {x: 0, y: 1.2584885, z: 0.11405277}
 --- !u!54 &301228047963573851
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -670,7 +670,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Height
-      value: 2.3185992
+      value: 2.496978
       objectReference: {fileID: 0}
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Radius
@@ -678,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Center.y
-      value: 1.3597655
+      value: 1.2584885
       objectReference: {fileID: 0}
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Center.z
@@ -736,6 +736,10 @@ PrefabInstance:
       propertyPath: timeIntervalLimit
       value: 
       objectReference: {fileID: 5128287160977829099}
+    - target: {fileID: 8970113933032957912, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8970113933032957912, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Name
       value: Conin Collector

@@ -24,7 +24,6 @@ public class Unlockable : Entity
             if (container)
                 container.OnFilled += Unlock;
         }
-
     }
 
     protected void OnDestroy()
