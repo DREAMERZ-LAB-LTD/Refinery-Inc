@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MovementController : MonoBehaviour
+public class PlayerCarController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float maxVelocity = 3;
