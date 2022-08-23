@@ -9,20 +9,21 @@ public class ContainerScoreGenerator : ScoreGenerator
     [SerializeField] private TransactionContainer fromContainer;
     private void Awake()
     {
-        fromContainer.OnChangedValue += OnChangeFroContainer;
+        fromContainer.OnFilled += OnChangeFroContainer;
     }
 
     private void OnDestroy()
     {
-        fromContainer.OnChangedValue -= OnChangeFroContainer;
+        fromContainer.OnFilled -= OnChangeFroContainer;
     }
 
-    private void OnChangeFroContainer(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
+    private void OnChangeFroContainer()
     {
-        Debug.Log("Changing  " + transform.parent.name + " Delata = " + delta);
-        if (delta <= 0) return;
-        toContainer.Add(delta);
-        GenerateScore();
+        for (int i = 0; i < fromContainer.Getamount; i++)
+        { 
+            toContainer.Add(1);
+            GenerateScore();
+        } 
 
     }
 }
