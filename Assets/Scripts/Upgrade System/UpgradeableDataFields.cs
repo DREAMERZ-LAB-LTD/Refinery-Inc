@@ -80,10 +80,26 @@ namespace IdleArcade.Core
                         OnChanged.Invoke(t);
                 }
             }
+
+#if UNITY_EDITOR
+            public void RefreshPresistantData()
+            {
+                isUnlocked = m_isUnlocked;
+                T = t;
+            }
+#endif
         }
 
 
         [Header("Upgradeable Data Fields")]
         [SerializeField] public Data[] fields;
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            for (int i = 0; i < fields.Length; i++)
+                fields[i].RefreshPresistantData();
+        }
+#endif
     }
 }
