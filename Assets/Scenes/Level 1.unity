@@ -1546,7 +1546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 167649823}
   m_Layer: 0
-  m_Name: Machine 2
+  m_Name: Machine 2 Ritht
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2819,7 +2819,7 @@ GameObject:
   - component: {fileID: 260746307}
   - component: {fileID: 260746308}
   m_Layer: 0
-  m_Name: B to C Path 2 left
+  m_Name: Path 3 left importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3183,7 +3183,7 @@ GameObject:
   - component: {fileID: 283760525}
   - component: {fileID: 283760524}
   m_Layer: 0
-  m_Name: B to C Path
+  m_Name: Path 4 right importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3594,7 +3594,7 @@ GameObject:
   - component: {fileID: 315374184}
   - component: {fileID: 315374183}
   m_Layer: 0
-  m_Name: B to C Path 1 Left
+  m_Name: Path 4 left importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3767,6 +3767,10 @@ PrefabInstance:
     - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 3 right exporter
       objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4254,6 +4258,10 @@ PrefabInstance:
       propertyPath: convertedPrefab
       value: 
       objectReference: {fileID: 9021399340271973834, guid: a660120b4cd35fa4cb10dd4ea7ea000e, type: 3}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 1 left exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.92
@@ -6395,6 +6403,10 @@ PrefabInstance:
       propertyPath: convertedPrefab
       value: 
       objectReference: {fileID: 9021399340271973834, guid: d14040cb226f363469588e89cc656723, type: 3}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 2 left exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.92
@@ -8363,7 +8375,7 @@ GameObject:
   - component: {fileID: 561777779}
   - component: {fileID: 561777780}
   m_Layer: 0
-  m_Name: B to C Path 2
+  m_Name: Path 2 right importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9025,7 +9037,7 @@ GameObject:
   - component: {fileID: 611669577}
   - component: {fileID: 611669576}
   m_Layer: 0
-  m_Name: B to C Path 3 left
+  m_Name: Path 2 left importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9391,7 +9403,7 @@ GameObject:
   - component: {fileID: 649323833}
   - component: {fileID: 649323832}
   m_Layer: 0
-  m_Name: B to C Path 1
+  m_Name: Path 3 right importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10493,6 +10505,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.11
       objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 2 right exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.248184
@@ -10771,7 +10787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 715394277}
   m_Layer: 0
-  m_Name: Machine 4 (1)
+  m_Name: Machine 4 Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11451,6 +11467,10 @@ PrefabInstance:
       propertyPath: convertedPrefab
       value: 
       objectReference: {fileID: 9021399340271973834, guid: d14040cb226f363469588e89cc656723, type: 3}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 2 right exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.92
@@ -13293,7 +13313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 890078517}
   m_Layer: 0
-  m_Name: Machine 4
+  m_Name: Machine 4 Ritht
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14191,6 +14211,10 @@ PrefabInstance:
     - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 4 left exporter
       objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15140,7 +15164,7 @@ GameObject:
   - component: {fileID: 1014058542}
   - component: {fileID: 1014058541}
   m_Layer: 0
-  m_Name: B to C Path 3
+  m_Name: Path 1 right importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16890,7 +16914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1170013178}
   m_Layer: 0
-  m_Name: Machine 3 (1)
+  m_Name: Machine 3 Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17084,7 +17108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1181846603}
   m_Layer: 0
-  m_Name: Machine 3
+  m_Name: Machine 3 Ritht
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17954,6 +17978,10 @@ PrefabInstance:
     - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 1 right exporter
       objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19972,6 +20000,10 @@ PrefabInstance:
       propertyPath: convertedPrefab
       value: 
       objectReference: {fileID: 9021399340271973834, guid: a660120b4cd35fa4cb10dd4ea7ea000e, type: 3}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 1 right exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.92
@@ -22271,7 +22303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1531369548}
   m_Layer: 0
-  m_Name: Machine 1 (1)
+  m_Name: Machine 1 Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22395,6 +22427,10 @@ PrefabInstance:
     - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 1 left exporter
       objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23149,7 +23185,7 @@ GameObject:
   - component: {fileID: 1582199277}
   - component: {fileID: 1582199276}
   m_Layer: 0
-  m_Name: B to C Path 4 left
+  m_Name: Path 1 left importer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23407,6 +23443,10 @@ PrefabInstance:
     - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 3 left exporter
       objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23679,17 +23719,17 @@ Transform:
   m_Children:
   - {fileID: 897534886}
   - {fileID: 543476462}
+  - {fileID: 2140719535}
   - {fileID: 2096607363}
   - {fileID: 1167840295}
   - {fileID: 1329396990}
-  - {fileID: 2140719535}
+  - {fileID: 1883348543}
   - {fileID: 768866401}
   - {fileID: 1355434435}
   - {fileID: 1524082040}
   - {fileID: 639336421}
   - {fileID: 1219461015}
   - {fileID: 1692120049}
-  - {fileID: 1883348543}
   m_Father: {fileID: 515152972}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25199,7 +25239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721760970}
   m_Layer: 0
-  m_Name: Machine 2 (1)
+  m_Name: Machine 2 Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26292,6 +26332,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -11.115182
       objectReference: {fileID: 0}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 3 left exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.92
@@ -27326,6 +27370,10 @@ PrefabInstance:
     - target: {fileID: 3112846368946432122, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.z
       value: -11.115182
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 3 right exporter
       objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28986,7 +29034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2032956474}
   m_Layer: 0
-  m_Name: Machine 1
+  m_Name: Machine 1 Ritht
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29168,6 +29216,10 @@ PrefabInstance:
       propertyPath: id
       value: Export Delay 27
       objectReference: {fileID: 0}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 4 left exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.92
@@ -29251,6 +29303,10 @@ PrefabInstance:
     - target: {fileID: 3474455540144301411, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.5030532
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474455540164920436, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3474455540312604697, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30594,6 +30650,10 @@ PrefabInstance:
     - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 2 left exporter
       objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32011,6 +32071,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: be1ab6e12d73aeb44b6c842e338998b4, type: 2}
+    - target: {fileID: 3474455539175242700, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_Name
+      value: Path 4 right exporter
+      objectReference: {fileID: 0}
     - target: {fileID: 3474455539175242707, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.92
@@ -32062,6 +32126,10 @@ PrefabInstance:
     - target: {fileID: 3474455540144301411, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.5030532
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474455540164920436, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3474455540312604697, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32329,7 +32397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6733806543776840204, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
@@ -32483,6 +32551,10 @@ PrefabInstance:
     - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741884, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_Name
+      value: path 4 right exporter
       objectReference: {fileID: 0}
     - target: {fileID: 1065311933487559202, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x

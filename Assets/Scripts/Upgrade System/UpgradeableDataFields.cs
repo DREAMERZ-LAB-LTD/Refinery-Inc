@@ -84,8 +84,9 @@ namespace IdleArcade.Core
 #if UNITY_EDITOR
             public void RefreshPresistantData()
             {
-                isUnlocked = m_isUnlocked;
-                T = t;
+                int status = m_isUnlocked ? 1 : 0;
+                PlayerPrefs.SetInt(iD + "Unlock", status);
+                PlayerPrefs.SetFloat(iD + "upgrade", Mathf.Clamp01(t)); 
             }
 #endif
         }
