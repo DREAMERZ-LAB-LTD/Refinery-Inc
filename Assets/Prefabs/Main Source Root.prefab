@@ -515,7 +515,6 @@ GameObject:
   - component: {fileID: 7163245074672746984}
   - component: {fileID: 6790415447880738242}
   - component: {fileID: 5487098239194246763}
-  - component: {fileID: 8029813067991054315}
   m_Layer: 0
   m_Name: Directional Arrow (1)
   m_TagString: Untagged
@@ -588,18 +587,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8029813067991054315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866991550783638361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f13e7727644600147aa53bddad3adac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7813618608155332013
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +765,6 @@ GameObject:
   - component: {fileID: 8128147986916101604}
   - component: {fileID: 8128147986916101602}
   - component: {fileID: 8128147986916101605}
-  - component: {fileID: 8128147986916101603}
   m_Layer: 0
   m_Name: Directional Arrow
   m_TagString: Untagged
@@ -851,18 +837,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8128147986916101603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8128147986916101607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f13e7727644600147aa53bddad3adac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8128147987017764844
 GameObject:
   m_ObjectHideFlags: 0

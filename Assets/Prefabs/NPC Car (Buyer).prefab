@@ -936,7 +936,6 @@ GameObject:
   - component: {fileID: 4460459795953842091}
   - component: {fileID: 4132192579325355672}
   - component: {fileID: 8843854191758184020}
-  - component: {fileID: 2576129638442792711}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -1009,18 +1008,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2576129638442792711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3151206821038185694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f13e7727644600147aa53bddad3adac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4481607921313605264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,7 +2470,8 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 7315630800998022930}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 371784072706239630, guid: a7291eb79459f524e9970b4849434bee, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7291eb79459f524e9970b4849434bee, type: 3}
 --- !u!114 &2011545964561687481 stripped
 MonoBehaviour:
