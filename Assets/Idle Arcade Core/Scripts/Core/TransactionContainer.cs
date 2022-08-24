@@ -37,9 +37,9 @@ namespace IdleArcade.Core
         {
             get 
             {
-                if(amountLimit)
-                   return  m_amount == amountLimit.GetCurrent;
-
+                if (amountLimit)
+                    return  m_amount == (int)amountLimit.GetCurrent;
+                
                 return false;
             }
         }

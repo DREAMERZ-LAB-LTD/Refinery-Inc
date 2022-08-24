@@ -60,7 +60,7 @@ public class NPC_CarBehaviour : MonoBehaviour
     { 
         selfContainer.enabled = false;
     }
-
+   
     private IEnumerator OnImportSide()
     {
         mover.Pause();
@@ -91,5 +91,4 @@ public class NPC_CarBehaviour : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
     }
-
 }
