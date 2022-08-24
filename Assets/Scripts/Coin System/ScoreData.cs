@@ -17,7 +17,8 @@ namespace General.Library
             {
                 if (PlayerPrefs.HasKey(iD))
                     return PlayerPrefs.GetInt(iD);
-                return 0;
+
+                return score;
             }
         } 
         public bool AddScore(int dt)
@@ -42,5 +43,13 @@ namespace General.Library
             if (OnScoreChanged != null)
                 OnScoreChanged.Invoke(newScore, score);
         }
+
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            SetScore(score);
+        }
+#endif
     }
 }
