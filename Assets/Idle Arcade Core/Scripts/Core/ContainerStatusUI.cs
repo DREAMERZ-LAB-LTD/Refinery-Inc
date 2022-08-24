@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 namespace IdleArcade.Core
 {
     public class ContainerStatusUI : MonoBehaviour
@@ -20,6 +21,13 @@ namespace IdleArcade.Core
                 var upgradeableData = UpgradeSystem.instance.GetDataField(upgradebaleID);
                 if (upgradeableData != null)
                     upgradeableData.OnChanged += OnUpgrade;
+            }
+
+            StartCoroutine(InitialRefresh());
+            IEnumerator InitialRefresh()
+            {
+                yield return null;
+                container.Add(0);
             }
         }
 
