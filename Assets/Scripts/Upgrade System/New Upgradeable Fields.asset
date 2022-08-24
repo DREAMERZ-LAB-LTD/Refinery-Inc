@@ -142,7 +142,7 @@ MonoBehaviour:
   - iD: machine Unlocker 15
     name: Picking Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.25
     dt: 0.1
     coinID: coin1
@@ -187,7 +187,7 @@ MonoBehaviour:
   - iD: machine Unlocker 20
     name: Picking Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.25
     dt: 0.1
     coinID: coin1
@@ -242,7 +242,7 @@ MonoBehaviour:
     name: Capacity
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
     m_isUnlocked: 1
-    t: 0.35
+    t: 0.55
     dt: 0.1
     coinID: coin1
     unlockPrice: 10
@@ -251,7 +251,7 @@ MonoBehaviour:
     name: Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
     m_isUnlocked: 1
-    t: 0.35
+    t: 0.45
     dt: 0.1
     coinID: coin1
     unlockPrice: 10
@@ -259,7 +259,7 @@ MonoBehaviour:
   - iD: Capacity Importer NPC 28
     name: Importer
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.3
     dt: 0.1
     coinID: coin1
@@ -268,7 +268,7 @@ MonoBehaviour:
   - iD: Capacity Importer NPC 29
     name: Exporter
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.3
     dt: 0.1
     coinID: coin1
@@ -277,7 +277,7 @@ MonoBehaviour:
   - iD: machine Unlocker 30
     name: Picking Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 1
+    m_isUnlocked: 0
     t: 0.25
     dt: 0.1
     coinID: coin1
