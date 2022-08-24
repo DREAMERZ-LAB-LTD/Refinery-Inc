@@ -20,10 +20,6 @@ public class ContainerScoreGenerator : ScoreGenerator
     private void OnChangeFroContainer()
     {
         for (int i = 0; i < fromContainer.Getamount; i++)
-        { 
             toContainer.Add(1);
-            GenerateScore();
-        } 
-
     }
 }

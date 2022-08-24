@@ -181,7 +181,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5425387746403493484
 Transform:
@@ -941,7 +941,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4460459795953842091
 Transform:
@@ -1189,7 +1189,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7259351193805526516
 Transform:
@@ -2342,6 +2342,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin Collecting Point
       objectReference: {fileID: 0}
+    - target: {fileID: 371784070846471857, guid: a7291eb79459f524e9970b4849434bee, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 371784071609628084, guid: a7291eb79459f524e9970b4849434bee, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3441
@@ -2353,6 +2357,14 @@ PrefabInstance:
     - target: {fileID: 371784071609628084, guid: a7291eb79459f524e9970b4849434bee, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 371784071609628087, guid: a7291eb79459f524e9970b4849434bee, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 371784072289041834, guid: a7291eb79459f524e9970b4849434bee, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 371784072289041835, guid: a7291eb79459f524e9970b4849434bee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2430,6 +2442,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 32910ff48cc32a341a693ac27dd056ce, type: 3}
+    - target: {fileID: 371784072512477459, guid: a7291eb79459f524e9970b4849434bee, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 371784072706239632, guid: a7291eb79459f524e9970b4849434bee, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 371784072706239633, guid: a7291eb79459f524e9970b4849434bee, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.247046
