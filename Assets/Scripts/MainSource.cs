@@ -7,7 +7,8 @@ using System.Collections;
 public class MainSource : MonoBehaviour, TriggerDetector.ITriggerable
 {
     [SerializeField] private TransactionContainer container;
-    [SerializeField] private int initialAmount = 15;
+    [SerializeField] private int initialAmount = 100;
+    [SerializeField] private int deltaAmount = 50;
     [SerializeField] private int price = 10;
     [SerializeField] private string coinID;
 
@@ -41,11 +42,11 @@ public class MainSource : MonoBehaviour, TriggerDetector.ITriggerable
 
     public void Buy()
     {
-        if (container.willCrossLimit(initialAmount)) return;
+        if (container.willCrossLimit(deltaAmount)) return;
 
         if (ScoreManager.instance.AddScore(-Mathf.Abs(price), coinID))
         {
-            container.Add(initialAmount);
+            container.Add(deltaAmount);
         }
     }
 
