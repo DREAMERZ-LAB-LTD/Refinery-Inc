@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Player Capacity 8
-  range: {x: 0, y: 16}
-  t: 0.25
+  range: {x: 0, y: 100}
+  t: 0.15
   OnLocked:
     m_PersistentCalls:
       m_Calls: []
@@ -738,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 8970113933032957901, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: timeIntervalLimit
       value: 
-      objectReference: {fileID: 8448738350677579687}
+      objectReference: {fileID: 0}
     - target: {fileID: 8970113933032957912, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Icon
       value: 
@@ -768,7 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   range: {x: 0.5, y: 0.02}
-  t: 1
+  t: 0.75
 --- !u!4 &7911907478041803218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8970113933032957894, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
