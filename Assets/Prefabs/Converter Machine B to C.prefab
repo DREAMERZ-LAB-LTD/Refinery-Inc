@@ -17025,6 +17025,10 @@ PrefabInstance:
       value: Export Delay 2
       objectReference: {fileID: 0}
     - target: {fileID: 1951903667970749025, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: fromPrefab
+      value: 
+      objectReference: {fileID: 3324909748409890731, guid: 6ccb7f6a6bd1ee34da4d3eb44bd01674, type: 3}
+    - target: {fileID: 1951903667970749025, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: convertedPrefab
       value: 
       objectReference: {fileID: 9021399340271973834, guid: 0cd0dcd35598f224fab6aff294ff3439, type: 3}
@@ -17198,11 +17202,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8709489463275049935, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8709489463275049935, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.44
+      value: -9.716
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983698246803521493, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983698246803521493, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.804
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2994271708405947051, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
