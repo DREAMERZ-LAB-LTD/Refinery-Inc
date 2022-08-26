@@ -28,7 +28,18 @@ namespace IdleArcade.Core
         /// return amount limiter of this point
         /// </summary>
         protected Limiter GetAmountLimit => amountLimit;
-       
+
+        public float GetMax
+        {
+            get
+            {
+                if (amountLimit)
+                    return amountLimit.GetCurrent;
+
+                return Mathf.Infinity;
+            }
+            
+        }
         public int Getamount => m_amount;
         /// <summary>
         /// return true if transaction amount reached to maximum value of transaction amount limiter

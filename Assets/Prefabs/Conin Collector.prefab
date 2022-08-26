@@ -75,8 +75,9 @@ GameObject:
   - component: {fileID: 8970113933032957913}
   - component: {fileID: 8970113933032957900}
   - component: {fileID: 8970113933032957888}
-  - component: {fileID: 8970113933032957901}
+  - component: {fileID: 307995918536343611}
   - component: {fileID: 8786562190017098496}
+  - component: {fileID: 7584011215700720913}
   m_Layer: 0
   m_Name: Conin Collector
   m_TagString: Untagged
@@ -240,9 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efa0cc1e85f6a14baffe4dd0c15b7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervalLimit: {fileID: 0}
+  timeIntervalLimit: {fileID: 7584011215700720913}
   useUserInput: 1
---- !u!114 &8970113933032957901
+--- !u!114 &307995918536343611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,11 +252,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8970113933032957912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc5980fc3e990124783bcb97759b8561, type: 3}
+  m_Script: {fileID: 11500000, guid: 28541ba17d09be145b34b5a80dddaf0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervalLimit: {fileID: 0}
-  useUserInput: 0
+  useUserInput: 1
 --- !u!114 &8786562190017098496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +270,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyDelay: 0.2
   coinPrefab: {fileID: 5310097927734093059, guid: 716d8f8ae24647a42b75cf4b35bb6ab5, type: 3}
+--- !u!114 &7584011215700720913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970113933032957912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  range: {x: 0.5, y: 0.02}
+  t: 0.75
