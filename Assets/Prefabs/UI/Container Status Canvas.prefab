@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887873655e48ac74a947212a77a428c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradebaleID: 
   container: {fileID: 0}
   statusText: {fileID: 8190128930535463682}
   startMessage: 
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8190128930957741371
 MonoBehaviour:
   m_ObjectHideFlags: 0

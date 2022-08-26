@@ -39,7 +39,7 @@ public class UpgradeableLimiter : Limiter
         else
             OnLocked.Invoke();
     }
-    private void OnUpgrade(float t)
+    protected virtual void OnUpgrade(float t)
     {
         this.t = t;
     }
