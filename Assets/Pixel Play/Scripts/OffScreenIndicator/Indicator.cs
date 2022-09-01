@@ -42,7 +42,7 @@ public class Indicator : MonoBehaviour
     /// Sets the image color for the indicator.
     /// </summary>
     /// <param name="color"></param>
-    public void SetImageColor(Color color)
+    public virtual void SetImageColor(Color color)
     {
         indicatorImage.color = color;
     }
@@ -78,5 +78,6 @@ public class Indicator : MonoBehaviour
 public enum IndicatorType
 {
     BOX,
-    ARROW
+    ARROW,
+    ArrowWithProgress
 }

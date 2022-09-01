@@ -47,12 +47,12 @@ public class OffScreenIndicator : MonoBehaviour
             float distanceFromCamera = target.NeedDistanceText ? target.GetDistanceFromCamera(mainCamera.transform.position) : float.MinValue;// Gets the target distance from the camera.
             Indicator indicator = null;
 
-            if(target.NeedBoxIndicator && isTargetVisible)
+            if (target.NeedBoxIndicator && isTargetVisible)
             {
                 screenPosition.z = 0;
                 indicator = GetIndicator(ref target.indicator, IndicatorType.BOX); // Gets the box indicator from the pool.
             }
-            else if(target.NeedArrowIndicator)
+            else if (target.NeedArrowIndicator)
             {
                 float angle = float.MinValue;
                 OffScreenIndicatorCore.GetArrowIndicatorPositionAndAngle(ref screenPosition, ref angle, screenCentre, screenBounds);
@@ -60,6 +60,22 @@ public class OffScreenIndicator : MonoBehaviour
                 indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg); // Sets the rotation for the arrow indicator.
                 indicator.Activate(!isTargetVisible);
             }
+            else if (target.NeedArrowWithProgressIndicator)
+            {
+                float angle = float.MinValue;
+                OffScreenIndicatorCore.GetArrowIndicatorPositionAndAngle(ref screenPosition, ref angle, screenCentre, screenBounds);
+                indicator = GetIndicator(ref target.indicator, IndicatorType.ArrowWithProgress); // Gets the arrow indicator from the pool.
+                indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg); // Sets the rotation for the arrow indicator.
+                indicator.Activate(!isTargetVisible);
+
+                var indicatorPrgress = indicator as IndicatorWithProgress;
+                var targetPrgress = target as TargetWithProgress;
+                if (indicatorPrgress && targetPrgress)
+                    indicatorPrgress.SetProgressValue(targetPrgress.progress);
+                
+            }
+
+
             if(indicator)
             {
                 indicator.SetImageColor(target.TargetColor);// Sets the image color of the indicator.
@@ -110,7 +126,19 @@ public class OffScreenIndicator : MonoBehaviour
             if(indicator.Type != type)
             {
                 indicator.Activate(false);
-                indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
+
+                switch (type)
+                {
+                    case IndicatorType.BOX:
+                        indicator = BoxObjectPool.current.GetPooledObject();
+                        break;
+                    case IndicatorType.ARROW:
+                        indicator = ArrowObjectPool.current.GetPooledObject();
+                        break;
+                    case IndicatorType.ArrowWithProgress:
+                        indicator = ArrowWithProgressObjectPool.current.GetPooledObject();
+                        break;
+                }
                 indicator.Activate(true); // Sets the indicator as active.
             }
         }

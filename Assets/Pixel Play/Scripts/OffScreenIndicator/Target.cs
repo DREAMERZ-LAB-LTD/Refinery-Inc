@@ -14,6 +14,7 @@ public class Target : MonoBehaviour
 
     [Tooltip("Select if arrow indicator is required for this target")]
     [SerializeField] private bool needArrowIndicator = true;
+    [SerializeField] private bool needArrowWithProgressIndicator = true;
 
     [Tooltip("Select if distance text is required for this target")]
     [SerializeField] private bool needDistanceText = true;
@@ -69,10 +70,18 @@ public class Target : MonoBehaviour
         }
     }
 
+    public bool NeedArrowWithProgressIndicator
+    {
+        get
+        {
+            return needArrowWithProgressIndicator;
+        }
+    }
+
     /// <summary>
     /// On enable add this target object to the targets list.
     /// </summary>
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         if(OffScreenIndicator.TargetStateChanged != null)
         {
@@ -83,7 +92,7 @@ public class Target : MonoBehaviour
     /// <summary>
     /// On disable remove this target object from the targets list.
     /// </summary>
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if(OffScreenIndicator.TargetStateChanged != null)
         {
