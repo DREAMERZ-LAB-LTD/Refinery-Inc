@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public class UpgradeableLimiter : Limiter
 {
+    public delegate void Upgrade(float t);
+    public Upgrade OnUpgrade;
     [SerializeField] UnityEvent OnLocked;
     [SerializeField] UnityEvent OnUnlocked;
 
@@ -13,9 +15,9 @@ public class UpgradeableLimiter : Limiter
         if (data != null)
         {
             t = data.T;
-            OnUnlocking(data.isUnlocked);
-            data.OnChanged += OnUpgrade;
-            data.OnUnlocking += OnUnlocking;
+            On_Unlocking(data.isUnlocked);
+            data.OnChanged += On_Upgrade;
+            data.OnUnlocking += On_Unlocking;
         }
     }
 
@@ -27,20 +29,22 @@ public class UpgradeableLimiter : Limiter
         if (data != null)
         {
             t = data.T;
-            data.OnChanged -= OnUpgrade;
-            data.OnUnlocking -= OnUnlocking;
+            data.OnChanged -= On_Upgrade;
+            data.OnUnlocking -= On_Unlocking;
         }
     }
 
-    private void OnUnlocking(bool isUnlock)
+    private void On_Unlocking(bool isUnlock)
     {
         if (isUnlock)
             OnUnlocked.Invoke();
         else
             OnLocked.Invoke();
     }
-    protected virtual void OnUpgrade(float t)
+    protected virtual void On_Upgrade(float t)
     {
         this.t = t;
+        if (OnUpgrade != null)
+            OnUpgrade.Invoke(t);
     }
 }

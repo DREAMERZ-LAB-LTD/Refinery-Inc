@@ -14,9 +14,9 @@ namespace IdleArcade.Core
             UpdateStatus();
         }
 
-        protected override void OnUpgrade(float t)
+        protected override void On_Upgrade(float t)
         {
-            base.OnUpgrade(t);
+            base.On_Upgrade(t);
             UpdateStatus();
         }
 

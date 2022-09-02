@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 3505623089886107367}
   - component: {fileID: 1951903667970749025}
   - component: {fileID: 2994271708230186727}
+  - component: {fileID: 8519742642288616654}
   m_Layer: 0
   m_Name: Exporter
   m_TagString: Source
@@ -254,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: B
   m_amount: 0
-  amountLimit: {fileID: 0}
+  amountLimit: {fileID: 8519742642288616654}
   m_OnAdding:
     m_PersistentCalls:
       m_Calls: []
@@ -361,6 +362,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4215064, y: 0.98533106, z: 2.211094}
   m_Center: {x: 0, y: -0.66224015, z: 1.8902817}
+--- !u!114 &8519742642288616654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994271708230186746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0edcbb9763f6b94cbdcc575cc68578a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  range: {x: 0, y: 5}
+  t: 1
+  parcent: 50
+  importLimit: {fileID: 2362233417257479088}
 --- !u!1 &2994271708405947053
 GameObject:
   m_ObjectHideFlags: 0
