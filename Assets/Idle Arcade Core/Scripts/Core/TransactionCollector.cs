@@ -16,7 +16,7 @@ namespace IdleArcade.Core
             var sourcePoint = collider.GetComponent<TransactionSource>();
             if (sourcePoint == null) return;
 
-            foreach (var storePoint in storePoints)
+            foreach (var storePoint in containers)
                 if (sourcePoint.GetContainer.GetID == storePoint.GetID)
                 {
                     StartTransiction(sourcePoint.GetContainer, storePoint, 1);

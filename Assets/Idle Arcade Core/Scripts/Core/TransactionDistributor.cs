@@ -18,7 +18,7 @@ namespace IdleArcade.Core
             if (destinationContainer == null)
                 return;
 
-            foreach (var storePoint in storePoints)
+            foreach (var storePoint in containers)
                 if (destinationContainer.GetID == storePoint.GetID)
                 {
                     StartTransiction(storePoint, destinationContainer, 1);

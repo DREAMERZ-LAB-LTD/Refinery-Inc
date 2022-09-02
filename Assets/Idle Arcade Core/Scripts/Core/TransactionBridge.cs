@@ -11,13 +11,11 @@ namespace IdleArcade.Core
         [SerializeField] protected Limiter timeIntervalLimit;
 
         [SerializeField] private bool useUserInput = false;
-        [Tooltip("Where we will store all of the collection data based on Point ID")]
-        protected TransactionContainer[] storePoints;
+        [SerializeField,Tooltip("Where we will store all of the collection data based on Point ID")]
+        protected TransactionContainer[] containers;
         private Coroutine routine; //store existin transiction routine
         protected virtual void Awake()
         {
-            //assign all of the points to use for store all of the collecting data
-            storePoints = GetComponents<TransactionContainer>();
 
             transactionLimit = GetComponent<TransactionBridgeLimit>();
         }
