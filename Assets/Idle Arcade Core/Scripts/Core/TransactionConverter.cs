@@ -11,15 +11,14 @@ namespace IdleArcade.Core
 
         }
 
+        [SerializeField] private int conversionUnit = 1;
         [SerializeField] protected Limiter timeintervallimit;
-
         [SerializeField, Tooltip("Source container where from the item convert to anoter")] 
         protected TransactionContainer from;
         [SerializeField, Tooltip("Destination container where item will stored after convert")] 
         protected TransactionContainer to;
 
         private Coroutine routine = null;
-        private int delta = 1;
 
         protected IConverter[] converterResponses;
 
@@ -53,25 +52,26 @@ namespace IdleArcade.Core
             float delay = timeintervallimit ? timeintervallimit.GetCurrent : 0;
             while (from && to)
             {
-                while (from.Getamount > 0)
+                while (from.Getamount >= conversionUnit)
                 {
-                    if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta))
+                    if (!from.willCrossLimit(-conversionUnit) && !to.willCrossLimit(1))
                     {
                         OnProcessBegin(delay);
                         for (int i = 0; i < converterResponses.Length; i++)
                             converterResponses[i].OnConvertBegin(delay);
 
-                        from.TransactFrom(-delta, from);
+                        from.TransactFrom(-conversionUnit, from);
                     }
                     if (delay > 0)
                         yield return new WaitForSeconds(delay);
                     else
                         yield return null;
 
-                    to.Add(delta);
+                    to.Add(1);
                     OnProcessEnd();
                     for (int i = 0; i < converterResponses.Length; i++)
                         converterResponses[i].OnConverted();
+
                 }
                 yield return new WaitForSeconds(1);
             }
