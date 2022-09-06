@@ -16,9 +16,10 @@ public class PendingButton : MonoBehaviour
         pendingBtn.onClick.AddListener(OnClick);
         order.OnChangePendingTime += OnUpdateOrderTime;
         order.OnChangeDeliveryTime += OnUpdateOrderTime;
+        order.OnAccepted += OnDestroy;
+        order.OnCompleted += OnDestroy;
         order.OnFailed += OnDestroy;
         order.OnRejected += OnDestroy;
-        order.OnCompleted += OnDestroy;
 
     }
 
@@ -27,9 +28,10 @@ public class PendingButton : MonoBehaviour
         pendingBtn.onClick.RemoveListener(OnClick);
         order.OnChangePendingTime -= OnUpdateOrderTime;
         order.OnChangeDeliveryTime -= OnUpdateOrderTime;
+        order.OnAccepted -= OnDestroy;
+        order.OnCompleted -= OnDestroy;
         order.OnFailed -= OnDestroy;
         order.OnRejected -= OnDestroy;
-        order.OnCompleted -= OnDestroy;
     }
 
     public void OnDestroy(Order order)

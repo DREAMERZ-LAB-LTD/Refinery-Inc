@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrderManagement : MonoBehaviour
 {
-    [SerializeField] private OrderManagementUI orderManagementUI;
+    [SerializeField] private OrderPanelButtonEventHandler orderManagementUI;
 
     [SerializeField] private int timeSegment = 5;
     [SerializeField] private int maxPendingTime = 5;

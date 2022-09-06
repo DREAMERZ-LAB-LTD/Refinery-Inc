@@ -5,7 +5,7 @@ using IdleArcade.Core;
 
 public class Client : MonoBehaviour
 {
-   
+    [SerializeField] private OrderStatusUI carOrderStatus;
     public OrderManagement management;
     [SerializeField] private int maxItemCount = 1;
 
@@ -51,7 +51,7 @@ public class Client : MonoBehaviour
         order.OnCompleted += OnRemoveOrder;
         order.OnFailed += OnRemoveOrder;
         order.OnRejected += OnRemoveOrder;
-
+        order.OnAccepted += carOrderStatus.ShowOrder;
         this.order = order;
     }
 
@@ -66,12 +66,12 @@ public class Client : MonoBehaviour
         List<string> tempIDs = null;
         List<string> args = new List<string>();
         int maxArgs = maxItemCount <= validIDs.Length ? maxItemCount : validIDs.Length;
-        Debug.Log("maxArgs " + maxArgs);
+
         while (true)
         {
             if (order == null)
             {
-                yield return new WaitForSeconds(Random.Range(1f, 2f));
+                yield return new WaitForSeconds(Random.Range(3f, 5f));
 
                 tempIDs = new List<string>(validIDs);
                 args.Clear();
@@ -87,7 +87,7 @@ public class Client : MonoBehaviour
                 OnAddingOrder(newOrder);
             }
             else
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(10);
         }
     }
 
