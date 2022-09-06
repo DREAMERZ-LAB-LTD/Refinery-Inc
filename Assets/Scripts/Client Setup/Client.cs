@@ -21,6 +21,41 @@ public class Client : MonoBehaviour
         StopAllCoroutines();
     }
 
+    private void OnRemoveOrder(Order order)
+    {
+        order.OnCompleted -= OnRemoveOrder;
+        order.OnFailed -= OnRemoveOrder;
+        order.OnRejected -= OnRemoveOrder;
+        this.order = null;
+    }
+
+    private void OnAddingOrder(Order order)
+    {
+        if (order == null)
+            return;
+
+        for (int i = 0; i < containers.Length; i++)
+        {
+            containers[i].enabled = false;
+            for (int j = 0; j < order.items.Count; j++)
+            {
+                if (containers[i].GetID == order.items[j].iD)
+                {
+                    containers[i].enabled = true;
+                    break;
+                }
+            }
+        }
+
+
+        order.OnCompleted += OnRemoveOrder;
+        order.OnFailed += OnRemoveOrder;
+        order.OnRejected += OnRemoveOrder;
+
+        this.order = order;
+    }
+
+
     private IEnumerator OrderGeneratorRoutine()
     {
         int totalCount = containers.Length;
@@ -30,7 +65,8 @@ public class Client : MonoBehaviour
 
         List<string> tempIDs = null;
         List<string> args = new List<string>();
-        int maxArgs = maxItemCount <= validIDs.Length ? maxItemCount: validIDs.Length; 
+        int maxArgs = maxItemCount <= validIDs.Length ? maxItemCount : validIDs.Length;
+        Debug.Log("maxArgs " + maxArgs);
         while (true)
         {
             if (order == null)
@@ -42,8 +78,9 @@ public class Client : MonoBehaviour
 
                 for (int i = 0; i < maxArgs; i++)
                 {
-                    args.Add(tempIDs[i]);
-                    tempIDs.RemoveAt(i);
+                    int inxex = Random.Range(0, tempIDs.Count);
+                    args.Add(tempIDs[inxex]);
+                    tempIDs.RemoveAt(inxex);
                 }
 
                 var newOrder = management.GenerateNewOrder(args);
@@ -54,22 +91,4 @@ public class Client : MonoBehaviour
         }
     }
 
-
-    private void OnRemoveOrder(Order order)
-    {
-        if (this.order == order)
-            this.order = null;
-    }
-
-    private void OnAddingOrder(Order order)
-    {
-        if (order == null)
-            return;
-
-        order.OnCompleted += OnRemoveOrder;
-        order.OnFailed += OnRemoveOrder;
-        order.OnRejected += OnRemoveOrder;
-
-        this.order = order;
-    }
 }

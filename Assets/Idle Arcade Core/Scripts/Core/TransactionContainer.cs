@@ -16,7 +16,7 @@ namespace IdleArcade.Core
         protected int m_amount;
 
         [SerializeField, Tooltip("Which limitter will work to limit clamp the capacity of this container")]
-        private Limiter amountLimit;
+        public Limiter amountLimit;
 
         [Header("Callback Events")]
         [SerializeField] protected UnityEvent m_OnAdding;

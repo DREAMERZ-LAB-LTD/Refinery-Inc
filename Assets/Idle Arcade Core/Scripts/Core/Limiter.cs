@@ -4,8 +4,8 @@ namespace IdleArcade.Core
 {
     public class Limiter : Entity
     {
-        [SerializeField, Tooltip("Total range")]
-        protected Vector2 range;
+        [Tooltip("Total range")]
+        public Vector2 range;
         [SerializeField, Range(0, 1), Tooltip("Blend amount from min of max value of Range")]
         protected float t = 0.2f;
  
