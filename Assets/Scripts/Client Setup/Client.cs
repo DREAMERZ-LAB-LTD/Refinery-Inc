@@ -5,28 +5,61 @@ using IdleArcade.Core;
 
 public class Client : MonoBehaviour
 {
-    [SerializeField] private OrderStatusUI carOrderStatus;
-    public OrderManagement management;
     [SerializeField] private int maxItemCount = 1;
+    [SerializeField] private TargetWithProgress arrowProgress;
+    [SerializeField] private OrderStatusUI carOrderStatus;
 
     public Order order;
     [SerializeField] private TransactionContainer[] containers;
 
     private void Awake()
     {
+        for (int i = 0; i < containers.Length; i++)
+            containers[i].OnChangedValue += OnTransact;
+
         StartCoroutine(OrderGeneratorRoutine());
     }
     private void OnDestroy()
     {
+        for (int i = 0; i < containers.Length; i++)
+            containers[i].OnChangedValue -= OnTransact;
         StopAllCoroutines();
     }
+
+    private void OnTransact(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
+    {
+        if (order != null)
+            order.FillUpItem(B.GetID, delta);
+    }
+
 
     private void OnRemoveOrder(Order order)
     {
         order.OnCompleted -= OnRemoveOrder;
         order.OnFailed -= OnRemoveOrder;
         order.OnRejected -= OnRemoveOrder;
+        
+        if (order.isAccepted)
+        { 
+            order.OnAccepted -= OnOrderAccepted;
+            if (arrowProgress)
+            { 
+                order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
+                arrowProgress.enabled = false;
+            }
+        }
         this.order = null;
+    }
+
+  
+    private void OnOrderAccepted(Order order)
+    {
+        if (arrowProgress)
+        { 
+            arrowProgress.enabled = true;
+            order.OnChangeDeliveryTime += arrowProgress.SetProgress;
+        }
+        carOrderStatus.ShowOrder(order);
     }
 
     private void OnAddingOrder(Order order)
@@ -41,19 +74,22 @@ public class Client : MonoBehaviour
             {
                 if (containers[i].GetID == order.items[j].iD)
                 {
+                    containers[i].amountLimit.range.y = order.items[j].quantity;
                     containers[i].enabled = true;
                     break;
                 }
             }
         }
 
-
+        order.OnAccepted += OnOrderAccepted;
         order.OnCompleted += OnRemoveOrder;
         order.OnFailed += OnRemoveOrder;
         order.OnRejected += OnRemoveOrder;
-        order.OnAccepted += carOrderStatus.ShowOrder;
         this.order = order;
     }
+
+
+
 
 
     private IEnumerator OrderGeneratorRoutine()
@@ -66,7 +102,10 @@ public class Client : MonoBehaviour
         List<string> tempIDs = null;
         List<string> args = new List<string>();
         int maxArgs = maxItemCount <= validIDs.Length ? maxItemCount : validIDs.Length;
+        if (maxArgs > 1)
+            maxArgs = Random.Range(1, maxArgs + 1);
 
+      
         while (true)
         {
             if (order == null)
@@ -83,12 +122,11 @@ public class Client : MonoBehaviour
                     tempIDs.RemoveAt(inxex);
                 }
 
-                var newOrder = management.GenerateNewOrder(args);
+                var newOrder = OrderManagement.instance.GenerateNewOrder(args);
                 OnAddingOrder(newOrder);
             }
             else
                 yield return new WaitForSeconds(10);
         }
     }
-
 }

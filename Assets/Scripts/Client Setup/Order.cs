@@ -111,7 +111,7 @@ public class Order
             { 
                 item.quantity -= delta;
 
-                if (OnCompleted != null)
+                if (OnChangedValue != null)
                     OnChangedValue.Invoke(this);
             }
             isNotCompleted &= item.quantity > 0;

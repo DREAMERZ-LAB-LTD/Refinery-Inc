@@ -3748,9 +3748,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7b7761a38a749438b990de0d8d56b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carOrderStatus: {fileID: 0}
-  management: {fileID: 329775652}
   maxItemCount: 3
+  arrowProgress: {fileID: 0}
+  carOrderStatus: {fileID: 0}
   containers:
   - {fileID: 275005568}
   - {fileID: 275005575}
@@ -5907,7 +5907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderManagementUI: {fileID: 329775651}
-  timeSegment: 10
+  timeSegment: 15
   maxPendingTime: 10
   quantityRange: {x: 1, y: 5}
   maxActiveOrderCount: 1
@@ -10425,6 +10425,227 @@ Transform:
   m_Children: []
   m_Father: {fileID: 260746307}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &585185790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 585185799}
+  - component: {fileID: 585185798}
+  - component: {fileID: 585185797}
+  - component: {fileID: 585185796}
+  - component: {fileID: 585185795}
+  - component: {fileID: 585185794}
+  - component: {fileID: 585185793}
+  - component: {fileID: 585185792}
+  - component: {fileID: 585185791}
+  m_Layer: 0
+  m_Name: Cube (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &585185791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c20f6c6ea0abf4f80050a64e3bc6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0.077782035, g: 1, b: 0, a: 1}
+  needBoxIndicator: 0
+  needArrowIndicator: 0
+  needArrowWithProgressIndicator: 1
+  needDistanceText: 0
+  indicator: {fileID: 0}
+  progress: 1
+--- !u!114 &585185792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: A
+  m_amount: 0
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &585185793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: B
+  m_amount: 0
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &585185794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: C
+  m_amount: 0
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &585185795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7b7761a38a749438b990de0d8d56b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxItemCount: 3
+  arrowProgress: {fileID: 585185791}
+  carOrderStatus: {fileID: 1735111986}
+  containers:
+  - {fileID: 585185794}
+  - {fileID: 585185793}
+  - {fileID: 585185792}
+--- !u!65 &585185796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &585185797
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &585185798
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &585185799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585185790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 47.14, y: 0, z: 37.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &589471319
 GameObject:
@@ -16604,13 +16825,14 @@ GameObject:
   - component: {fileID: 941758666}
   - component: {fileID: 941758665}
   - component: {fileID: 941758664}
+  - component: {fileID: 941758672}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &941758664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16704,9 +16926,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7b7761a38a749438b990de0d8d56b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carOrderStatus: {fileID: 1735111986}
-  management: {fileID: 329775652}
   maxItemCount: 3
+  arrowProgress: {fileID: 941758672}
+  carOrderStatus: {fileID: 1735111986}
   containers:
   - {fileID: 941758666}
   - {fileID: 941758665}
@@ -16782,13 +17004,32 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941758663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 692.4511, y: 604.5522, z: -4.2532334}
+  m_LocalPosition: {x: 47.14, y: 0, z: 37.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &941758672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941758663}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c20f6c6ea0abf4f80050a64e3bc6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0.077782035, g: 1, b: 0, a: 1}
+  needBoxIndicator: 0
+  needArrowIndicator: 0
+  needArrowWithProgressIndicator: 1
+  needDistanceText: 0
+  indicator: {fileID: 0}
+  progress: 1
 --- !u!1 &942804688
 GameObject:
   m_ObjectHideFlags: 0
@@ -17125,9 +17366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7b7761a38a749438b990de0d8d56b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carOrderStatus: {fileID: 0}
-  management: {fileID: 329775652}
   maxItemCount: 3
+  arrowProgress: {fileID: 0}
+  carOrderStatus: {fileID: 0}
   containers:
   - {fileID: 959186810}
   - {fileID: 959186809}

@@ -34,7 +34,6 @@ public class EmergencyEvent : MonoBehaviour
             yield return new WaitForSeconds(delay);
 
         OnEventBegin.Invoke();
-        Debug.Log("Event Begin");
     }
 
 }

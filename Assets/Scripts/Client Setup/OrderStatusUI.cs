@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +19,11 @@ public class OrderStatusUI : MonoBehaviour
             detailsPanel.SetActive(value);
         }
     }
-    private void OnUpdateOrderTime(float currnt, float max) => progressBar.fillAmount = currnt / max;
+    private void OnUpdateOrderTime(float currnt, float max)
+    { 
+        if(progressBar)
+            progressBar.fillAmount = currnt / max;
+    }
     private void OnOrderDispose(Order order) => SetPanelVisibility = false;
 
     public void ShowOrder(Order order)
@@ -41,7 +44,6 @@ public class OrderStatusUI : MonoBehaviour
         order.OnChangeDeliveryTime += OnUpdateOrderTime;
         order.OnFailed += OnOrderDispose;
         order.OnRejected += OnOrderDispose;
-
 
         int itemCount = order.items.Count;
         if (availableFields.Count < itemCount)

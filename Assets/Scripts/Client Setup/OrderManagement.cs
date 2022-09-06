@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class OrderManagement : MonoBehaviour
 {
+    #region Singleton
+    private static OrderManagement _instance = null;
+    public static OrderManagement instance => _instance;
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+
+        if (_instance != this)
+            Destroy(gameObject);
+        
+    }
+    private void OnDestroy()
+    {
+        if(_instance == this)
+            _instance = null;
+    }
+    #endregion
+
+
     [SerializeField] private OrderPanelButtonEventHandler orderManagementUI;
 
     [SerializeField] private int timeSegment = 5;
