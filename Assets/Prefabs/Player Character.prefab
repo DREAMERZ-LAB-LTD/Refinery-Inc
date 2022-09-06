@@ -111,7 +111,9 @@ GameObject:
   - component: {fileID: 5128287160977829096}
   - component: {fileID: 301228047963573851}
   - component: {fileID: 301228047963573830}
+  - component: {fileID: 7475590298096905666}
   - component: {fileID: 301228047963573831}
+  - component: {fileID: 4714036837989464555}
   - component: {fileID: 301228047963573828}
   - component: {fileID: 301228047963573850}
   - component: {fileID: 301228047963573848}
@@ -206,6 +208,20 @@ MonoBehaviour:
   OnExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7475590298096905666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301228047963573853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7908b15f183f5242b647e32ec62ef12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeIntervalLimit: {fileID: 5128287160977829099}
+  useUserInput: 1
 --- !u!114 &301228047963573831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,8 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efa0cc1e85f6a14baffe4dd0c15b7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervalLimit: {fileID: 5128287160977829099}
-  useUserInput: 1
   containers:
   - {fileID: 301228047963573848}
   - {fileID: 301228047963573849}
@@ -227,6 +241,21 @@ MonoBehaviour:
   - {fileID: 301228047963573855}
   - {fileID: 5128287160964245747}
   - {fileID: 3872679393072742037}
+  transactionBridge: {fileID: 7475590298096905666}
+--- !u!114 &4714036837989464555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301228047963573853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7908b15f183f5242b647e32ec62ef12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeIntervalLimit: {fileID: 5128287160977829099}
+  useUserInput: 1
 --- !u!114 &301228047963573828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5980fc3e990124783bcb97759b8561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervalLimit: {fileID: 5128287160977829099}
-  useUserInput: 1
   containers:
   - {fileID: 301228047963573848}
   - {fileID: 301228047963573849}
@@ -248,6 +275,7 @@ MonoBehaviour:
   - {fileID: 301228047963573855}
   - {fileID: 5128287160964245747}
   - {fileID: 3872679393072742037}
+  transactionBridge: {fileID: 4714036837989464555}
 --- !u!114 &301228047963573850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,10 +975,6 @@ PrefabInstance:
       propertyPath: containers.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8970113933032957888, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
-      propertyPath: containers.Array.data[0]
-      value: 
-      objectReference: {fileID: 7911907478041803224}
     - target: {fileID: 8970113933032957894, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1018,17 +1042,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8970113933032957894, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
   m_PrefabInstance: {fileID: 1274662687775006228}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7911907478041803224 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8970113933032957900, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
-  m_PrefabInstance: {fileID: 1274662687775006228}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a800889c43c4f478d134e0fc98503a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4529343329228821429
 PrefabInstance:
   m_ObjectHideFlags: 0

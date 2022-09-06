@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using IdleArcade.Core;
+using UnityEngine.Events;
 
 public class Client : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Client : MonoBehaviour
     public Order order;
     [SerializeField] private TransactionContainer[] containers;
 
+
+    [Header("Callback Events")]
+    [SerializeField] private UnityEvent m_OnOrderAccepted;
+    [SerializeField] private UnityEvent m_OnOrderRemoved;
     private void Awake()
     {
         for (int i = 0; i < containers.Length; i++)
@@ -33,11 +38,11 @@ public class Client : MonoBehaviour
     }
 
 
-    private void OnRemoveOrder(Order order)
+    private void OneOrderRemove(Order order)
     {
-        order.OnCompleted -= OnRemoveOrder;
-        order.OnFailed -= OnRemoveOrder;
-        order.OnRejected -= OnRemoveOrder;
+        order.OnCompleted -= OneOrderRemove;
+        order.OnFailed -= OneOrderRemove;
+        order.OnRejected -= OneOrderRemove;
         
         if (order.isAccepted)
         { 
@@ -49,24 +54,12 @@ public class Client : MonoBehaviour
             }
         }
         this.order = null;
+        m_OnOrderRemoved.Invoke();
     }
 
   
     private void OnOrderAccepted(Order order)
     {
-        if (arrowProgress)
-        { 
-            arrowProgress.enabled = true;
-            order.OnChangeDeliveryTime += arrowProgress.SetProgress;
-        }
-        carOrderStatus.ShowOrder(order);
-    }
-
-    private void OnAddingOrder(Order order)
-    {
-        if (order == null)
-            return;
-
         for (int i = 0; i < containers.Length; i++)
         {
             containers[i].enabled = false;
@@ -81,15 +74,18 @@ public class Client : MonoBehaviour
             }
         }
 
-        order.OnAccepted += OnOrderAccepted;
-        order.OnCompleted += OnRemoveOrder;
-        order.OnFailed += OnRemoveOrder;
-        order.OnRejected += OnRemoveOrder;
+        if (arrowProgress)
+        { 
+            arrowProgress.enabled = true;
+            order.OnChangeDeliveryTime += arrowProgress.SetProgress;
+        }
+
+        order.OnCompleted += OneOrderRemove;
+        order.OnFailed += OneOrderRemove;
         this.order = order;
+        carOrderStatus.ShowOrder(order);
+        m_OnOrderAccepted.Invoke();
     }
-
-
-
 
 
     private IEnumerator OrderGeneratorRoutine()
@@ -123,7 +119,8 @@ public class Client : MonoBehaviour
                 }
 
                 var newOrder = OrderManagement.instance.GenerateNewOrder(args);
-                OnAddingOrder(newOrder);
+                if(newOrder!= null)
+                    newOrder.OnAccepted += OnOrderAccepted;
             }
             else
                 yield return new WaitForSeconds(10);

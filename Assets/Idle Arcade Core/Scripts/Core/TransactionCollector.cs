@@ -4,8 +4,10 @@ namespace IdleArcade.Core
 {
     [RequireComponent(typeof(TransactionContainer))]
 
-    public class TransactionCollector : TransactionBridge, TriggerDetector.ITriggerable
+    public class TransactionCollector : Containable, TriggerDetector.ITriggerable
     {
+        [SerializeField] protected TransactionBridge transactionBridge;
+
         /// <summary>
         /// Called when collider trigger enterd with source object
         /// Note : triigger musking by obect Tag.
@@ -19,7 +21,7 @@ namespace IdleArcade.Core
             foreach (var storePoint in containers)
                 if (sourcePoint.GetContainer.GetID == storePoint.GetID)
                 {
-                    StartTransiction(sourcePoint.GetContainer, storePoint, 1);
+                    transactionBridge.StartTransiction(sourcePoint.GetContainer, storePoint, 1);
                     break;
                 }
         }
@@ -33,7 +35,7 @@ namespace IdleArcade.Core
             var point = collider.GetComponent<TransactionContainer>();
             if (point == null) return;
 
-            StopTransiction();
+            transactionBridge.StopTransiction();
         }
     }
 }

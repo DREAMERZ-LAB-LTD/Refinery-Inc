@@ -670,8 +670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fde761a4b65bc6409f18bd396c2e892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfContainer: {fileID: 7315630800817025984}
-  sourceContainer: {fileID: 0}
+  containers:
+  - {fileID: 8795624167766391848}
+  - {fileID: 7315630800817025984}
   mover: {fileID: 1065311934825699247}
   importPoint: 1
   exportPoint: 3
@@ -1990,7 +1991,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131b561cac8efae4ab186ec47a3e3b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerID: C
+  containers:
+  - {fileID: 8795624167766391848}
+  - {fileID: 7315630800817025984}
 --- !u!114 &7315630800817025986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2037,6 +2040,36 @@ MonoBehaviour:
   containers:
   - {fileID: 8795624167766391848}
   - {fileID: 7315630800817025984}
+  m_OnOrderAccepted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1065311934825699247}
+        m_TargetAssemblyTypeName: SWS.splineMove, Assembly-CSharp-firstpass
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_OnOrderRemoved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1065311934825699247}
+        m_TargetAssemblyTypeName: SWS.splineMove, Assembly-CSharp-firstpass
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1606114662798769576
 MonoBehaviour:
   m_ObjectHideFlags: 0

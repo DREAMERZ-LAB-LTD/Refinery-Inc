@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IdleArcade.Core
@@ -12,33 +13,75 @@ namespace IdleArcade.Core
 
         [SerializeField] private bool useUserInput = false;
         [SerializeField,Tooltip("Where we will store all of the collection data based on Point ID")]
-        protected TransactionContainer[] containers;
         private Coroutine routine; //store existin transiction routine
         protected virtual void Awake()
         {
-
             transactionLimit = GetComponent<TransactionBridgeLimit>();
+        }
+
+        /// <summary>
+        /// Stop existing transiction routine
+        /// </summary>
+        public virtual void StopTransiction()
+        {
+            if (routine != null)
+                StopCoroutine(routine);
+        }
+        /// <summary>
+        /// Start tarnsiction routine
+        /// </summary>
+        /// <param name="A">Source Point</param>
+        /// <param name="B">Destination Point</param>
+        /// <param name="delta">How much amound will be change</param>
+        public virtual void StartTransiction(TransactionContainer A, TransactionContainer B, int delta = 1)
+        {
+            if (routine != null)
+                StopCoroutine(routine);
+            routine = StartCoroutine(TransactionRoutine(A, B, delta));
+        }
+
+        public virtual void StartTransiction(Containable from, Containable to, int delta = 1)
+        {
+            var fromCont = from.GetContainers;
+            List<TransactionContainer> fromContainer = new List<TransactionContainer>();
+            List<TransactionContainer> toContainer = new List<TransactionContainer>();
+
+            for (int i = 0; i < fromCont.Length; i++)
+            {
+                var toCont = to.GetContainer(fromCont[i].GetID);
+                if (toCont)
+                {
+                    fromContainer.Add(fromCont[i]);
+                    toContainer.Add(toCont);
+                }
+            }
+            if (fromContainer.Count == 0)
+                return;
+
+            if (routine != null)
+                StopCoroutine(routine);
+            routine = StartCoroutine(TransactionRoutine(fromContainer, toContainer, delta));
         }
 
         /// <summary>
         /// Collecting routine process
         /// </summary>
-        /// <param name="A">Source Point</param>
-        /// <param name="B">Destination Point</param>
+        /// <param name="from">Source Point</param>
+        /// <param name="to">Destination Point</param>
         /// <param name="delta">How much amound will be change</param>
         /// <returns></returns>
-        private IEnumerator TransactionRoutine(TransactionContainer A, TransactionContainer B, int delta)
+        private IEnumerator TransactionRoutine(TransactionContainer from, TransactionContainer to, int delta)
         {
-            if (A == null || B == null)
+            if (from == null || to == null)
                 yield break;
-            if(A.GetID != B.GetID)
+            if(from.GetID != to.GetID)
                 yield break;
 
             var useBridgeTransactionLimt = transactionLimit != null;
 
             var sign = 1;
             if (useBridgeTransactionLimt)
-                if (A.transform == transactionLimit.transform)
+                if (from.transform == transactionLimit.transform)
                     sign = -1;
             
             while (true)
@@ -49,12 +92,12 @@ namespace IdleArcade.Core
                         while (Input.GetMouseButton(0))
                             yield return null;
 
-                    if (!A.willCrossLimit(-delta) && !B.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
+                    if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
                     {
-                        if (A.enabled && B.enabled)
+                        if (from.enabled && to.enabled)
                         { 
-                            A.TransactFrom(-delta, B);
-                            B.TransactFrom(delta, A);
+                            from.TransactFrom(-delta, to);
+                            to.TransactFrom(delta, from);
                             transactionLimit.Transact(delta * sign);
                         }
 
@@ -75,12 +118,12 @@ namespace IdleArcade.Core
                         while (Input.GetMouseButton(0))
                             yield return null;
 
-                    if (!A.willCrossLimit(-delta) && !B.willCrossLimit(delta))
+                    if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta))
                     {
-                        if (A.enabled && B.enabled)
+                        if (from.enabled && to.enabled)
                         {
-                            A.TransactFrom(-delta, B);
-                            B.TransactFrom(delta, A);
+                            from.TransactFrom(-delta, to);
+                            to.TransactFrom(delta, from);
                         }
                         if (timeIntervalLimit)
                             yield return new WaitForSeconds(timeIntervalLimit.GetCurrent);
@@ -92,25 +135,77 @@ namespace IdleArcade.Core
                 }
             }
         }
-        /// <summary>
-        /// Stop existing transiction routine
-        /// </summary>
-        protected virtual void StopTransiction()
+      
+
+        private IEnumerator TransactionRoutine(List<TransactionContainer> from, List<TransactionContainer> to, int delta)
         {
-            if (routine != null)
-                StopCoroutine(routine);
-        }
-        /// <summary>
-        /// Start tarnsiction routine
-        /// </summary>
-        /// <param name="A">Source Point</param>
-        /// <param name="B">Destination Point</param>
-        /// <param name="delta">How much amound will be change</param>
-        protected virtual void StartTransiction(TransactionContainer A, TransactionContainer B, int delta = 1)
-        {
-            if (routine != null)
-                StopCoroutine(routine);
-            routine = StartCoroutine(TransactionRoutine(A, B, delta));
+            var useBridgeTransactionLimt = transactionLimit != null;
+
+            var sign = 1;
+            if (useBridgeTransactionLimt)
+                if (from[0].transform == transactionLimit.transform)
+                    sign = -1;
+
+            while (true)
+            {
+                while (useBridgeTransactionLimt)
+                {
+                    for (int i = 0; i < from.Count; i++)
+                    {
+                        if (useUserInput)
+                            while (Input.GetMouseButton(0))
+                                yield return null;
+
+                        var fromCont = from[i];
+                        var toCont = to[i];
+                        while (!fromCont.willCrossLimit(-delta) && !toCont.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
+                        {
+                            if (fromCont.enabled && toCont.enabled)
+                            {
+                                fromCont.TransactFrom(-delta, toCont);
+                                toCont.TransactFrom(delta, fromCont);
+                                transactionLimit.Transact(delta * sign);
+                            }
+
+                            if (timeIntervalLimit)
+                                yield return new WaitForSeconds(timeIntervalLimit.GetCurrent);
+                            else
+                                yield return null;
+                        }
+                        
+                    }
+                    yield return new WaitForSeconds(0.2f);
+
+                    useBridgeTransactionLimt = transactionLimit != null;
+                }
+
+                while (!useBridgeTransactionLimt)
+                {
+                    for (int i = 0; i < from.Count; i++)
+                    {
+                        if (useUserInput)
+                            while (Input.GetMouseButton(0))
+                                yield return null;
+
+                        var fromCont = from[i];
+                        var toCont = to[i];
+                        while (!fromCont.willCrossLimit(-delta) && !toCont.willCrossLimit(delta))
+                        {
+                            if (fromCont.enabled && toCont.enabled)
+                            {
+                                fromCont.TransactFrom(-delta, toCont);
+                                toCont.TransactFrom(delta, fromCont);
+                            }
+                            if (timeIntervalLimit)
+                                yield return new WaitForSeconds(timeIntervalLimit.GetCurrent);
+                            else
+                                yield return null;
+                        }
+                        
+                    }
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
         }
     }
 }

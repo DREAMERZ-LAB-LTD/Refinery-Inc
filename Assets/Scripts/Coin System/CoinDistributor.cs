@@ -21,7 +21,7 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
         var destinationPoint = collider.GetComponent<TransactionDestination>();
         if (destinationPoint == null) return;
 
-        var destinationContainer = destinationPoint.GetContainer;
+        var destinationContainer = destinationPoint.GetContainer(storePoints[0].GetID);//////////////////////////////////////////////////////////
         if (destinationContainer == null)
             return;
 
