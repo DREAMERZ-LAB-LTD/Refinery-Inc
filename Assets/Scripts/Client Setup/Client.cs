@@ -97,9 +97,7 @@ public class Client : MonoBehaviour
 
         List<string> tempIDs = null;
         List<string> args = new List<string>();
-        int maxArgs = maxItemCount <= validIDs.Length ? maxItemCount : validIDs.Length;
-        if (maxArgs > 1)
-            maxArgs = Random.Range(1, maxArgs + 1);
+        int maxItemCount = this.maxItemCount <= validIDs.Length ? this.maxItemCount : validIDs.Length;
 
       
         while (true)
@@ -111,7 +109,11 @@ public class Client : MonoBehaviour
                 tempIDs = new List<string>(validIDs);
                 args.Clear();
 
-                for (int i = 0; i < maxArgs; i++)
+                int maxArg = maxItemCount;
+                if (maxArg > 1)
+                    maxArg = Random.Range(1, maxArg + 1);
+
+                for (int i = 0; i < maxArg; i++)
                 {
                     int inxex = Random.Range(0, tempIDs.Count);
                     args.Add(tempIDs[inxex]);

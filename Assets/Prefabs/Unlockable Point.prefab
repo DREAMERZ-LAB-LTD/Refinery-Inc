@@ -350,7 +350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131b561cac8efae4ab186ec47a3e3b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerID: coin1
+  containers:
+  - {fileID: 7873690419738214898}
 --- !u!65 &7873690419738214897
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -100,9 +100,9 @@ public class Order
     /// <param name="id">item ID</param>
     /// <param name="delta">delta quantity change amount</param>
     /// <returns></returns>
-    public bool FillUpItem(string id, int delta = 1)
+    public bool FillUpItem(string id, int delta)
     {
-        bool isNotCompleted = true;
+        bool isCompleted = true;
         Item item;
         for (int i = 0; i < items.Count; i++)
         {
@@ -114,14 +114,14 @@ public class Order
                 if (OnChangedValue != null)
                     OnChangedValue.Invoke(this);
             }
-            isNotCompleted &= item.quantity > 0;
+            isCompleted &= item.quantity <= 0;
         }
 
-        if (isNotCompleted == false)
+        if (isCompleted)
             if (OnCompleted != null)
                 OnCompleted.Invoke(this);
 
-        return !isNotCompleted;
+        return isCompleted;
     }
 
 }

@@ -24,6 +24,21 @@ public class OrderStatusUI : MonoBehaviour
         if(progressBar)
             progressBar.fillAmount = currnt / max;
     }
+
+    public void OnOrderUpdate(Order order)
+    {
+        for (int i = 0; i < order.items.Count; i++)
+        {
+            for (int j = 0; j < availableFields.Count; j++)
+            {
+                if (availableFields[j].id == order.items[i].iD)
+                {
+                    availableFields[j].quantityTxt.text = order.items[i].name + " " + order.items[i].quantity.ToString();
+                }
+            }
+        }
+    }
+
     private void OnOrderDispose(Order order) => SetPanelVisibility = false;
 
     public void ShowOrder(Order order)
@@ -36,12 +51,14 @@ public class OrderStatusUI : MonoBehaviour
         if (lastClikcedOrder != null)
         {
             lastClikcedOrder.OnChangeDeliveryTime -= OnUpdateOrderTime;
+            lastClikcedOrder.OnChangedValue -= OnOrderUpdate;
             lastClikcedOrder.OnFailed -= OnOrderDispose;
             lastClikcedOrder.OnRejected -= OnOrderDispose;
         }
 
         lastClikcedOrder = order;
         order.OnChangeDeliveryTime += OnUpdateOrderTime;
+        order.OnChangedValue += OnOrderUpdate;
         order.OnFailed += OnOrderDispose;
         order.OnRejected += OnOrderDispose;
 
@@ -66,7 +83,9 @@ public class OrderStatusUI : MonoBehaviour
             {
                 availableFields[i].gameObject.SetActive(true);
                 var message = order.items[i].name + " " + order.items[i].quantity.ToString();
-                availableFields[i].SetInfo(null, message);
+                availableFields[i].quantityTxt.text = message;
+                //availableFields[i].icon.sprite  = null;
+                availableFields[i].id = order.items[i].iD;
             }
             else
                 availableFields[i].gameObject.SetActive(false);

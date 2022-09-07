@@ -52,9 +52,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5105319
-  m_Height: 2.496978
+  m_Height: 2.2817893
   m_Direction: 1
-  m_Center: {x: 0, y: 1.2584885, z: 0.11405277}
+  m_Center: {x: 0, y: 1.3261523, z: 0.11405277}
 --- !u!54 &301228047103828237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,13 +163,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301228047963573853}
-  m_Material: {fileID: 13400000, guid: 391f4a1831e67b848b40cae3fc1fe598, type: 2}
-  m_IsTrigger: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5105319
-  m_Height: 2.496978
+  m_Height: 2.2817893
   m_Direction: 1
-  m_Center: {x: 0, y: 1.2584885, z: 0.11405277}
+  m_Center: {x: 0, y: 1.3261523, z: 0.11405277}
 --- !u!54 &301228047963573851
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -953,7 +953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Height
-      value: 2.496978
+      value: 2.2817893
       objectReference: {fileID: 0}
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Radius
@@ -961,11 +961,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Center.y
-      value: 1.2584885
+      value: 1.3261523
       objectReference: {fileID: 0}
     - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: m_Center.z
       value: 0.11405277
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750924252265099385, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8970113933032957888, guid: 1a5779a47e55bf243b28488af2ad488b, type: 3}
       propertyPath: timeIntervalLimit
