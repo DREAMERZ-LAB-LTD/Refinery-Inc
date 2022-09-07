@@ -25,10 +25,15 @@ public class OrderManagement : MonoBehaviour
     {
         availableClients.Clear();
         StartCoroutine(OrderGeneratorRoutine());
+    }
 
-        itemCountRange.x = Mathf.Clamp(itemCountRange.x, 0, itemSets.Length);
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        itemCountRange.x = Mathf.Clamp(itemCountRange.x, 1, itemSets.Length);
         itemCountRange.y = Mathf.Clamp(itemCountRange.y, itemCountRange.x, itemSets.Length);
     }
+#endif    
 
     private void Update()
     {
@@ -37,10 +42,6 @@ public class OrderManagement : MonoBehaviour
 
         for (int i = 0; i < activeOrders.Count; i++)
             activeOrders[i].Update();
-
-        Debug.Log("available Clients Count =" + availableClients.Count);
-        Debug.Log("pending Orders Count =" + pendingOrders.Count);
-        Debug.Log("active Orders Count =" + activeOrders.Count);
     }
 
     private void RemoveFromActive(Order order)
