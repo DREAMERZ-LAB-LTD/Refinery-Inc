@@ -108,7 +108,6 @@ public class Client : MonoBehaviour
 
                 tempIDs = new List<string>(validIDs);
                 args.Clear();
-
                 int maxArg = maxItemCount;
                 if (maxArg > 1)
                     maxArg = Random.Range(1, maxArg + 1);
