@@ -5705,24 +5705,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a855de57399a14e826ecc6f7402526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderManagementUI: {fileID: 329775651}
   timeSegment: 15
   maxPendingTime: 10
+  delayBetweenOrder: {x: 1, y: 5}
+  itemCountRange: {x: 1, y: 2}
   quantityRange: {x: 1, y: 5}
   maxActiveOrderCount: 2
   maxPendingOrderCount: 2
+  orderManagementUI: {fileID: 329775651}
   itemSets:
-  - iD: A
+  - iD: B
     name: Metal  Bar
     quantity: 0
-  - iD: B
-    name: Iron Bar
-    quantity: 0
   - iD: C
-    name: Silver Bar
-    quantity: 0
-  - iD: D
-    name: Gold Bar
+    name: Iron Bar
     quantity: 0
 --- !u!114 &329775653
 MonoBehaviour:

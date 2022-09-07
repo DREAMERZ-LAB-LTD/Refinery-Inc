@@ -1,35 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using IdleArcade.Core;
 using UnityEngine.Events;
+using System.Collections;
 
 public class Client : MonoBehaviour
 {
-    [SerializeField] private int maxItemCount = 1;
     [SerializeField] private TargetWithProgress arrowProgress;
     [SerializeField] private OrderStatusUI carOrderStatus;
 
-    public Order order;
-    [SerializeField] private TransactionContainer[] containers;
-
+    private Order order;
+    [SerializeField]private TransactionContainer[] containers;
 
     [Header("Callback Events")]
     [SerializeField] private UnityEvent m_OnOrderAccepted;
     [SerializeField] private UnityEvent m_OnOrderRemoved;
-    private void Awake()
+
+    private void Start()
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue += OnTransact;
+    }
 
-        StartCoroutine(OrderGeneratorRoutine());
+    private void OnEnable()
+    {
+        StartCoroutine(InitialDealyRoutine());
+        IEnumerator InitialDealyRoutine()
+        {
+            yield return new WaitForEndOfFrame();
+            AddToManagement();
+        }
+    }
+
+    private void OnDisable()
+    {
+        RemoveFromManagement();
     }
     private void OnDestroy()
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue -= OnTransact;
-        StopAllCoroutines();
     }
+
+    private void AddToManagement()
+    {
+        if (!OrderManagement.availableClients.Contains(this))
+            OrderManagement.availableClients.Add(this);
+    }
+
+    private void RemoveFromManagement()
+    {
+        if (OrderManagement.availableClients.Contains(this))
+            OrderManagement.availableClients.Remove(this);
+    }
+
 
     private void OnTransact(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
     {
@@ -37,13 +60,17 @@ public class Client : MonoBehaviour
             order.FillUpItem(B.GetID, delta);
     }
 
-
-    private void OneOrderRemove(Order order)
+    public void OnOrderCanceled(Order order)
     {
-        order.OnCompleted -= OneOrderRemove;
-        order.OnFailed -= OneOrderRemove;
-        order.OnRejected -= OneOrderRemove;
-        
+        AddToManagement();
+    }
+
+    public void OnCompletedOrFailed(Order order)
+    {
+        order.OnCompleted -= OnCompletedOrFailed;
+        order.OnFailed -= OnCompletedOrFailed;
+        AddToManagement();
+
         if (order.isAccepted)
         { 
             order.OnAccepted -= OnOrderAccepted;
@@ -57,8 +84,7 @@ public class Client : MonoBehaviour
         m_OnOrderRemoved.Invoke();
     }
 
-  
-    private void OnOrderAccepted(Order order)
+    public void OnOrderAccepted(Order order)
     {
         for (int i = 0; i < containers.Length; i++)
         {
@@ -80,51 +106,11 @@ public class Client : MonoBehaviour
             order.OnChangeDeliveryTime += arrowProgress.SetProgress;
         }
 
-        order.OnCompleted += OneOrderRemove;
-        order.OnFailed += OneOrderRemove;
+        order.OnCompleted += OnCompletedOrFailed;
+        order.OnFailed += OnCompletedOrFailed;
         this.order = order;
+
         carOrderStatus.ShowOrder(order);
         m_OnOrderAccepted.Invoke();
-    }
-
-
-    private IEnumerator OrderGeneratorRoutine()
-    {
-        int totalCount = containers.Length;
-        string[] validIDs = new string[totalCount];
-        for (int i = 0; i < totalCount; i++)
-            validIDs[i] = containers[i].GetID;
-
-        List<string> tempIDs = null;
-        List<string> args = new List<string>();
-        int maxItemCount = this.maxItemCount <= validIDs.Length ? this.maxItemCount : validIDs.Length;
-
-      
-        while (true)
-        {
-            if (order == null)
-            {
-                yield return new WaitForSeconds(Random.Range(3f, 5f));
-
-                tempIDs = new List<string>(validIDs);
-                args.Clear();
-                int maxArg = maxItemCount;
-                if (maxArg > 1)
-                    maxArg = Random.Range(1, maxArg + 1);
-
-                for (int i = 0; i < maxArg; i++)
-                {
-                    int inxex = Random.Range(0, tempIDs.Count);
-                    args.Add(tempIDs[inxex]);
-                    tempIDs.RemoveAt(inxex);
-                }
-
-                var newOrder = OrderManagement.instance.GenerateNewOrder(args);
-                if(newOrder!= null)
-                    newOrder.OnAccepted += OnOrderAccepted;
-            }
-            else
-                yield return new WaitForSeconds(10);
-        }
     }
 }

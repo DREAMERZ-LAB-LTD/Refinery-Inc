@@ -16,10 +16,11 @@ public class PendingButton : MonoBehaviour
         pendingBtn.onClick.AddListener(OnClick);
         order.OnChangePendingTime += OnUpdateOrderTime;
         order.OnChangeDeliveryTime += OnUpdateOrderTime;
-        order.OnAccepted += OnDestroy;
-        order.OnCompleted += OnDestroy;
-        order.OnFailed += OnDestroy;
-        order.OnRejected += OnDestroy;
+        order.OnAccepted += OrOrderFinished;
+        order.OnCompleted += OrOrderFinished;
+        order.OnFailed += OrOrderFinished;
+        order.OnRejected += OrOrderFinished;
+        order.OnCanceled += OrOrderFinished;
 
     }
 
@@ -28,13 +29,14 @@ public class PendingButton : MonoBehaviour
         pendingBtn.onClick.RemoveListener(OnClick);
         order.OnChangePendingTime -= OnUpdateOrderTime;
         order.OnChangeDeliveryTime -= OnUpdateOrderTime;
-        order.OnAccepted -= OnDestroy;
-        order.OnCompleted -= OnDestroy;
-        order.OnFailed -= OnDestroy;
-        order.OnRejected -= OnDestroy;
+        order.OnAccepted -= OrOrderFinished;
+        order.OnCompleted -= OrOrderFinished;
+        order.OnFailed -= OrOrderFinished;
+        order.OnRejected -= OrOrderFinished;
+        order.OnCanceled -= OrOrderFinished;
     }
 
-    public void OnDestroy(Order order)
+    public void OrOrderFinished(Order order)
     {
         Destroy(gameObject);
     }

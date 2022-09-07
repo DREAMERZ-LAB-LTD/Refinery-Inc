@@ -54,6 +54,7 @@ public class OrderStatusUI : MonoBehaviour
             lastClikcedOrder.OnChangedValue -= OnOrderUpdate;
             lastClikcedOrder.OnFailed -= OnOrderDispose;
             lastClikcedOrder.OnRejected -= OnOrderDispose;
+            lastClikcedOrder.OnCanceled -= OnOrderDispose;
         }
 
         lastClikcedOrder = order;
@@ -61,6 +62,7 @@ public class OrderStatusUI : MonoBehaviour
         order.OnChangedValue += OnOrderUpdate;
         order.OnFailed += OnOrderDispose;
         order.OnRejected += OnOrderDispose;
+        order.OnCanceled += OnOrderDispose;
 
         int itemCount = order.items.Count;
         if (availableFields.Count < itemCount)

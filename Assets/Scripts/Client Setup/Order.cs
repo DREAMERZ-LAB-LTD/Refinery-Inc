@@ -5,16 +5,14 @@ public class Order
 {
     public delegate void OnOrder(Order order);
     public OnOrder OnAccepted;
-    public OnOrder OnRejected;
-    public OnOrder OnFailed;
     public OnOrder OnCompleted;
+    public OnOrder OnFailed;
+    public OnOrder OnRejected;
+    public OnOrder OnCanceled;
     public OnOrder OnChangedValue;
     public delegate void OnProgressChange(float current, float max);
     public OnProgressChange OnChangePendingTime;
     public OnProgressChange OnChangeDeliveryTime;
-
-    public string orderID;
-
 
     private float maxPendingTime;
     private float maxDeliveryTime;
@@ -71,8 +69,8 @@ public class Order
                 if (pendingTime == 0)
                 {
                     isRejected = true;
-                    if (OnFailed != null)
-                        OnFailed.Invoke(this);
+                    if (OnCanceled != null)
+                        OnCanceled.Invoke(this);
                 }
             }
         }

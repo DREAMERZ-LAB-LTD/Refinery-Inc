@@ -4,37 +4,31 @@ using UnityEngine;
 
 public class OrderManagement : MonoBehaviour
 {
-    #region Singleton
-    private static OrderManagement _instance = null;
-    public static OrderManagement instance => _instance;
-    private void Awake()
-    {
-        if (_instance == null)
-            _instance = this;
-
-        if (_instance != this)
-            Destroy(gameObject);
-        
-    }
-    private void OnDestroy()
-    {
-        if(_instance == this)
-            _instance = null;
-    }
-    #endregion
-
-
-    [SerializeField] private OrderPanelButtonEventHandler orderManagementUI;
-
+    [Header("Management Controls")]
     [SerializeField] private int timeSegment = 5;
     [SerializeField] private int maxPendingTime = 5;
+    [SerializeField] private Vector2Int delayBetweenOrder = new Vector2Int (5, 10);
+    [SerializeField] private Vector2Int itemCountRange = new Vector2Int(1, 2);
     [SerializeField] private Vector2Int quantityRange = new Vector2Int(1, 2);
     [SerializeField] private int maxActiveOrderCount = 1;
     [SerializeField] private int maxPendingOrderCount = 1;
 
+    [Header("References")]
+    [SerializeField] private OrderPanelButtonEventHandler orderManagementUI;
     [SerializeField] private Item[] itemSets;
     public List<Order> pendingOrders = new List<Order>();
     public List<Order> activeOrders = new List<Order>();
+    public static List<Client> availableClients = new List<Client>();
+
+
+    private void Awake()
+    {
+        availableClients.Clear();
+        StartCoroutine(OrderGeneratorRoutine());
+
+        itemCountRange.x = Mathf.Clamp(itemCountRange.x, 0, itemSets.Length);
+        itemCountRange.y = Mathf.Clamp(itemCountRange.y, itemCountRange.x, itemSets.Length);
+    }
 
     private void Update()
     {
@@ -43,6 +37,10 @@ public class OrderManagement : MonoBehaviour
 
         for (int i = 0; i < activeOrders.Count; i++)
             activeOrders[i].Update();
+
+        Debug.Log("available Clients Count =" + availableClients.Count);
+        Debug.Log("pending Orders Count =" + pendingOrders.Count);
+        Debug.Log("active Orders Count =" + activeOrders.Count);
     }
 
     private void RemoveFromActive(Order order)
@@ -50,15 +48,19 @@ public class OrderManagement : MonoBehaviour
         if (activeOrders.Contains(order))
         { 
             activeOrders.Remove(order);
+            order.OnCompleted -= RemoveFromActive;
             order.OnFailed -= RemoveFromActive;
         }
     }
 
-    private void AddToActive(Order order)
+    private void OnOrderAccepted(Order order)
     {
+        RemoveFromPending(order);
+
         if (!activeOrders.Contains(order))
         { 
             activeOrders.Add(order);
+            order.OnCompleted += RemoveFromActive;
             order.OnFailed += RemoveFromActive;
         }
     }
@@ -69,10 +71,9 @@ public class OrderManagement : MonoBehaviour
         { 
             pendingOrders.Remove(order);
 
-            order.OnFailed -= RemoveFromPending;
+            order.OnAccepted -= OnOrderAccepted;
             order.OnRejected -= RemoveFromPending;
-            order.OnAccepted -= RemoveFromPending;
-            order.OnAccepted -= AddToActive;
+            order.OnCanceled -= RemoveFromPending;
         }
     }
 
@@ -82,10 +83,9 @@ public class OrderManagement : MonoBehaviour
         { 
             pendingOrders.Add(order);
 
-            order.OnFailed += RemoveFromPending;
+            order.OnAccepted += OnOrderAccepted;
             order.OnRejected += RemoveFromPending;
-            order.OnAccepted += RemoveFromPending;
-            order.OnAccepted += AddToActive;
+            order.OnCanceled += RemoveFromPending;
             orderManagementUI.SpawnPendingButton(order, OnClickPendingButton);
         }
     }
@@ -96,37 +96,66 @@ public class OrderManagement : MonoBehaviour
         orderManagementUI.AcceptBtn.interactable = isValidAmount;
     }
 
-    public Order GenerateNewOrder(List<string> ids)
+    public Order GenerateNewOrder(int itemCount)
     {
-        if (pendingOrders.Count >= maxPendingOrderCount)
-            return null;
+        List<Item> tempItemSets = new List<Item>(itemSets);
+        var extraItems = tempItemSets.Count - itemCount;
+        for (int i = 0; i < extraItems; i++)
+            tempItemSets.RemoveAt(Random.Range(0, tempItemSets.Count));
 
         Order order = null;
         Item item;
-        for (int i = 0; i < ids.Count; i++)
+
+        for (int i = 0; i < tempItemSets.Count; i++)
         { 
-            for (int j = 0; j < itemSets.Length; j++)
-            {
-                item = itemSets[j];
-                if (item.iD == ids[i])
-                {
-                    var newItem = new Item();
-                    newItem.iD = item.iD;
-                    newItem.name = item.name;
-                    newItem.quantity = Random.Range(quantityRange.x, quantityRange.y);
+            item = tempItemSets[i];
+           
+            var newItem = new Item();
 
-                    if(order == null)
-                        order = new Order();
+            newItem.iD = item.iD;
+            newItem.name = item.name;
+            newItem.quantity = Random.Range(quantityRange.x, quantityRange.y);
 
-                    order.items.Add(newItem);
-                }
-            }
+            if (order == null)
+                order = new Order();
+
+            order.items.Add(newItem);
         }
         if (order != null)
-        { 
-            AddToPending(order);
             order.SetTime(timeSegment, maxPendingTime);
-        }
+        
         return order;
+    }
+
+
+    private IEnumerator OrderGeneratorRoutine()
+    {
+        Client client = null;
+        while (true)
+        {
+            while (availableClients.Count == 0)
+                yield return new WaitForSeconds(2);
+            
+            while(pendingOrders.Count >= maxPendingOrderCount)
+                yield return new WaitForSeconds(2);
+
+            int delay = Random.Range(delayBetweenOrder.x, delayBetweenOrder.y);
+            yield return new WaitForSeconds(delay);
+
+
+            var itemCount = Random.Range(itemCountRange.x, itemCountRange.y + 1);
+            var newOrder = GenerateNewOrder(itemCount);
+            if (newOrder != null)
+            {
+                int index = Random.Range(0, availableClients.Count);
+                client = availableClients[index];
+                availableClients.RemoveAt(index);
+
+                AddToPending(newOrder);
+                newOrder.OnAccepted += client.OnOrderAccepted;
+                newOrder.OnRejected += client.OnOrderCanceled;
+                newOrder.OnCanceled += client.OnOrderCanceled;
+            }
+        }
     }
 }
