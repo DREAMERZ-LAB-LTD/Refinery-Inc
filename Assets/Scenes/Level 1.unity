@@ -9287,8 +9287,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dbed1fddf5b61974084986b8918e6616, type: 2}
+  m_sharedMaterial: {fileID: -8188380147137621193, guid: dbed1fddf5b61974084986b8918e6616, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9312,8 +9312,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16360,11 +16360,11 @@ RectTransform:
   m_Father: {fileID: 1758390363}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 203.1, y: 30}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000015258789, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911664875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29796,8 +29796,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 40, y: -30}
-  m_SizeDelta: {x: 203.1, y: 30}
+  m_AnchoredPosition: {x: 30, y: -30}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1758390364
 MonoBehaviour:
@@ -29849,14 +29849,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14412f21a889a4d48adc435d47077409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: exa
-  range: {x: 0, y: 10}
+  id: exp1
+  range: {x: 0, y: 5}
   t: 0.2
   preMessage: 'L : '
   centerMessage: ' / '
   postMessage: 
   progressText: {fileID: 533871561}
   progressBar: {fileID: 911664875}
+  dt: 0.2
 --- !u!1001 &1764009418
 PrefabInstance:
   m_ObjectHideFlags: 0
