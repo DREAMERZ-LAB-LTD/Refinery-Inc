@@ -1,6 +1,5 @@
 using IdleArcade.Core;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
@@ -8,12 +7,12 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
     [SerializeField] private bool useUserInput = false;
 
     [Tooltip("Where we will store all of the collection data based on Point ID")]
-    private TransactionContainer[] storePoints;
+    private TransactionContainer[] containers;
     private Coroutine routine; //store existin transiction routine
     private void Awake()
     {
         //assign all of the points to use for store all of the collecting data
-        storePoints = GetComponents<TransactionContainer>();
+        containers = GetComponents<TransactionContainer>();
     }
 
     public void OnEnter(Collider collider)
@@ -21,11 +20,11 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
         var destinationPoint = collider.GetComponent<TransactionDestination>();
         if (destinationPoint == null) return;
 
-        var destinationContainer = destinationPoint.GetContainer(storePoints[0].GetID);//////////////////////////////////////////////////////////
+        var destinationContainer = destinationPoint.GetContainer(containers[0].GetID);//////////////////////////////////////////////////////////
         if (destinationContainer == null)
             return;
 
-        foreach (var storePoint in storePoints)
+        foreach (var storePoint in containers)
             if (destinationContainer.GetID == storePoint.GetID)
             {
                 var target = destinationContainer.GetMax;

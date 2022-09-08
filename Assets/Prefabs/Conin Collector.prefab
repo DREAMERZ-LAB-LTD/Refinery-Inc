@@ -74,11 +74,10 @@ GameObject:
   - component: {fileID: 8750924252265099385}
   - component: {fileID: 8970113933032957913}
   - component: {fileID: 8970113933032957900}
+  - component: {fileID: 5059403883903601127}
   - component: {fileID: 8970113933032957888}
   - component: {fileID: 307995918536343611}
   - component: {fileID: 8786562190017098496}
-  - component: {fileID: 7584011215700720913}
-  - component: {fileID: 5059403883903601127}
   m_Layer: 0
   m_Name: Conin Collector
   m_TagString: Untagged
@@ -230,6 +229,20 @@ MonoBehaviour:
   m_OnEmpty:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5059403883903601127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970113933032957912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7908b15f183f5242b647e32ec62ef12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeIntervalLimit: {fileID: 0}
+  useUserInput: 1
 --- !u!114 &8970113933032957888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,32 +285,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyDelay: 0.2
   coinPrefab: {fileID: 5310097927734093059, guid: 716d8f8ae24647a42b75cf4b35bb6ab5, type: 3}
---- !u!114 &7584011215700720913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8970113933032957912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: time interval
-  range: {x: 0.5, y: 0.02}
-  t: 0.75
---- !u!114 &5059403883903601127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8970113933032957912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7908b15f183f5242b647e32ec62ef12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeIntervalLimit: {fileID: 7584011215700720913}
-  useUserInput: 0

@@ -10,13 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 371784070846471854}
   - component: {fileID: 371784070846471853}
-  - component: {fileID: 371784070846471852}
-  - component: {fileID: 371784070846471855}
+  - component: {fileID: 5099217019159876980}
   - component: {fileID: 371784070846471849}
+  - component: {fileID: 371784070846471855}
   - component: {fileID: 5454028970338712552}
-  - component: {fileID: 96223862144618107}
   m_Layer: 0
-  m_Name: Coin Collecting Point
+  m_Name: Ware House Coin Container
   m_TagString: Destination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +51,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.022126, y: 1.5369741, z: 1.2759291}
   m_Center: {x: -0.1780449, y: 0.26848704, z: 0.21834877}
---- !u!114 &371784070846471852
+--- !u!114 &5099217019159876980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,7 +60,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 371784070846471857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
+  m_Script: {fileID: 11500000, guid: 86e0697b36bdea6478480200935d9856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: coin1
@@ -79,20 +78,6 @@ MonoBehaviour:
   m_OnEmpty:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &371784070846471855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371784070846471857}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59932ad20e7ab354691c776490007203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  containerID: coin1
-  timeIntervalLimit: {fileID: 371784070846471849}
 --- !u!114 &371784070846471849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +93,20 @@ MonoBehaviour:
   id: 
   range: {x: 1, y: 0}
   t: 0.2
+--- !u!114 &371784070846471855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371784070846471857}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59932ad20e7ab354691c776490007203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerID: coin1
+  timeIntervalLimit: {fileID: 371784070846471849}
 --- !u!114 &5454028970338712552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,21 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 5310097927734093059, guid: 716d8f8ae24647a42b75cf4b35bb6ab5, type: 3}
-  spawnPoint: {fileID: 0}
---- !u!114 &96223862144618107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371784070846471857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ef3e3d0a421ee4a9ce3aabcffe2fee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinID: coin1
-  amount: 10
 --- !u!1 &371784071609628087
 GameObject:
   m_ObjectHideFlags: 0

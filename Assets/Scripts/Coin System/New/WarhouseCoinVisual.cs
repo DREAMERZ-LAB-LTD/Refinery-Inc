@@ -1,15 +1,14 @@
 using UnityEngine;
 using IdleArcade.Core;
 
-public class CoinSourceVisual : TransactionVisualCore
+public class WarhouseCoinVisual : TransactionVisualCore
 {
     [SerializeField] private Entity coinPrefab;
-    [SerializeField] private Transform spawnPoint;
     protected override void OnAdding(int delta, TransactionContainer A, TransactionContainer B)
     {
         for (int i = 0; i < delta; i++)
         {
-            var position = spawnPoint ? spawnPoint.position : transform.position;
+            var position = transform.position;// A.transform.position;
             var ability = SpawnEntity(position, transform.rotation, transform);
 
             if (ability)

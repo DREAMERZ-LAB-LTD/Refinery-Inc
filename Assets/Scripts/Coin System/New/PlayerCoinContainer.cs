@@ -1,12 +1,12 @@
 using IdleArcade.Core;
 using General.Library;
-public class CoinContainer : TransactionContainer
+public class PlayerCoinContainer : TransactionContainer
 {
     protected void Start()
     {
         OnChangedValue += OnChange;
-        ScoreManager.instance.OnChangedAddListner(GetID, OnUpdateCoin);
-        ScoreManager.instance.AddScore(0, GetID);
+        ScoreManager.instance.OnChangedAddListner(OnUpdateCoin);
+        ScoreManager.instance.AddScore(0);
     }
 
     private void OnUpdateCoin(int dt, int newScore)
@@ -17,7 +17,7 @@ public class CoinContainer : TransactionContainer
     private void OnChange(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
     {
         if(delta < 0)
-            ScoreManager.instance.AddScore(delta, GetID);
+            ScoreManager.instance.AddScore(delta);
     }
 
 }

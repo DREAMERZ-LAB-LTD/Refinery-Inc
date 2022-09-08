@@ -10,6 +10,8 @@ public class Client : MonoBehaviour
 
     private Order order;
     [SerializeField]private TransactionContainer[] containers;
+    private WareHouseCoinContainer warehouseCoinContaier;
+     private ClientCar car;
 
     [Header("Callback Events")]
     [SerializeField] private UnityEvent m_OnOrderAccepted;
@@ -19,6 +21,10 @@ public class Client : MonoBehaviour
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue += OnTransact;
+
+        warehouseCoinContaier = FindObjectOfType<WareHouseCoinContainer>();
+        car = GetComponent<ClientCar>();
+        car.OnExportSide += AddToManagement;
     }
 
     private void OnEnable()
@@ -39,6 +45,8 @@ public class Client : MonoBehaviour
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue -= OnTransact;
+
+        car.OnExportSide -= AddToManagement;
     }
 
     private void AddToManagement()
@@ -65,21 +73,41 @@ public class Client : MonoBehaviour
         AddToManagement();
     }
 
-    public void OnCompletedOrFailed(Order order)
+    public void OnCompleted(Order order)
     {
-        order.OnCompleted -= OnCompletedOrFailed;
-        order.OnFailed -= OnCompletedOrFailed;
-        AddToManagement();
+        order.OnCompleted -= OnCompleted;
+        order.OnFailed -= OnFailed;
 
-        if (order.isAccepted)
-        { 
-            order.OnAccepted -= OnOrderAccepted;
-            if (arrowProgress)
-            { 
-                order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
-                arrowProgress.enabled = false;
-            }
+        order.OnAccepted -= OnOrderAccepted;
+        if (arrowProgress)
+        {
+            order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
+            arrowProgress.enabled = false;
         }
+
+        this.order = null;
+        m_OnOrderRemoved.Invoke();
+
+        int total = 0;
+        for (int i = 0; i < order.items.Count; i++)
+            total += order.items[i].price;
+        
+        warehouseCoinContaier.Add(total);
+    }
+
+    public void OnFailed(Order order)
+    {
+        order.OnCompleted -= OnCompleted;
+        order.OnFailed -= OnFailed;
+
+
+        order.OnAccepted -= OnOrderAccepted;
+        if (arrowProgress)
+        {
+            order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
+            arrowProgress.enabled = false;
+        }
+
         this.order = null;
         m_OnOrderRemoved.Invoke();
     }
@@ -106,8 +134,8 @@ public class Client : MonoBehaviour
             order.OnChangeDeliveryTime += arrowProgress.SetProgress;
         }
 
-        order.OnCompleted += OnCompletedOrFailed;
-        order.OnFailed += OnCompletedOrFailed;
+        order.OnCompleted += OnCompleted;
+        order.OnFailed += OnFailed;
         this.order = order;
 
         carOrderStatus.ShowOrder(order);

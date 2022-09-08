@@ -44,7 +44,7 @@ public class MainSource : MonoBehaviour, TriggerDetector.ITriggerable
     {
         if (container.willCrossLimit(deltaAmount)) return;
 
-        if (ScoreManager.instance.AddScore(-Mathf.Abs(price), coinID))
+        if (ScoreManager.instance.AddScore(-Mathf.Abs(price)))
         {
             container.Add(deltaAmount);
         }

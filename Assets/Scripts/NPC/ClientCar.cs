@@ -1,15 +1,17 @@
 using UnityEngine;
 using IdleArcade.Core;
 using SWS;
-using System.Collections;
 
 public class ClientCar : Containable
 {
+    public delegate void OnSide();
+    public OnSide OnImportSide;
+    public OnSide OnExportSide;
+
     [Header("Movement Setup")]
     [SerializeField] protected splineMove mover;
     [SerializeField] protected int importPoint;
     [SerializeField] protected int exportPoint;
-    public TransactionVisualCore visual;
 
     private void OnEnable()
     {
@@ -43,10 +45,18 @@ public class ClientCar : Containable
         var insideExport = exportPoint == index;
 
         if (insideImport)
+        { 
             OnImportSIde();
+            if (OnImportSide != null)
+                OnImportSide.Invoke();
+        }
 
         if (insideExport)
+        { 
             OnExportSIde();
+            if (OnExportSide != null)
+                OnExportSide.Invoke();
+        }
 
         if (!insideImport && !insideExport)
             OnTheWay();

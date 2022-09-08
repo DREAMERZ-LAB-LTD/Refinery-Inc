@@ -110,17 +110,14 @@ public class OrderManagement : MonoBehaviour
         for (int i = 0; i < tempItemSets.Count; i++)
         { 
             item = tempItemSets[i];
-           
-            var newItem = new Item();
-
-            newItem.iD = item.iD;
-            newItem.name = item.name;
-            newItem.quantity = Random.Range(quantityRange.x, quantityRange.y);
 
             if (order == null)
                 order = new Order();
 
+            var quantity = Random.Range(quantityRange.x, quantityRange.y);
+            var newItem = new Item(item.iD, item.name, item.price, quantity);
             order.items.Add(newItem);
+
         }
         if (order != null)
             order.SetTime(timeSegment, maxPendingTime);
