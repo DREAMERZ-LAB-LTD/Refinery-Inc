@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class UpgradeableLimiter : Limiter
 {
-    public delegate void Upgrade(float t);
+    public delegate void Upgrade(float t, Vector2 range);
     public Upgrade OnUpgrade;
     [SerializeField] UnityEvent OnLocked;
     [SerializeField] UnityEvent OnUnlocked;
@@ -45,6 +45,6 @@ public class UpgradeableLimiter : Limiter
     {
         this.t = t;
         if (OnUpgrade != null)
-            OnUpgrade.Invoke(t);
+            OnUpgrade.Invoke(t, range);
     }
 }

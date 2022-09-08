@@ -9,12 +9,12 @@ public class ExporterLimit : Limiter
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        OnImporterUpgrade(0);
+        OnImporterUpgrade(0, Vector2.right);
     }
 #endif
     private void Awake()
     {
-        OnImporterUpgrade(0);
+        OnImporterUpgrade(0, Vector2.right);
         importLimit.OnUpgrade += OnImporterUpgrade;
     }
 
@@ -23,7 +23,7 @@ public class ExporterLimit : Limiter
         importLimit.OnUpgrade -= OnImporterUpgrade;
     }
         
-    private void OnImporterUpgrade(float t)
+    private void OnImporterUpgrade(float t, Vector2 range)
     {
         t = parcent / 100f;
         range.y = importLimit.GetCurrent * t;
