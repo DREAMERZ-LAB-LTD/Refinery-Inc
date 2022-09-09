@@ -11,7 +11,7 @@ namespace IdleArcade.Core
         [Tooltip("How many time to delay in between transiction frame")]
         [SerializeField] protected Limiter timeIntervalLimit;
 
-        [SerializeField] private bool useUserInput = false;
+        [SerializeField] private KeyCode interruptKey = KeyCode.None;
         [SerializeField,Tooltip("Where we will store all of the collection data based on Point ID")]
         private Coroutine routine; //store existin transiction routine
         protected virtual void Awake()
@@ -60,8 +60,6 @@ namespace IdleArcade.Core
 
             if (routine != null)
                 StopCoroutine(routine);
-
-            Debug.Log("fromContainer COunt " + fromContainer.Count + " toContainer count " + toContainer.Count);
             routine = StartCoroutine(TransactionRoutine(fromContainer, toContainer, delta));
         }
 
@@ -90,12 +88,11 @@ namespace IdleArcade.Core
             {
                 while(useBridgeTransactionLimt)
                 {
-                    if(useUserInput)
-                        while (Input.GetMouseButton(0))
-                            yield return null;
-
                     if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
                     {
+                        while (Input.GetKey(interruptKey))
+                            yield return null;
+
                         if (from.enabled && to.enabled)
                         { 
                             from.TransactFrom(-delta, to);
@@ -116,12 +113,12 @@ namespace IdleArcade.Core
         
                 while(!useBridgeTransactionLimt)
                 {
-                    if (useUserInput)
-                        while (Input.GetMouseButton(0))
-                            yield return null;
 
                     if (!from.willCrossLimit(-delta) && !to.willCrossLimit(delta))
                     {
+                        while (Input.GetKey(interruptKey))
+                            yield return null;
+
                         if (from.enabled && to.enabled)
                         {
                             from.TransactFrom(-delta, to);
@@ -154,9 +151,6 @@ namespace IdleArcade.Core
                 {
                     for (int i = 0; i < from.Count; i++)
                     {
-                        if (useUserInput)
-                            while (Input.GetMouseButton(0))
-                                yield return null;
 
                         var fromCont = from[i];
                         var toCont = to[i];
@@ -165,6 +159,8 @@ namespace IdleArcade.Core
 
                         while (!fromCont.willCrossLimit(-delta) && !toCont.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
                         {
+                            while (Input.GetKey(interruptKey))
+                                yield return null;
 
                             fromCont.TransactFrom(-delta, toCont);
                             toCont.TransactFrom(delta, fromCont);
@@ -187,19 +183,20 @@ namespace IdleArcade.Core
                 {
                     for (int i = 0; i < from.Count; i++)
                     {
-                        if (useUserInput)
-                            while (Input.GetMouseButton(0))
-                                yield return null;
 
                         var fromCont = from[i];
                         var toCont = to[i];
+                        if (!fromCont.enabled || !toCont.enabled)
+                            continue;
+
                         while (!fromCont.willCrossLimit(-delta) && !toCont.willCrossLimit(delta))
                         {
-                            if (fromCont.enabled && toCont.enabled)
-                            {
-                                fromCont.TransactFrom(-delta, toCont);
-                                toCont.TransactFrom(delta, fromCont);
-                            }
+                            while (Input.GetKey(interruptKey))
+                                yield return null;
+
+                            fromCont.TransactFrom(-delta, toCont);
+                            toCont.TransactFrom(delta, fromCont);
+
                             if (timeIntervalLimit)
                                 yield return new WaitForSeconds(timeIntervalLimit.GetCurrent);
                             else
