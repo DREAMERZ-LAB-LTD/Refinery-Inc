@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
         public string iD;
         public string name;
         public int price;
-        [UnityEngine.HideInInspector]
+        [HideInInspector]
         public int quantity;
 
         public Identity(string iD, string name, int price, int quantity)
@@ -23,13 +23,20 @@ public class Item : MonoBehaviour
     [SerializeField] private Identity identity;
     public static List<Identity> availables = new List<Identity>();
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (!availables.Contains(identity))
-            availables.Add(identity);
+        availables.Clear();
+    }
+    private void Start()
+    {
+        for (int i = 0; i < availables.Count; i++)
+            if (availables[i].iD == identity.iD)
+                return;
+
+        availables.Add(identity);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (availables.Contains(identity))
             availables.Remove(identity);

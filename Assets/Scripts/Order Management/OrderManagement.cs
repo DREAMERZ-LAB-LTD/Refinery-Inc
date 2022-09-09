@@ -88,9 +88,10 @@ public class OrderManagement : MonoBehaviour
         orderManagementUI.AcceptBtn.interactable = isValidAmount;
     }
 
-    public Order GenerateNewOrder(int itemCount)
+    public Order GenerateNewOrder()
     {
-        List<Item.Identity> tempItemSets = new List<Item.Identity>(Item.availables);
+        var itemCount = Random.Range(itemCountRange.x, itemCountRange.y + 1);
+        var tempItemSets = Item.availables;
         var extraItems = tempItemSets.Count - itemCount;
         for (int i = 0; i < extraItems; i++)
             tempItemSets.RemoveAt(Random.Range(0, tempItemSets.Count));
@@ -132,8 +133,8 @@ public class OrderManagement : MonoBehaviour
             yield return new WaitForSeconds(delay);
 
 
-            var itemCount = Random.Range(itemCountRange.x, itemCountRange.y + 1);
-            var newOrder = GenerateNewOrder(itemCount);
+           
+            var newOrder = GenerateNewOrder();
             if (newOrder != null)
             {
                 int index = Random.Range(0, availableClients.Count);
