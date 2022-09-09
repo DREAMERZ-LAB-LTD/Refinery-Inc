@@ -566,6 +566,7 @@ GameObject:
   - component: {fileID: 1065311934825699234}
   - component: {fileID: 8262096292908734909}
   - component: {fileID: 2336816420568170155}
+  - component: {fileID: 929022430288867403}
   m_Layer: 10
   m_Name: NPC Car 1
   m_TagString: Player
@@ -674,6 +675,8 @@ MonoBehaviour:
   containers:
   - {fileID: 8795624167766391848}
   - {fileID: 7315630800817025984}
+  - {fileID: 355305349394750385}
+  - {fileID: 7546416962988740279}
   mover: {fileID: 1065311934825699247}
   importPoint: 2
   exportPoint: 4
@@ -691,12 +694,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowProgress: {fileID: 2336816420568170155}
   carOrderStatus: {fileID: 1589551306229214507}
+  cacheContaier: {fileID: 929022430288867403}
   containers:
   - {fileID: 8795624167766391848}
   - {fileID: 7315630800817025984}
   - {fileID: 355305349394750385}
   - {fileID: 7546416962988740279}
-  car: {fileID: 1065311934825699234}
   m_OnOrderAccepted:
     m_PersistentCalls:
       m_Calls:
@@ -746,6 +749,33 @@ MonoBehaviour:
   needDistanceText: 0
   indicator: {fileID: 0}
   progress: 1
+--- !u!114 &929022430288867403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065311934825699242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: coin1
+  m_amount: 0
+  amountLimit: {fileID: 0}
+  m_OnAdding:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnRemoving:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnFilledUp:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEmpty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2100289363982726466
 GameObject:
   m_ObjectHideFlags: 0

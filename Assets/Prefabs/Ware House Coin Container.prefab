@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5381e916cb6174fb1105547fa70556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPullAmount: 200
   coinPrefab: {fileID: 5310097927734093059, guid: 716d8f8ae24647a42b75cf4b35bb6ab5, type: 3}
 --- !u!1 &371784071609628087
 GameObject:
@@ -216,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371784072289041835}
   - component: {fileID: 371784072289041832}
-  - component: {fileID: 371784072289041833}
+  - component: {fileID: 6943178495005509496}
   m_Layer: 0
   m_Name: Visual Pattern
   m_TagString: Untagged
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gride: {x: 3, y: 3}
---- !u!114 &371784072289041833
+--- !u!114 &6943178495005509496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eeb2221f09754e4b9e5b1b167a468e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.2
+  duration: 0.5
 --- !u!1 &371784072512477459
 GameObject:
   m_ObjectHideFlags: 0

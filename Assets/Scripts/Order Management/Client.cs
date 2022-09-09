@@ -8,10 +8,12 @@ public class Client : MonoBehaviour
     [SerializeField] private TargetWithProgress arrowProgress;
     [SerializeField] private OrderStatusUI carOrderStatus;
 
-    private Order order;
+    [SerializeReference]private TransactionContainer cacheContaier;
     [SerializeField]private TransactionContainer[] containers;
     private WareHouseCoinContainer warehouseCoinContaier;
-     private ClientCar car;
+
+    private Order order;
+    private ClientCar car;
 
     [Header("Callback Events")]
     [SerializeField] private UnityEvent m_OnOrderAccepted;
@@ -91,8 +93,9 @@ public class Client : MonoBehaviour
         int total = 0;
         for (int i = 0; i < order.items.Count; i++)
             total += order.items[i].price;
-        
-        warehouseCoinContaier.Add(total);
+
+        cacheContaier.Add(total);
+        warehouseCoinContaier.TransactFrom(total, cacheContaier);
     }
 
     public void OnFailed(Order order)

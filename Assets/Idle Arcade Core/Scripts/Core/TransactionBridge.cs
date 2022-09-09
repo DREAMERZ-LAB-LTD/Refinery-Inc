@@ -202,7 +202,6 @@ namespace IdleArcade.Core
                             else
                                 yield return null;
                         }
-                        
                     }
                     yield return new WaitForSeconds(0.2f);
                 }
