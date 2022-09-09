@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 1951903667970749025}
   - component: {fileID: 2994271708230186727}
   - component: {fileID: 8519742642288616654}
+  - component: {fileID: 3554741966851406131}
   m_Layer: 0
   m_Name: Exporter
   m_TagString: Source
@@ -328,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9daffec3d221e94eab7f0b3dd3670f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conversionUnit: 1
   timeintervallimit: {fileID: 1786897160035655097}
   from: {fileID: 2994271709507061511}
   to: {fileID: 2994271708230186725}
@@ -379,6 +381,23 @@ MonoBehaviour:
   t: 1
   parcent: 50
   importLimit: {fileID: 2362233417257479088}
+--- !u!114 &3554741966851406131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2994271708230186746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e01c1a5d7da4de43845f962531bd3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identity:
+    iD: C
+    name: Silver Bar
+    price: 5
+    quantity: 0
 --- !u!1 &2994271708405947053
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131b561cac8efae4ab186ec47a3e3b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerID: A
+  containers: []
 --- !u!114 &2994271709507061529
 MonoBehaviour:
   m_ObjectHideFlags: 0

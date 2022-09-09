@@ -22,7 +22,7 @@ public class Order
     public bool isAccepted = false;
     public bool isRejected = false;
 
-    public List<Item> items = new List<Item>();
+    public List<Item.Identity> items = new List<Item.Identity>();
 
 
     public void SetTime(int timeSegment, int pendingTime )
@@ -101,7 +101,7 @@ public class Order
     public bool FillUpItem(string id, int delta)
     {
         bool isCompleted = true;
-        Item item;
+        Item.Identity item;
         for (int i = 0; i < items.Count; i++)
         {
             item = items[i];

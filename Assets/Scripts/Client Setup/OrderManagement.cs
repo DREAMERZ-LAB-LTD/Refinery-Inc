@@ -15,7 +15,6 @@ public class OrderManagement : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private OrderPanelButtonEventHandler orderManagementUI;
-    [SerializeField] private Item[] itemSets;
     public List<Order> pendingOrders = new List<Order>();
     public List<Order> activeOrders = new List<Order>();
     public static List<Client> availableClients = new List<Client>();
@@ -26,14 +25,6 @@ public class OrderManagement : MonoBehaviour
         availableClients.Clear();
         StartCoroutine(OrderGeneratorRoutine());
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        itemCountRange.x = Mathf.Clamp(itemCountRange.x, 1, itemSets.Length);
-        itemCountRange.y = Mathf.Clamp(itemCountRange.y, itemCountRange.x, itemSets.Length);
-    }
-#endif    
 
     private void Update()
     {
@@ -99,13 +90,13 @@ public class OrderManagement : MonoBehaviour
 
     public Order GenerateNewOrder(int itemCount)
     {
-        List<Item> tempItemSets = new List<Item>(itemSets);
+        List<Item.Identity> tempItemSets = new List<Item.Identity>(Item.availables);
         var extraItems = tempItemSets.Count - itemCount;
         for (int i = 0; i < extraItems; i++)
             tempItemSets.RemoveAt(Random.Range(0, tempItemSets.Count));
 
         Order order = null;
-        Item item;
+        Item.Identity item;
 
         for (int i = 0; i < tempItemSets.Count; i++)
         { 
@@ -115,7 +106,7 @@ public class OrderManagement : MonoBehaviour
                 order = new Order();
 
             var quantity = Random.Range(quantityRange.x, quantityRange.y);
-            var newItem = new Item(item.iD, item.name, item.price, quantity);
+            var newItem = new Item.Identity(item.iD, item.name, item.price, quantity);
             order.items.Add(newItem);
 
         }

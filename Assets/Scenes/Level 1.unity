@@ -5533,20 +5533,11 @@ MonoBehaviour:
   timeSegment: 15
   maxPendingTime: 10
   delayBetweenOrder: {x: 1, y: 5}
-  itemCountRange: {x: 1, y: 2}
+  itemCountRange: {x: 2, y: 5}
   quantityRange: {x: 1, y: 5}
   maxActiveOrderCount: 2
   maxPendingOrderCount: 2
   orderManagementUI: {fileID: 329775651}
-  itemSets:
-  - iD: B
-    name: Iron Bar
-    price: 5
-    quantity: 0
-  - iD: C
-    name: Silver Bar
-    price: 10
-    quantity: 0
 --- !u!114 &329775653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31569,6 +31560,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1181846603}
     m_Modifications:
+    - target: {fileID: 99998502733178776, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: identity.iD
+      value: D
+      objectReference: {fileID: 0}
+    - target: {fileID: 99998502733178776, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: identity.name
+      value: Gold Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 99998502733178776, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
+      propertyPath: identity.price
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 547223857676088308, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: id
       value: Capacity Importer NPC 13
@@ -36776,7 +36779,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b4c856020fdcca54ebd0c2566169242d, type: 2}
     - target: {fileID: 2221011447725263712, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2447137523700920047, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36864,7 +36867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3474455540164920443, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3474455540312604697, guid: fb266b682081dfd4bae768b6164d9d55, type: 3}
       propertyPath: m_LocalPosition.x
