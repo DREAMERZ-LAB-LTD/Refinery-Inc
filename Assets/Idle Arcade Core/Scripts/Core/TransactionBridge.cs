@@ -60,6 +60,8 @@ namespace IdleArcade.Core
 
             if (routine != null)
                 StopCoroutine(routine);
+
+            Debug.Log("fromContainer COunt " + fromContainer.Count + " toContainer count " + toContainer.Count);
             routine = StartCoroutine(TransactionRoutine(fromContainer, toContainer, delta));
         }
 
@@ -158,14 +160,16 @@ namespace IdleArcade.Core
 
                         var fromCont = from[i];
                         var toCont = to[i];
+                        if (!fromCont.enabled || !toCont.enabled)
+                            continue;
+
                         while (!fromCont.willCrossLimit(-delta) && !toCont.willCrossLimit(delta) && transactionLimit.IsValidTransaction(delta * sign))
                         {
-                            if (fromCont.enabled && toCont.enabled)
-                            {
-                                fromCont.TransactFrom(-delta, toCont);
-                                toCont.TransactFrom(delta, fromCont);
-                                transactionLimit.Transact(delta * sign);
-                            }
+
+                            fromCont.TransactFrom(-delta, toCont);
+                            toCont.TransactFrom(delta, fromCont);
+                            transactionLimit.Transact(delta * sign);
+
 
                             if (timeIntervalLimit)
                                 yield return new WaitForSeconds(timeIntervalLimit.GetCurrent);
