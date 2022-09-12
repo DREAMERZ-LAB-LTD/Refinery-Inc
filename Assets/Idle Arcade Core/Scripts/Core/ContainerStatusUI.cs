@@ -9,9 +9,9 @@ namespace IdleArcade.Core
         [SerializeField] protected TransactionContainer container;
         [SerializeField] protected TextMeshProUGUI statusText;
         [Header("Text Message")]
-        [SerializeField] private string startMessage;
-        [SerializeField] private string centertMessage = " / ";
-        [SerializeField] private string endMessage;
+        [SerializeField] protected string startMessage;
+        [SerializeField] protected string centertMessage = " / ";
+        [SerializeField] protected string endMessage;
 
         protected virtual void Start()
         {
