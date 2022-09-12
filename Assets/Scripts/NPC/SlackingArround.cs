@@ -79,15 +79,12 @@ public class SlackingArround : MonoBehaviour
             status.gameObject.SetActive(false);
 
         OnStopSlacking.Invoke();
-        Debug.Log("Stop Slacking");
     }
 
 
     private IEnumerator SlackingRoutine(float ashamedDuration, float duration)
     {
-        Debug.Log("Slacking Request begin");
         yield return new WaitForSeconds(ashamedDuration);
-        Debug.Log("End Ashamed");
         float startTime = Time.time;
         float endTime = startTime + duration;
         float t;
@@ -106,7 +103,6 @@ public class SlackingArround : MonoBehaviour
             yield return new WaitForSeconds(ashamedDuration / 2.0f);
         }
         status.wakeUpBtn.interactable = true;
-        Debug.Log("Slacking Start");
         OnStartSlacking.Invoke();
     }
 

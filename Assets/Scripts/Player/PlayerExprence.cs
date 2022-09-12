@@ -14,10 +14,11 @@ public class PlayerExprence : Limiter
     [Header("Progress Image Setup")]
     [SerializeReference] private Image progressBar;
 
-    private void Awake()
+    private void Start()
     {
         t = SavedValue;
         UpdateUI(t, range);
+        GameManager.instance.playerExprence = this;
     }
 
     private float SavedValue

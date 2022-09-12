@@ -224,8 +224,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7873690419738214896}
   - component: {fileID: 7873690419738214901}
-  - component: {fileID: 7873690419738214898}
   - component: {fileID: 7873690419738214910}
+  - component: {fileID: 519969816439989371}
   - component: {fileID: 7873690419738214899}
   - component: {fileID: 7873690419738214897}
   m_Layer: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &7873690419738214898
+--- !u!114 &7873690419738214910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -305,7 +305,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7873690419738214911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
+  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: amount
+  range: {x: 0, y: 10}
+  t: 1
+--- !u!114 &519969816439989371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873690419738214911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e43cbc5c43f2a4188132d18bd20e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: coin1
@@ -323,21 +338,13 @@ MonoBehaviour:
   m_OnEmpty:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7873690419738214910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7873690419738214911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: amount
-  range: {x: 0, y: 10}
-  t: 1
+  targetLevel: 1
+  OnEnoughLevel:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLowLevel:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7873690419738214899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containers:
-  - {fileID: 7873690419738214898}
+  - {fileID: 519969816439989371}
 --- !u!65 &7873690419738214897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -375,10 +382,14 @@ PrefabInstance:
     - target: {fileID: 6799432912043515140, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
       propertyPath: container
       value: 
-      objectReference: {fileID: 7873690419738214898}
+      objectReference: {fileID: 519969816439989371}
     - target: {fileID: 8190128930957741365, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
       propertyPath: m_Name
       value: Container Status Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190128930957741368, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8190128930957741370, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
       propertyPath: m_Pivot.x

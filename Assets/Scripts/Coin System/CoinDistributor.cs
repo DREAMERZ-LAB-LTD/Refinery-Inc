@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
 {
-    [SerializeField] private bool useUserInput = false;
+
+    [SerializeField] private KeyCode interruptKey = KeyCode.None;
 
     [Tooltip("Where we will store all of the collection data based on Point ID")]
     private TransactionContainer[] containers;
-    private Coroutine routine; //store existin transiction routine
     private void Awake()
     {
         //assign all of the points to use for store all of the collecting data
@@ -30,6 +30,12 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
                 var target = destinationContainer.GetMax;
                 if (target <= storePoint.Getamount)
                 {
+                    var unlockable = destinationContainer as UnlockableContainer;
+                    if (unlockable)
+                    {
+                        if (!unlockable.isValidToUnlock())
+                            return;
+                    }
                     var frameLength = 1 / 60f;
                     target *= frameLength;
                     StopAllCoroutines();
@@ -58,9 +64,8 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
 
         while (true)
         {
-            if (useUserInput)
-                while (Input.GetMouseButton(0))
-                    yield return null;
+            while (Input.GetKey(interruptKey))
+                yield return null;
 
             if (!A.willCrossLimit(-delta) && !B.willCrossLimit(delta))
             {
