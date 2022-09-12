@@ -1,6 +1,5 @@
 using IdleArcade.Core;
 using UnityEngine;
-using TMPro;
 
 public class WareHouseStatusField : ContainerStatusUI
 {
