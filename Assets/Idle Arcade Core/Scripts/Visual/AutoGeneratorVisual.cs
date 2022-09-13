@@ -1,7 +1,7 @@
 using UnityEngine;
 using IdleArcade.Core;
 
-public class TransactionSourceVisual : TransactionVisualCore
+public class AutoGeneratorVisual : TransactionVisualCore
 {
     [SerializeField] private Entity prefab;
 

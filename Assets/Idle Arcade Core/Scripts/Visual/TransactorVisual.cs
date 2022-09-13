@@ -5,7 +5,7 @@ public class TransactorVisual : TransactionVisualCore
 {
     protected override void OnAdding(int delta, TransactionContainer A, TransactionContainer B)
     {
-        var source = A.GetComponent<TransactionSourceVisual>();
+        var source = A.GetComponent<TransactionVisualCore>();
         if (source == null)
             return;
 
@@ -17,7 +17,7 @@ public class TransactorVisual : TransactionVisualCore
 
     protected override void OnRemoving(int delta, TransactionContainer A, TransactionContainer B)
     {
-        var destination = A.GetComponent<TransactionDestinationVisual>();
+        var destination = A.GetComponent<TransactionVisualCore>();
         if (destination == null)
             return;
 

@@ -28,7 +28,7 @@ namespace IdleArcade.Core
         /// <param name="collider">destination collider</param>
         public void OnExit(Collider collider)
         {
-            var point = collider.GetComponent<TransactionContainer>();
+            var point = collider.GetComponent<TransactionDestination>();
             if (point == null) return;
 
             transactionBridge.StopTransiction();
