@@ -27,6 +27,7 @@ public class Client : MonoBehaviour
         warehouseCoinContaier = FindObjectOfType<WareHouseCoinContainer>();
         car = GetComponent<ClientCar>();
         car.OnExportSide += AddToManagement;
+        car.OnImportSide += ApplyContainerMask;
     }
 
     private void OnEnable()
@@ -49,6 +50,7 @@ public class Client : MonoBehaviour
             containers[i].OnChangedValue -= OnTransact;
 
         car.OnExportSide -= AddToManagement;
+        car.OnImportSide -= ApplyContainerMask;
     }
 
     private void AddToManagement()
@@ -86,8 +88,9 @@ public class Client : MonoBehaviour
             order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
             arrowProgress.enabled = false;
         }
-
         this.order = null;
+
+        ApplyContainerMask();
         m_OnOrderRemoved.Invoke();
 
         int total = 0;
@@ -110,27 +113,15 @@ public class Client : MonoBehaviour
             order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
             arrowProgress.enabled = false;
         }
-
         this.order = null;
+
+        ApplyContainerMask();
         m_OnOrderRemoved.Invoke();
     }
 
     public void OnOrderAccepted(Order order)
     {
-        for (int i = 0; i < containers.Length; i++)
-        {
-            containers[i].enabled = false;
-            for (int j = 0; j < order.items.Count; j++)
-            {
-                if (containers[i].GetID == order.items[j].iD)
-                {
-                    containers[i].amountLimit.range.y = order.items[j].quantity;
-                    containers[i].enabled = true;
-                    break;
-                }
-            }
-        }
-
+        ApplyContainerMask();
         if (arrowProgress)
         { 
             arrowProgress.enabled = true;
@@ -144,4 +135,21 @@ public class Client : MonoBehaviour
         carOrderStatus.ShowOrder(order);
         m_OnOrderAccepted.Invoke();
     }
+
+    private void ApplyContainerMask()
+    {
+        for (int i = 0; i < containers.Length; i++)
+        {
+            containers[i].enabled = false;
+            if(order != null)
+                for (int j = 0; j < order.items.Count; j++)
+                    if (containers[i].GetID == order.items[j].iD)
+                    {
+                        containers[i].amountLimit.range.y = order.items[j].quantity;
+                        containers[i].enabled = true;
+                        break;
+                    }
+        }
+    }
+
 }
