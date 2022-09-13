@@ -1,10 +1,6 @@
-using UnityEngine;
-
 namespace IdleArcade.Core
 {
-    public class TransactionSource : MonoBehaviour
+    public class TransactionSource : Containable
     {
-        [SerializeField] protected TransactionContainer container;
-        public TransactionContainer GetContainer => container;
     }
 }

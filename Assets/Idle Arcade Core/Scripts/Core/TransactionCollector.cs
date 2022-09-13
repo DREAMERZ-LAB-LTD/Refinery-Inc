@@ -18,12 +18,9 @@ namespace IdleArcade.Core
             var sourcePoint = collider.GetComponent<TransactionSource>();
             if (sourcePoint == null) return;
 
-            foreach (var storePoint in containers)
-                if (sourcePoint.GetContainer.GetID == storePoint.GetID)
-                {
-                    transactionBridge.StartTransiction(sourcePoint.GetContainer, storePoint, 1);
-                    break;
-                }
+           
+            transactionBridge.StartTransiction(sourcePoint, this, 1);
+            
         }
         /// <summary>
         /// Called when collider trigger exit from source object
