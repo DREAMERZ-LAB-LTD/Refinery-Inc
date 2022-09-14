@@ -2,9 +2,12 @@ using UnityEngine;
 using IdleArcade.Core;
 using UnityEngine.Events;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Client : MonoBehaviour
 {
+    public static List<Client> availables = new List<Client>();
+
     [SerializeField] private TargetWithProgress arrowProgress;
     [SerializeField] private OrderStatusUI carOrderStatus;
 
@@ -26,7 +29,7 @@ public class Client : MonoBehaviour
 
         warehouseCoinContaier = FindObjectOfType<WareHouseCoinContainer>();
         car = GetComponent<ClientCar>();
-        car.OnExportSide += AddToManagement;
+        car.OnExportSide += AddToAvailable;
         car.OnImportSide += ApplyContainerMask;
     }
 
@@ -36,33 +39,33 @@ public class Client : MonoBehaviour
         IEnumerator InitialDealyRoutine()
         {
             yield return new WaitForEndOfFrame();
-            AddToManagement();
+            AddToAvailable();
         }
     }
 
     private void OnDisable()
     {
-        RemoveFromManagement();
+        RemoveFromAvailable();
     }
     private void OnDestroy()
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue -= OnTransact;
 
-        car.OnExportSide -= AddToManagement;
+        car.OnExportSide -= AddToAvailable;
         car.OnImportSide -= ApplyContainerMask;
     }
 
-    private void AddToManagement()
+    private void AddToAvailable()
     {
-        if (!OrderManagement.availableClients.Contains(this))
-            OrderManagement.availableClients.Add(this);
+        if (!availables.Contains(this))
+            availables.Add(this);
     }
 
-    private void RemoveFromManagement()
+    private void RemoveFromAvailable()
     {
-        if (OrderManagement.availableClients.Contains(this))
-            OrderManagement.availableClients.Remove(this);
+        if (availables.Contains(this))
+            availables.Remove(this);
     }
 
 
@@ -74,7 +77,7 @@ public class Client : MonoBehaviour
 
     public void OnOrderCanceled(Order order)
     {
-        AddToManagement();
+        AddToAvailable();
     }
 
     public void OnCompleted(Order order)

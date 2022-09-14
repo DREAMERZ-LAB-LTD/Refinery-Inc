@@ -20,7 +20,6 @@ public class ClientCar : Containable
     private void OnDisable()
     {
         mover.movementChangeEvent -= OnChangePoint;
-        StopAllCoroutines();
     }
 
     protected virtual void OnImportSIde()

@@ -18,6 +18,7 @@ public class Order
     private float maxDeliveryTime;
     private float pendingTime;
     private float deliveryTime;
+    public Vector3 location  = Vector3.zero;
 
     public bool isAccepted = false;
     public bool isRejected = false;

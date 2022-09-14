@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class OrderManagement : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeReference] private OrderPanelButtonEventHandler orderManagementUI;
+    [SerializeReference] private WareHouse wareHouse;
+
     [Header("Management Controls")]
     [SerializeField] private int timeSegment = 5;
     [SerializeField] private int maxPendingTime = 5;
@@ -13,16 +17,14 @@ public class OrderManagement : MonoBehaviour
     [SerializeField] private int maxActiveOrderCount = 1;
     [SerializeField] private int maxPendingOrderCount = 1;
 
-    [Header("References")]
-    [SerializeField] private OrderPanelButtonEventHandler orderManagementUI;
-    public List<Order> pendingOrders = new List<Order>();
-    public List<Order> activeOrders = new List<Order>();
-    public static List<Client> availableClients = new List<Client>();
+    private List<Order> pendingOrders = new List<Order>();
+    private List<Order> acceptedOrders = new List<Order>();
+   
 
 
     private void Awake()
     {
-        availableClients.Clear();
+        Client.availables.Clear();
         StartCoroutine(OrderGeneratorRoutine());
     }
 
@@ -31,15 +33,15 @@ public class OrderManagement : MonoBehaviour
         for (int i = 0; i < pendingOrders.Count; i++)
             pendingOrders[i].Update();
 
-        for (int i = 0; i < activeOrders.Count; i++)
-            activeOrders[i].Update();
+        for (int i = 0; i < acceptedOrders.Count; i++)
+            acceptedOrders[i].Update();
     }
 
     private void RemoveFromActive(Order order)
     {
-        if (activeOrders.Contains(order))
+        if (acceptedOrders.Contains(order))
         { 
-            activeOrders.Remove(order);
+            acceptedOrders.Remove(order);
             order.OnCompleted -= RemoveFromActive;
             order.OnFailed -= RemoveFromActive;
         }
@@ -49,9 +51,9 @@ public class OrderManagement : MonoBehaviour
     {
         RemoveFromPending(order);
 
-        if (!activeOrders.Contains(order))
+        if (!acceptedOrders.Contains(order))
         { 
-            activeOrders.Add(order);
+            acceptedOrders.Add(order);
             order.OnCompleted += RemoveFromActive;
             order.OnFailed += RemoveFromActive;
         }
@@ -84,7 +86,7 @@ public class OrderManagement : MonoBehaviour
 
     private void OnClickPendingButton(Order order)
     {
-        var isValidAmount = activeOrders.Count < maxActiveOrderCount;
+        var isValidAmount = acceptedOrders.Count < maxActiveOrderCount;
         orderManagementUI.AcceptBtn.interactable = isValidAmount;
     }
 
@@ -123,7 +125,7 @@ public class OrderManagement : MonoBehaviour
         Client client = null;
         while (true)
         {
-            while (availableClients.Count == 0)
+            while (Client.availables.Count == 0)
                 yield return new WaitForSeconds(2);
             
             while(pendingOrders.Count >= maxPendingOrderCount)
@@ -137,11 +139,13 @@ public class OrderManagement : MonoBehaviour
             var newOrder = GenerateNewOrder();
             if (newOrder != null)
             {
-                int index = Random.Range(0, availableClients.Count);
-                client = availableClients[index];
-                availableClients.RemoveAt(index);
+                int index = Random.Range(0, Client.availables.Count);
+                client = Client.availables[index];
+                Client.availables.RemoveAt(index);
 
+                newOrder.location = client.transform.position;
                 AddToPending(newOrder);
+                newOrder.OnAccepted += wareHouse.OnOrderAccepted;
                 newOrder.OnAccepted += client.OnOrderAccepted;
                 newOrder.OnRejected += client.OnOrderCanceled;
                 newOrder.OnCanceled += client.OnOrderCanceled;
