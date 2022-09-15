@@ -19,6 +19,8 @@ public class WareHouseNPC : NPCBehaviour
 
     private bool isDelivering = false;
     private Vector3 homePoint;
+    private Coroutine reCollectRoutine;
+
 
     public static List<WareHouseNPC> availables = new List<WareHouseNPC>();
     private TransactionContainer GetWarehouseContainer(string id)
@@ -58,9 +60,33 @@ public class WareHouseNPC : NPCBehaviour
     #endregion NPC Registrtion
 
 
- 
+
     #region NPC Task Assigning
 
+    private void OnOrderUpdate(Order order)
+    {
+        if (reCollectRoutine != null)
+            StopCoroutine(reCollectRoutine);
+
+        reCollectRoutine = StartCoroutine(RecollectingRoutine());
+
+        IEnumerator RecollectingRoutine()
+        {
+            yield return new WaitForSeconds(2f);
+            isDelivering = false;
+        }
+
+    }
+    private void OnOrderRemoved(Order order)
+    {
+        order.OnCompleted -= OnOrderRemoved;
+        order.OnFailed -= OnOrderRemoved;
+        order.OnChangedValue -= OnOrderUpdate;
+
+        StopAllCoroutines();
+        AddToAvailable();
+        GoHome();
+    }
     public void Assigned(Order order)
     {
         if (order == null)
@@ -68,6 +94,7 @@ public class WareHouseNPC : NPCBehaviour
 
         order.OnCompleted += OnOrderRemoved;
         order.OnFailed += OnOrderRemoved;
+        order.OnChangedValue += OnOrderUpdate;
 
         RemoveFromAvailable();
 
@@ -97,15 +124,8 @@ public class WareHouseNPC : NPCBehaviour
         StartCoroutine(ServeRoutine(nodePeers, order.destination));
     }
 
-    private void OnOrderRemoved(Order order)
-    {
-        order.OnCompleted -= OnOrderRemoved;
-        order.OnFailed -= OnOrderRemoved;
 
-        StopAllCoroutines();
-        AddToAvailable();
-        GoHome();
-    }
+
     #endregion NPC Task Assigning
 
 
@@ -113,19 +133,20 @@ public class WareHouseNPC : NPCBehaviour
     #region Movement System
 
 
-    private IEnumerator ServeRoutine(List<NodePeer> nodePeer, Vector3 destination)
+    private IEnumerator ServeRoutine(List<NodePeer> nodePeers, Vector3 destination)
     {
-        if (nodePeer.Count == 0)
+        if (nodePeers.Count == 0)
             yield break;
 
-        for (int i = 0; i < nodePeer.Count; i++)
-            nodePeer[i].selfContainer.enabled = true;
+        for (int i = 0; i < nodePeers.Count; i++)
+            nodePeers[i].selfContainer.enabled = true;
 
-        var tempPeer = new List<NodePeer>(nodePeer);
 
+        var tempPeer = new List<NodePeer>(nodePeers);
         int peerNo = 0;
         bool sourceIsEmpty;
         bool hasLeft;
+        bool hasAvailableToDeliver = false;
         while (tempPeer.Count > 0)
         {
             var peer = tempPeer[peerNo];
@@ -136,38 +157,62 @@ public class WareHouseNPC : NPCBehaviour
                 agent.SetDestination(peer.itemIdentity.pickPoint);
             
 
+            if (agent.hasPath)
+            {
+                for (int i = 0; i < nodePeers.Count; i++)
+                    nodePeers[i].selfContainer.enabled = false;
+
+                while (agent.hasPath)
+                    yield return null;
+
+                for (int i = 0; i < nodePeers.Count; i++)
+                    nodePeers[i].selfContainer.enabled = true;
+            }
+
             while (!sourceIsEmpty && hasLeft)
             {
+                hasAvailableToDeliver = true;
                 sourceIsEmpty = peer.wareHouseContainer.isEmpty;
                 hasLeft = peer.itemIdentity.quantity > peer.selfContainer.Getamount;
                 yield return null;
             }
 
             if (!hasLeft)
-            { 
-                Debug.Log("Removed id" + peer.selfContainer.GetID);
+            {
+                hasAvailableToDeliver = true;
                 tempPeer.RemoveAt(peerNo);
                 peerNo--;
             }
             
-                Debug.Log("Collecting END Peer Count " + tempPeer.Count);
-            
              peerNo++;
             if (tempPeer.Count > 0)
             {
-                 agent.SetDestination(destination);
-                isDelivering = peerNo == tempPeer.Count;
+                if (peerNo == tempPeer.Count)
+                { 
+                    isDelivering = hasAvailableToDeliver;
+                    hasAvailableToDeliver = false;
+                }
+
                 peerNo = peerNo % tempPeer.Count;
             }
+            if (isDelivering)
+            { 
+                agent.SetDestination(destination);
+                while (agent.hasPath)
+                    yield return null;
 
+                for (int i = 0; i < nodePeers.Count; i++)
+                    nodePeers[i].selfContainer.enabled = true;
 
-            while (isDelivering)
-            {
-                yield return null;
+                while (isDelivering)
+                    yield return null;
+                GoHome();
             }
             yield return null;
         }
 
+        for (int i = 0; i < nodePeers.Count; i++)
+            nodePeers[i].selfContainer.enabled = true;
         agent.SetDestination(destination);
     }
     private void GoHome()
@@ -175,12 +220,7 @@ public class WareHouseNPC : NPCBehaviour
         agent.SetDestination(homePoint);
     }
 
-    //private void Update()
-    //{
-    //    foreach (var c in containers)
-    //        if (c.enabled)
-    //            Debug.Log(c.GetID);
-    //}
+  
 
     protected override void OnElementAdding(string id, int currnet, int max)
     {
