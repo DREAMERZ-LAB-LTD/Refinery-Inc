@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class WareHouse : MonoBehaviour
 {
-    [System.Serializable]
-    private class PathNode
-    {
-        public string id;
-        public Transform point;
-
-    }
+    [SerializeField] private PathNode[] itemPoints;
+    [SerializeField] public PathNode[] sellsPoints;
     private List<Order> acceptedOrders = new List<Order>();
-    [SerializeField] private PathNode[] pathNodes;
     private void Awake()
     {
         WareHouseNPC.availables.Clear();
@@ -28,6 +22,13 @@ public class WareHouse : MonoBehaviour
     {
         if (order == null)
             return;
+
+        for (int i = 0; i < order.items.Count; i++)
+        {
+            GetPickPoint(order.items[i].iD, out Vector3 pickPoint);
+            order.items[i].pickPoint = pickPoint;
+        }
+        
         acceptedOrders.Add(order);
 
         order.OnAccepted -= OnOrderAccepted;
@@ -46,18 +47,17 @@ public class WareHouse : MonoBehaviour
         order.OnFailed -= OnOrderRemoved;
     }
 
-    private List<Vector3> GetPath(Order order)
+    private bool GetPickPoint(in string id, out Vector3 point)
     {
-        List<Vector3> path = new List<Vector3>();
+        point = Vector3.zero;
+        for (int i = 0; i < itemPoints.Length; i++)
+            if (id == itemPoints[i].id) 
+            {
+                point = itemPoints[i].point.position;
+                return true;
+            }
 
-        for (int i = 0; i < order.items.Count; i++)
-            for (int j = 0; j < pathNodes.Length; j++)
-                if (order.items[i].iD == pathNodes[j].id)
-                    path.Add(pathNodes[j].point.position);
-
-        path.Add(order.location);
-
-        return path;
+        return false;
     }
 
     private IEnumerator SellingRoutine()
@@ -75,8 +75,7 @@ public class WareHouse : MonoBehaviour
                 WareHouseNPC.availables.RemoveAt(index);
                 acceptedOrders.RemoveAt(index);
 
-                var path = GetPath(order);
-                npc.Assigned(order, path);
+                npc.Assigned(order);
                 yield return null;
             }
 

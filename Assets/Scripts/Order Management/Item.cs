@@ -10,6 +10,8 @@ public class Item : MonoBehaviour
         public int price;
         [HideInInspector]
         public int quantity;
+        [HideInInspector]
+        public Vector3 pickPoint;
 
         public Identity(string iD, string name, int price, int quantity)
         {

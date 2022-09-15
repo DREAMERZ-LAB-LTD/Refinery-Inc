@@ -18,13 +18,21 @@ public class Order
     private float maxDeliveryTime;
     private float pendingTime;
     private float deliveryTime;
-    public Vector3 location  = Vector3.zero;
+    public Vector3 destination;
 
     public bool isAccepted = false;
     public bool isRejected = false;
 
     public List<Item.Identity> items = new List<Item.Identity>();
 
+    public Item.Identity GetItem(string id)
+    {
+        for (int i = 0; i < items.Count; i++)
+            if (items[i].iD == id)
+                return items[i];
+
+        return null;
+    }
 
     public void SetTime(int timeSegment, int pendingTime )
     {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class Client : MonoBehaviour
 {
+    public int sellsPoint = 0;
     public static List<Client> availables = new List<Client>();
 
     [SerializeField] private TargetWithProgress arrowProgress;

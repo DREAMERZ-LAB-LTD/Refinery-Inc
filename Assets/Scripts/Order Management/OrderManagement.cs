@@ -93,7 +93,7 @@ public class OrderManagement : MonoBehaviour
     public Order GenerateNewOrder()
     {
         var itemCount = Random.Range(itemCountRange.x, itemCountRange.y + 1);
-        var tempItemSets = Item.availables;
+        var tempItemSets = new List<Item.Identity>(Item.availables);
         var extraItems = tempItemSets.Count - itemCount;
         for (int i = 0; i < extraItems; i++)
             tempItemSets.RemoveAt(Random.Range(0, tempItemSets.Count));
@@ -143,7 +143,9 @@ public class OrderManagement : MonoBehaviour
                 client = Client.availables[index];
                 Client.availables.RemoveAt(index);
 
-                newOrder.location = client.transform.position;
+                var sp = wareHouse.sellsPoints[client.sellsPoint];
+                newOrder.destination = sp.point.position;
+
                 AddToPending(newOrder);
                 newOrder.OnAccepted += wareHouse.OnOrderAccepted;
                 newOrder.OnAccepted += client.OnOrderAccepted;
