@@ -118,7 +118,6 @@ public class WareHouseNPC : NPCBehaviour
             nodePeers.Add(ns);
         }
 
-        Debug.Log("Total Node Peers " + nodePeers.Count);
         isDelivering = false;
         StopAllCoroutines();
         StartCoroutine(ServeRoutine(nodePeers, order.destination));
