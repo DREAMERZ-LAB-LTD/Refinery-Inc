@@ -31,15 +31,20 @@ public class ConverterVisualFlow : MonoBehaviour, TransactionConverter.IConverte
     }
     public void OnConvertBegin(float delay)
     {
-        StartCoroutine(MoveTo(fromA.position, fromB.position, toA.position,toB.position));
+        StartCoroutine(MoveTo());
 
-        IEnumerator MoveTo(Vector3 fromA,Vector3 fromB, Vector3 toA,Vector3 toB)
+        IEnumerator MoveTo()
         {
+            Vector3 fA = fromA ? fromA.position : Vector3.zero;
+            Vector3 fB = fromB ? fromB.position: Vector3.zero;
+            Vector3 tA = toA ? toA.position : Vector3.zero;
+            Vector3 tB = toB ? toB.position : Vector3.zero;
+
             var processingTime = delay * processingDelay;
 
             var swipeDuration = delay - processingTime;
-            var fromLength = Vector3.Distance(fromA, fromB);
-            var toLength = Vector3.Distance(toA, toB);
+            var fromLength = Vector3.Distance(fA, fB);
+            var toLength = Vector3.Distance(tA, tB);
             var totalPathLength = fromLength + toLength;
 
             var dt = Mathf.InverseLerp(0, totalPathLength, fromLength);
@@ -53,7 +58,7 @@ public class ConverterVisualFlow : MonoBehaviour, TransactionConverter.IConverte
             {
                 t = Mathf.InverseLerp(startTime, endTime, Time.time);
                 if(fromVisualElement)
-                    fromVisualElement.transform.position = Vector3.Lerp(fromA, fromB, t);
+                    fromVisualElement.transform.position = Vector3.Lerp(fA, fB, t);
                 yield return null;
             }
             if(fromVisualElement)
@@ -74,7 +79,7 @@ public class ConverterVisualFlow : MonoBehaviour, TransactionConverter.IConverte
             {
                 t = Mathf.InverseLerp(startTime, endTime, Time.time);
                 if(toVisualElement)
-                    toVisualElement.transform.position = Vector3.Lerp(toA, toB, t);
+                    toVisualElement.transform.position = Vector3.Lerp(tA, tB, t);
                 yield return null;
             }
             if(toVisualElement)

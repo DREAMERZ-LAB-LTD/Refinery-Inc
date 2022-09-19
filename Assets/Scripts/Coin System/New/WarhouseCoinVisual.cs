@@ -51,7 +51,7 @@ public class WarhouseCoinVisual : TransactionVisualCore
         coinVisual.gameObject.SetActive(false);
     }
 
-    protected override void OnAdding(int delta, TransactionContainer A, TransactionContainer B)
+    protected override void OnAdding(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
         var position = A.transform.position;
         var rotation = transform.rotation;
@@ -73,7 +73,7 @@ public class WarhouseCoinVisual : TransactionVisualCore
         }
     }
 
-    protected override void OnRemoving(int delta, TransactionContainer A, TransactionContainer B)
+    protected override void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
         Entity coinVisual;
         for (int i = 0; i < Mathf.Abs(delta); i++)

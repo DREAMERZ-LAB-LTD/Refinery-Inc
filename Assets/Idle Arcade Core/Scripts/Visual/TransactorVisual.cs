@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TransactorVisual : TransactionVisualCore
 {
-    protected override void OnAdding(int delta, TransactionContainer A, TransactionContainer B)
+    protected override void OnAdding(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
         var source = A.GetComponent<TransactionVisualCore>();
         if (source == null)
@@ -15,7 +15,7 @@ public class TransactorVisual : TransactionVisualCore
         
     }
 
-    protected override void OnRemoving(int delta, TransactionContainer A, TransactionContainer B)
+    protected override void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
         var destination = A.GetComponent<TransactionVisualCore>();
         if (destination == null)

@@ -12,9 +12,9 @@ public class CoinCollectorVisual : TransactionVisualCore
         coin = Instantiate(coinPrefab.gameObject, transform.position, transform.rotation, transform);
         coin.SetActive(false);
     }
-    protected override void OnAdding(int delta, TransactionContainer A, TransactionContainer B) { }
+    protected override void OnAdding(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B) { }
 
-    protected override void OnRemoving(int delta, TransactionContainer A, TransactionContainer B)
+    protected override void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
         Transform toPoint = A.transform;
         StartCoroutine(MoveTo(coin, transform, toPoint));

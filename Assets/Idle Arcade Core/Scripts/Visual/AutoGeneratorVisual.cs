@@ -5,7 +5,7 @@ public class AutoGeneratorVisual : TransactionVisualCore
 {
     [SerializeField] private Entity prefab;
 
-    protected override void OnAdding(int delta, TransactionContainer A, TransactionContainer B)
+    protected override void OnAdding(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
         for (int i = 0; i < delta; i++)
         { 
@@ -18,7 +18,7 @@ public class AutoGeneratorVisual : TransactionVisualCore
                 Push(ability);
         }
     }
-    protected override void OnRemoving(int delta, TransactionContainer A, TransactionContainer B) { }
+    protected override void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B) { }
 
 
     protected Entity SpawnEntity(Vector3 position, Quaternion rotation, Transform parent = null)

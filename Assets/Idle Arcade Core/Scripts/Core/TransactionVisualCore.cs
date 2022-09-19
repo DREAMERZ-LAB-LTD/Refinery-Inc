@@ -46,10 +46,10 @@ namespace IdleArcade.Core
         private void OnChanging(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
         {
             if (delta > 0)
-                OnAdding(delta, A, B);
+                OnAdding(delta, currnet, max, A, B);
             
             if (delta < 0)
-                OnRemoving(delta, A, B);
+                OnRemoving(delta, currnet, max, A, B);
         }
 
         /// <summary>
@@ -57,14 +57,14 @@ namespace IdleArcade.Core
         /// </summary>
         /// <param name="delta">change rate</param>
         /// <param name="A">Source Container</param>
-        protected abstract void OnAdding(int delta, TransactionContainer A, TransactionContainer B);
+        protected abstract void OnAdding(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B);
 
         /// <summary>
         ///  Called when Removing transaction amount of the container
         /// </summary>
         /// <param name="delta">change rate</param>
         /// <param name="A">Source Containe</param>
-        protected abstract void OnRemoving(int delta, TransactionContainer A, TransactionContainer B);
+        protected abstract void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B);
 
         /// <summary>
         /// return next pullable Entity from the collection Usning FiFO
