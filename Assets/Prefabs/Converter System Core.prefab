@@ -316,9 +316,10 @@ MonoBehaviour:
   processingDelay: 0.5
   fromPrefab: {fileID: 0}
   convertedPrefab: {fileID: 3324909748409890731, guid: 6ccb7f6a6bd1ee34da4d3eb44bd01674, type: 3}
-  A: {fileID: 8709489463275049935}
-  B: {fileID: 8983698246803521493}
-  C: {fileID: 4617985457816406770}
+  fromA: {fileID: 8709489463275049935}
+  fromB: {fileID: 8983698246803521493}
+  toA: {fileID: 8983698246803521493}
+  toB: {fileID: 4617985457816406770}
 --- !u!65 &2994271708230186727
 BoxCollider:
   m_ObjectHideFlags: 0
