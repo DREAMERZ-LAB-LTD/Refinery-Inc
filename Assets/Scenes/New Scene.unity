@@ -763,7 +763,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338784530}
   m_LocalRotation: {x: 0.22503154, y: 0.74726593, z: -0.30952778, w: 0.5432744}
-  m_LocalPosition: {x: -52, y: 30.5, z: -32.86}
+  m_LocalPosition: {x: -108.3, y: 30.5, z: 2.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1248,6 +1248,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 180a071bf7d0c2244a55875ee67ab702, type: 3}
       propertyPath: m_Name
       value: Garbage_Container_L1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 180a071bf7d0c2244a55875ee67ab702, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1895581851972307512, guid: 180a071bf7d0c2244a55875ee67ab702, type: 3}
       propertyPath: m_Materials.Array.data[0]
