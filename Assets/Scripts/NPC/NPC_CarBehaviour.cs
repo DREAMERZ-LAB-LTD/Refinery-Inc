@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using SWS;
 using IdleArcade.Core;
-using UnityEngine.Events;
 
 public class NPC_CarBehaviour : MonoBehaviour
 {
