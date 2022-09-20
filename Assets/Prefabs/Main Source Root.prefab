@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 224827835}
   - component: {fileID: 224827836}
   - component: {fileID: 224827838}
-  - component: {fileID: 224827837}
+  - component: {fileID: 7484245937307755866}
   m_Layer: 10
   m_Name: NPC Car
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MonoBehaviour:
   mover: {fileID: 224827836}
   importPoint: 8
   exportPoint: 5
---- !u!114 &224827837
+--- !u!114 &7484245937307755866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,43 +116,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 224827834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d3980a06086914aa0b9996f3900b36, type: 3}
+  m_Script: {fileID: 11500000, guid: ff809bd0f45dc34499a50649bf91c634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ashamedDuration: {x: 10, y: 20}
-  aliveDuration: {x: 10, y: 20}
-  statusPrefab: {fileID: 5439292845690443472, guid: 102c8add746f7874587b8d23299c6cb2, type: 3}
-  offset: {x: 0, y: 0, z: 0}
-  OnStartSlacking:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 224827836}
-        m_TargetAssemblyTypeName: SWS.splineMove, Assembly-CSharp-firstpass
-        m_MethodName: Pause
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnStopSlacking:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 224827836}
-        m_TargetAssemblyTypeName: SWS.splineMove, Assembly-CSharp-firstpass
-        m_MethodName: Resume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &613210625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1098,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aa16cf74f988140ab64673184a76ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deltaAmount: 25
+  buyAmount: 20
+  unitPrice: 5
+  orderAmount: 0
 --- !u!1 &8128147988118045745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,7 +1472,7 @@ GameObject:
   - component: {fileID: 8191356178759093933}
   - component: {fileID: 167117307235741307}
   - component: {fileID: 369635929997793705}
-  - component: {fileID: 7153557142552898976}
+  - component: {fileID: 1091889687655829890}
   - component: {fileID: 6277563618734711185}
   m_Layer: 0
   m_Name: Main Garbage source
@@ -1606,7 +1574,7 @@ MonoBehaviour:
   id: level garbage capacity
   range: {x: 0, y: 50}
   t: 1
---- !u!114 &7153557142552898976
+--- !u!114 &1091889687655829890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1615,7 +1583,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9130848856552909456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961b5346be90c96419829b85101a9026, type: 3}
+  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: A
@@ -1633,7 +1601,6 @@ MonoBehaviour:
   m_OnEmpty:
     m_PersistentCalls:
       m_Calls: []
-  unitPrice: 5
 --- !u!114 &6277563618734711185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,7 +1614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containers:
-  - {fileID: 7153557142552898976}
+  - {fileID: 1091889687655829890}
 --- !u!1001 &4263382992552774855
 PrefabInstance:
   m_ObjectHideFlags: 0
