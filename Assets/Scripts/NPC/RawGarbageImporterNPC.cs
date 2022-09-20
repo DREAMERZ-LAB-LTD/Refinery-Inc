@@ -32,15 +32,13 @@ public class RawGarbageImporterNPC : WayPointNPC
         StopAllCoroutines();
     }
 
-  
-
     public void AddNewOrder()
     {
-        if (sourceContainer.Getamount <= 0)
+        var availables = sourceContainer.Getamount - orderAmount;
+        if (availables <= 0)
             return;
-
-        var dt = sourceContainer.Getamount % buyAmount + 1;
-        Debug.Log("DT = " + dt);
+        var dt = buyAmount > availables ? availables : buyAmount;
+     
         if (!ScoreManager.instance.AddScore(-Mathf.Abs(dt * unitPrice)))
             return;
 
@@ -61,13 +59,13 @@ public class RawGarbageImporterNPC : WayPointNPC
         IEnumerator OnImportSide()
         {
 
-            int preAmount = -1;
             mover.Pause();
             selfContainer.enabled = true;
 
             while (selfContainer.isEmpty || orderAmount == 0)
                 yield return new WaitForSeconds(1);
 
+            int preAmount = -1;
             while (preAmount != selfContainer.Getamount)
             {
                 preAmount = selfContainer.Getamount;
