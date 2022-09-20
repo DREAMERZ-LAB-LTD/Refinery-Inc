@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Name : ABCD'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dbed1fddf5b61974084986b8918e6616, type: 2}
-  m_sharedMaterial: {fileID: -8188380147137621193, guid: dbed1fddf5b61974084986b8918e6616, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ab4ba7dcd3c4cc34cbbaaec95fce0c5a, type: 2}
+  m_sharedMaterial: {fileID: 4478368442276268404, guid: ab4ba7dcd3c4cc34cbbaaec95fce0c5a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -161,7 +161,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7868678922933519517}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183819100496f1542847c181b11febe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   icon: {fileID: 7868678923643112203}
   quantityTxt: {fileID: 7868678922610907726}
 --- !u!1 &7868678923643112205

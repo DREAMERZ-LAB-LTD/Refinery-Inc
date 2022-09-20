@@ -315,9 +315,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   processingDelay: 0.5
   fromPrefab: {fileID: 0}
-  convertedPrefab: {fileID: 3324909748409890731, guid: 6ccb7f6a6bd1ee34da4d3eb44bd01674, type: 3}
   fromA: {fileID: 8709489463275049935}
   fromB: {fileID: 8983698246803521493}
+  convertedPrefab: {fileID: 3324909748409890731, guid: 6ccb7f6a6bd1ee34da4d3eb44bd01674, type: 3}
   toA: {fileID: 8983698246803521493}
   toB: {fileID: 4617985457816406770}
 --- !u!65 &2994271708230186727
@@ -366,6 +366,7 @@ MonoBehaviour:
     iD: C
     name: Silver Bar
     price: 5
+    icon: {fileID: 21300000, guid: 7b2df96a73bea834eaa7084a9c9872bb, type: 3}
     quantity: 0
     pickPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &2994271709507061534
