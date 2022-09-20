@@ -1,65 +1,40 @@
 using System.Collections;
 using UnityEngine;
-using SWS;
 using IdleArcade.Core;
 
-public class NPC_CarBehaviour : MonoBehaviour
+public class NPC_CarBehaviour : WayPointNPC
 {
     [Header("Container Setup")]
     [SerializeField] protected TransactionContainer selfContainer;
     [SerializeField] protected TransactionContainer sourceContainer;
-    [Header("Movement Setup")]
-    [SerializeField] protected splineMove mover;
-    [SerializeField] protected int importPoint;
-    [SerializeField] protected int exportPoint;
 
-
-    private void OnEnable()
+    protected override void OnDisable()
     {
-        mover.movementChangeEvent += OnChangePoint;
-    }
-    private void OnDisable()
-    {
-        mover.movementChangeEvent -= OnChangePoint;
+        base.OnDisable();
         StopAllCoroutines();
     }
 
-
-    private void OnChangePoint(int index)
+ 
+    protected override void OnImportSIde()
     {
         StopAllCoroutines();
-
-        var insideImport = importPoint == index;
-        var insideExport = exportPoint == index;
-
-        if (insideImport)
-            OnImportSIde();
-    
-        if (insideExport)
-            OnExportSIde();
-        
-        if (!insideImport && !insideExport)
-            OnTheWay();
-        
-    }
-
-    protected virtual void OnImportSIde()
-    {
         selfContainer.enabled = true;
         StartCoroutine(OnImportSide());
     }
 
-    protected virtual void OnExportSIde()
+    protected override void OnExportSIde()
     {
+        StopAllCoroutines();
         selfContainer.enabled = true;
         StartCoroutine(OnExportSide());
     }
 
-    protected virtual void OnTheWay()
-    { 
+    protected override void OnTheWay()
+    {
+        StopAllCoroutines();
         selfContainer.enabled = false;
     }
-   
+
     private IEnumerator OnImportSide()
     {
         mover.Pause();

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224827835}
   - component: {fileID: 224827836}
-  - component: {fileID: 224827838}
   - component: {fileID: 7484245937307755866}
   m_Layer: 10
   m_Name: NPC Car
@@ -90,23 +89,6 @@ MonoBehaviour:
   OnResume:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &224827838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224827834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea1d5666509504429badfee6120469e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selfContainer: {fileID: 613210628}
-  sourceContainer: {fileID: 0}
-  mover: {fileID: 224827836}
-  importPoint: 8
-  exportPoint: 5
 --- !u!114 &7484245937307755866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +101,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff809bd0f45dc34499a50649bf91c634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mover: {fileID: 224827836}
+  importPoint: 8
+  exportPoint: 5
+  OnImportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTheWay:
+    m_PersistentCalls:
+      m_Calls: []
+  selfContainer: {fileID: 613210628}
+  sourceContainer: {fileID: 1091889687655829890}
+  carrierHydraulic: {fileID: 6914323334169057511}
+  bumpDuration: 1
+  rotationA: {x: 0, y: -180, z: 0}
+  rotationB: {x: 0, y: -180, z: -55}
+  orderAmount: 0
 --- !u!1 &613210625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,9 +1099,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aa16cf74f988140ab64673184a76ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npc: {fileID: 7484245937307755866}
   buyAmount: 20
   unitPrice: 5
-  orderAmount: 0
 --- !u!1 &8128147988118045745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +1924,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df449e4b7c780e947af660fbcccd977d, type: 3}
+--- !u!4 &6914323334169057511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3402583832509904494, guid: df449e4b7c780e947af660fbcccd977d, type: 3}
+  m_PrefabInstance: {fileID: 8128147987360263817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8594630584198187362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df449e4b7c780e947af660fbcccd977d, type: 3}
