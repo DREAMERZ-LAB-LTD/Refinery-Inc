@@ -5573,11 +5573,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea1d5666509504429badfee6120469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfContainer: {fileID: 1809278357681686291}
-  sourceContainer: {fileID: 0}
   mover: {fileID: 1668428474951956926}
   importPoint: 11
   exportPoint: 0
+  OnImportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTheWay:
+    m_PersistentCalls:
+      m_Calls: []
+  selfContainer: {fileID: 1809278357681686291}
+  sourceContainer: {fileID: 0}
 --- !u!114 &3212820819649436403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14466,11 +14475,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea1d5666509504429badfee6120469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfContainer: {fileID: 8238545998440233786}
-  sourceContainer: {fileID: 0}
   mover: {fileID: 8964865998465123735}
   importPoint: 3
   exportPoint: 6
+  OnImportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTheWay:
+    m_PersistentCalls:
+      m_Calls: []
+  selfContainer: {fileID: 8238545998440233786}
+  sourceContainer: {fileID: 0}
 --- !u!114 &9163259264616912889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15688,6 +15706,10 @@ PrefabInstance:
       propertyPath: identity.iD
       value: D
       objectReference: {fileID: 0}
+    - target: {fileID: 3554741966851406131, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: identity.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 31d5de36460fb8a4a8da10ed727fe78c, type: 3}
     - target: {fileID: 3554741966851406131, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: identity.name
       value: Gold Bar

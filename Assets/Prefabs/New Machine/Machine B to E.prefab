@@ -1156,11 +1156,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea1d5666509504429badfee6120469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfContainer: {fileID: 1187717186344326322}
-  sourceContainer: {fileID: 0}
   mover: {fileID: 2181771591131408927}
   importPoint: 3
   exportPoint: 6
+  OnImportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTheWay:
+    m_PersistentCalls:
+      m_Calls: []
+  selfContainer: {fileID: 1187717186344326322}
+  sourceContainer: {fileID: 0}
 --- !u!114 &2091007593536075889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9271,11 +9280,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea1d5666509504429badfee6120469e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfContainer: {fileID: 8878132566892980379}
-  sourceContainer: {fileID: 0}
   mover: {fileID: 8433515082188101174}
   importPoint: 9
   exportPoint: 0
+  OnImportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExportSide:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTheWay:
+    m_PersistentCalls:
+      m_Calls: []
+  selfContainer: {fileID: 8878132566892980379}
+  sourceContainer: {fileID: 0}
 --- !u!114 &5672446527335822715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15255,6 +15273,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3554741966851406131, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: identity.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: adb740eb544152b4e837ff7e5de83ab0, type: 3}
     - target: {fileID: 4617985457816406770, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.087

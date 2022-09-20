@@ -109,7 +109,7 @@ public class OrderManagement : MonoBehaviour
                 order = new Order();
 
             var quantity = Random.Range(quantityRange.x, quantityRange.y);
-            var newItem = new Item.Identity(item.iD, item.name, item.price, quantity);
+            var newItem = new Item.Identity(item.iD, item.name, item.price, quantity, item.icon);
             order.items.Add(newItem);
 
         }

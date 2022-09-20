@@ -69,7 +69,7 @@ public class RawGarbageImporterNPC : WayPointNPC
             while (preAmount != selfContainer.Getamount)
             {
                 preAmount = selfContainer.Getamount;
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(1.3f);
             }
 
             orderAmount -= selfContainer.Getamount;

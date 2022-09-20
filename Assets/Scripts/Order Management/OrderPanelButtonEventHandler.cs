@@ -7,7 +7,6 @@ public class OrderPanelButtonEventHandler : MonoBehaviour
  
     [SerializeField] public Button AcceptBtn;
     [SerializeField] private Button RejectBtn;
-    [SerializeField] private Image progressBar;
 
     [SerializeField] private PendingButton exploreBtnPrefab;
     [SerializeField] private Transform btnContainer;

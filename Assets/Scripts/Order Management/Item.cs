@@ -8,17 +8,19 @@ public class Item : MonoBehaviour
         public string iD;
         public string name;
         public int price;
+        public Sprite icon;
         [HideInInspector]
         public int quantity;
         [HideInInspector]
         public Vector3 pickPoint;
 
-        public Identity(string iD, string name, int price, int quantity)
+        public Identity(string iD, string name, int price, int quantity, Sprite icon)
         {
             this.iD = iD;
             this.name = name;
             this.price = quantity * price;
             this.quantity = quantity;
+            this.icon = icon;
         }
     }
 

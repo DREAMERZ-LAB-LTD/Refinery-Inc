@@ -88,6 +88,7 @@ public class OrderStatusUI : MonoBehaviour
                 availableFields[i].quantityTxt.text = message;
                 //availableFields[i].icon.sprite  = null;
                 availableFields[i].id = order.items[i].iD;
+                availableFields[i].icon.sprite = order.items[i].icon;
             }
             else
                 availableFields[i].gameObject.SetActive(false);
