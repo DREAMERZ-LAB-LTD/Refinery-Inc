@@ -39,9 +39,14 @@ public class NPC_CarBehaviour : WayPointNPC
     {
         mover.Pause();
 
-        while (!selfContainer.isFilledUp)
-        {
+        while (selfContainer.isEmpty)
             yield return new WaitForSeconds(1);
+
+        int preAmount = -1;
+        while (preAmount != selfContainer.Getamount)
+        {
+            preAmount = selfContainer.Getamount;
+            yield return new WaitForSeconds(1.3f);
         }
 
         mover.Resume();
