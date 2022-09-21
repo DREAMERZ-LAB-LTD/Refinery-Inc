@@ -1,10 +1,17 @@
 using General.Library;
 using IdleArcade.Core;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RawGarbageImporterNPC : WayPointNPC
 {
+    //private class GarbageOrder
+    //{
+    //    public int quantity;
+    //    public int price;
+    //}
+
     [Header("Container Setup")]
     [SerializeField] protected TransactionContainer selfContainer;
     [SerializeField] protected TransactionContainer sourceContainer;
@@ -19,6 +26,7 @@ public class RawGarbageImporterNPC : WayPointNPC
     [SerializeField] private Vector3 rotationA;
     [SerializeField] private Vector3 rotationB;
 
+   // private List<GarbageOrder> orders = new List<GarbageOrder>();
 
     [SerializeField] private int orderAmount = 0;
 

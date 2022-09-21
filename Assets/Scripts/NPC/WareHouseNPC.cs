@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using IdleArcade.Core;
 
-public class WareHouseNPC : NPCBehaviour
+public class WareHouseNPC : Containable
 {
     class NodePeer
     {
@@ -33,12 +33,36 @@ public class WareHouseNPC : NPCBehaviour
         return null;
     }
 
+    
+
+    private void OnChangedValue(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
+    {    
+        if (delta < 0)
+        {
+            var isEmpty = true;
+            for (int i = 0; i < containers.Length; i++)
+                if (containers[i].enabled)
+                    isEmpty &= containers[i].isEmpty;
+
+            if (isEmpty)
+                isDelivering = false;
+        }
+    }
+
+
     #region NPC Registrtion
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
+        for (int i = 0; i < containers.Length; i++)
+            containers[i].OnChangedValue += OnChangedValue;
+
         homePoint = transform.position;
         AddToAvailable();
+    }
+    private void OnDestroy()
+    {
+        for (int i = 0; i < containers.Length; i++)
+            containers[i].OnChangedValue -= OnChangedValue;
     }
     private void OnEnable()
     {
@@ -59,7 +83,6 @@ public class WareHouseNPC : NPCBehaviour
             availables.Remove(this);
     }
     #endregion NPC Registrtion
-
 
 
     #region NPC Task Assigning
@@ -127,7 +150,6 @@ public class WareHouseNPC : NPCBehaviour
 
 
     #endregion NPC Task Assigning
-
 
 
     #region Movement System
@@ -218,32 +240,6 @@ public class WareHouseNPC : NPCBehaviour
     private void GoHome()
     {
         agent.SetDestination(homePoint);
-    }
-
-  
-
-    protected override void OnElementAdding(string id, int currnet, int max)
-    {
-   
-     //   Debug.Log("Adding");
-    }
-
-
-    protected override void OnElementRemoving(string id, int currnet, int max)
-    {
-     //   Debug.Log("Removing");
-    }
-
-    protected override void OnEmpty()
-    {
-        isDelivering = false;
-        //   Debug.Log("Empty");
-    }
-
-    protected override void OnFilledUp()
-    {
-     
-      //  Debug.Log("FilledUp");
     }
     #endregion Movement System
 }
