@@ -16,7 +16,7 @@ public class CameraZoomEffect : MonoBehaviour
         if(cam)
             cam.m_Lens.OrthographicSize = zoomRange.x;
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (cam == null)
             return;
