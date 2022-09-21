@@ -20,6 +20,7 @@ namespace IdleArcade.Core
             UpdateStatus();
         }
 
+        public bool isFilledUp => amount == GetCurrent; 
         public bool IsValidTransaction(int amount) => this.amount + amount <= GetCurrent && this.amount + amount >= range.x;
 
         /// <summary>

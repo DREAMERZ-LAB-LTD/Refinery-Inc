@@ -14,6 +14,7 @@ public class WareHouseNPC : NPCBehaviour
     }
 
     [SerializeReference] TransactionContainer[] warehouseContainers;
+    [SerializeReference] TransactionBridgeLimit bridgeLimit;
     [Header("Movement Setup")]
     [SerializeReference] private NavMeshAgent agent;
 
@@ -168,7 +169,7 @@ public class WareHouseNPC : NPCBehaviour
                     nodePeers[i].selfContainer.enabled = true;
             }
 
-            while (!sourceIsEmpty && hasLeft)
+            while (!sourceIsEmpty && hasLeft && !bridgeLimit.isFilledUp)
             {
                 hasAvailableToDeliver = true;
                 sourceIsEmpty = peer.wareHouseContainer.isEmpty;
