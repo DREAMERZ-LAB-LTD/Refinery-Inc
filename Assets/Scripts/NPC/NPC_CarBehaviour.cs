@@ -53,21 +53,17 @@ public class NPC_CarBehaviour : WayPointNPC
     }
     private IEnumerator OnExportSide()
     {
-        while (true)
-        {
-            mover.Pause();
+        mover.Pause();
 
-            while (!selfContainer.isEmpty)
-                yield return new WaitForSeconds(1);
-
-            if (sourceContainer)
-            { 
-                while(sourceContainer.Getamount == 0)
-                    yield return new WaitForSeconds(1);
-            }
-
-            mover.Resume();
+        while (!selfContainer.isEmpty)
             yield return new WaitForSeconds(1);
+
+        if (sourceContainer)
+        {
+            while (sourceContainer.isEmpty)
+                yield return new WaitForSeconds(1);
         }
+
+        mover.Resume();
     }
 }
