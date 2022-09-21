@@ -7,13 +7,24 @@ using General.Library;
 public class ElementBuyPoint : MonoBehaviour, TriggerDetector.ITriggerable
 {
     [SerializeReference] RawGarbageImporterNPC npc;
-
+    [Header("Pricing Setup")]
+    [SerializeField] private int buyAmount = 20;
+    [SerializeField] private int unitPrice = 5;
     private IEnumerator BuyRoutine()
     {
         while (Input.GetMouseButton(0))
             yield return null;
 
-                npc.AddNewOrder();
+        var available = npc.sourceContainer.Getamount;
+        var pendingAmount = npc.GetPendingQuantity();
+        var newTarget = pendingAmount + buyAmount;
+        var dt = buyAmount;
+
+        if (newTarget > available)
+            dt = available;
+
+        if (ScoreManager.instance.AddScore(-Mathf.Abs(dt * unitPrice)))
+                npc.AddNewOrder(dt);
 
     }
 

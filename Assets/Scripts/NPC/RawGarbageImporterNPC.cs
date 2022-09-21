@@ -6,29 +6,17 @@ using UnityEngine;
 
 public class RawGarbageImporterNPC : WayPointNPC
 {
-    //private class GarbageOrder
-    //{
-    //    public int quantity;
-    //    public int price;
-    //}
-
     [Header("Container Setup")]
     [SerializeField] protected TransactionContainer selfContainer;
-    [SerializeField] protected TransactionContainer sourceContainer;
+    [SerializeField] public TransactionContainer sourceContainer;
 
-    [Header("Pricing Setup")]
-    [SerializeField] private int buyAmount = 20;
-    [SerializeField] private int unitPrice = 5;
-    
     [Header("Hydraulic Setup")]
     [SerializeReference] private Transform carrierHydraulic;
     [SerializeField] private float bumpDuration = 1;
     [SerializeField] private Vector3 rotationA;
     [SerializeField] private Vector3 rotationB;
 
-   // private List<GarbageOrder> orders = new List<GarbageOrder>();
-
-    [SerializeField] private int orderAmount = 0;
+    private List<int> orders = new List<int>();
 
     protected override void OnEnable()
     {
@@ -40,18 +28,18 @@ public class RawGarbageImporterNPC : WayPointNPC
         StopAllCoroutines();
     }
 
-    public void AddNewOrder()
+    public int GetPendingQuantity()
     {
-        var availables = sourceContainer.Getamount - orderAmount;
-        if (availables <= 0)
-            return;
-        var dt = buyAmount > availables ? availables : buyAmount;
-     
-        if (!ScoreManager.instance.AddScore(-Mathf.Abs(dt * unitPrice)))
-            return;
+        int pendingQuantity = 0;
+        for (int i = 0; i < orders.Count; i++)
+            pendingQuantity += orders[i];
 
-        orderAmount += dt;
-        selfContainer.amountLimit.range.y = orderAmount;
+        return pendingQuantity;
+    }
+
+    public void AddNewOrder(int quantity)
+    {
+        orders.Add(quantity);
     }
 
     protected override void OnTheWay()
@@ -61,16 +49,24 @@ public class RawGarbageImporterNPC : WayPointNPC
 
     protected override void OnImportSIde()
     {
+
         StopAllCoroutines();
-        StartCoroutine(OnImportSide());
+       StartCoroutine(OnImportSide());
+        
 
         IEnumerator OnImportSide()
         {
-
             mover.Pause();
+            while (orders.Count == 0)
+                yield return new WaitForSeconds(1);
+
+            var orderItemCount = orders[0];
+            orders.RemoveAt(0);
+            selfContainer.amountLimit.range.y = orderItemCount;
+
             selfContainer.enabled = true;
 
-            while (selfContainer.isEmpty && orderAmount == 0)
+            while (selfContainer.isEmpty)
                 yield return new WaitForSeconds(1);
 
             int preAmount = -1;
@@ -80,7 +76,6 @@ public class RawGarbageImporterNPC : WayPointNPC
                 yield return new WaitForSeconds(1.3f);
             }
 
-            orderAmount -= selfContainer.Getamount;
             selfContainer.enabled = false;
             mover.Resume();
         }
