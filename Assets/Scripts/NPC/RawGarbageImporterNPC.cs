@@ -62,7 +62,7 @@ public class RawGarbageImporterNPC : WayPointNPC
             mover.Pause();
             selfContainer.enabled = true;
 
-            while (selfContainer.isEmpty || orderAmount == 0)
+            while (selfContainer.isEmpty && orderAmount == 0)
                 yield return new WaitForSeconds(1);
 
             int preAmount = -1;

@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 1692716475864636556}
   m_LocalRotation: {x: 0, y: -0.8012851, z: 0, w: 0.5982827}
   m_LocalPosition: {x: 45.302517, y: 0.03, z: 41.83088}
-  m_LocalScale: {x: 0.9196913, y: 1, z: 1.0831168}
+  m_LocalScale: {x: 0.9196914, y: 1, z: 1.0831169}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7409708314538704511}
@@ -218,9 +218,7 @@ MonoBehaviour:
   - {fileID: 1692716476031198133}
   - {fileID: 1692716476031198118}
   - {fileID: 1692716476031198137}
-  - {fileID: 1692716476031198136}
   warehouseContainers:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -595,7 +593,6 @@ GameObject:
   - component: {fileID: 1692716476031198133}
   - component: {fileID: 1692716476031198118}
   - component: {fileID: 1692716476031198137}
-  - component: {fileID: 1692716476031198136}
   - component: {fileID: 1692716476031198143}
   - component: {fileID: 1692716476031198142}
   - component: {fileID: 1692716476031198129}
@@ -764,33 +761,6 @@ MonoBehaviour:
   m_OnEmpty:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1692716476031198136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692716476031198134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: F
-  m_amount: 0
-  amountLimit: {fileID: 0}
-  m_OnAdding:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnRemoving:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnFilledUp:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnEmpty:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1692716476031198143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +806,6 @@ MonoBehaviour:
   - {fileID: 1692716476031198133}
   - {fileID: 1692716476031198118}
   - {fileID: 1692716476031198137}
-  - {fileID: 1692716476031198136}
   transactionBridge: {fileID: 1692716476031198142}
 --- !u!114 &1692716476031198128
 MonoBehaviour:
@@ -854,7 +823,6 @@ MonoBehaviour:
   - {fileID: 1692716476031198133}
   - {fileID: 1692716476031198118}
   - {fileID: 1692716476031198137}
-  - {fileID: 1692716476031198136}
   transactionBridge: {fileID: 1692716476031198142}
 --- !u!114 &1692716476031198131
 MonoBehaviour:
