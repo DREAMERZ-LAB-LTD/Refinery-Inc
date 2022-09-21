@@ -26,7 +26,7 @@ MonoBehaviour:
     name: Production Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
     m_isUnlocked: 1
-    t: 0.5
+    t: 0.9000001
     dt: 0.1
     coinID: coin1
     unlockPrice: 10
@@ -35,7 +35,7 @@ MonoBehaviour:
     name: Worker
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
     m_isUnlocked: 1
-    t: 0.3
+    t: 0.70000005
     dt: 0.1
     coinID: coin1
     unlockPrice: 100
@@ -89,7 +89,7 @@ MonoBehaviour:
     name: Transaction Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
     m_isUnlocked: 1
-    t: 0.82500005
+    t: 1
     dt: 0.1
     coinID: coin1
     unlockPrice: 10
@@ -116,7 +116,7 @@ MonoBehaviour:
     name: Production Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
     m_isUnlocked: 1
-    t: 0.45
+    t: 0.8500001
     dt: 0.1
     coinID: coin1
     unlockPrice: 10
@@ -124,7 +124,7 @@ MonoBehaviour:
   - iD: Capacity Importer NPC 13
     name: Worker
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.3
     dt: 0.1
     coinID: coin1
@@ -133,7 +133,7 @@ MonoBehaviour:
   - iD: Capacity Exporter NPC 14
     name: Salesman
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.3
     dt: 0.1
     coinID: coin1
@@ -169,7 +169,7 @@ MonoBehaviour:
   - iD: Capacity Importer NPC 18
     name: Worker
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.3
     dt: 0.1
     coinID: coin1
@@ -178,7 +178,7 @@ MonoBehaviour:
   - iD: Capacity Exporter NPC 19
     name: Salesman
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.3
     dt: 0.1
     coinID: coin1
@@ -187,7 +187,7 @@ MonoBehaviour:
   - iD: machine Unlocker 20
     name: Picking Speed
     icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
-    m_isUnlocked: 0
+    m_isUnlocked: 1
     t: 0.25
     dt: 0.1
     coinID: coin1
@@ -496,6 +496,24 @@ MonoBehaviour:
     m_isUnlocked: 1
     t: 0.2
     dt: 0.08
+    coinID: coin1
+    unlockPrice: 0
+    upgradePrice: 300
+  - iD: Warehouse Capacity
+    name: Warehouse Capacity
+    icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
+    m_isUnlocked: 1
+    t: 0.2
+    dt: 0.1
+    coinID: coin1
+    unlockPrice: 0
+    upgradePrice: 300
+  - iD: Warehouse Sells Man Capacity
+    name: Sells Man Capacity
+    icon: {fileID: 21300000, guid: eb84d31cebdcb4e489011972b0831dbc, type: 3}
+    m_isUnlocked: 1
+    t: 0.2
+    dt: 0.1
     coinID: coin1
     unlockPrice: 0
     upgradePrice: 300
