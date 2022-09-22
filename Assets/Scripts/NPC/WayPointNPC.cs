@@ -9,7 +9,7 @@ public abstract class WayPointNPC : MonoBehaviour
     [SerializeField] protected int importPoint;
     [SerializeField] protected int exportPoint;
 
-    [Header("Callback Events")]
+    [Header("NPC Callback Events")]
     [SerializeField] private UnityEvent OnImportSide;
     [SerializeField] private UnityEvent OnExportSide;
     [SerializeField] private UnityEvent m_OnTheWay;

@@ -3,6 +3,7 @@ using IdleArcade.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RawGarbageImporterNPC : WayPointNPC
 {
@@ -18,6 +19,8 @@ public class RawGarbageImporterNPC : WayPointNPC
 
     private List<int> orders = new List<int>();
 
+    [Header("Order Callback Events")]
+    [SerializeField] private UnityEvent OnGetNewOrder;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -40,6 +43,7 @@ public class RawGarbageImporterNPC : WayPointNPC
     public void AddNewOrder(int quantity)
     {
         orders.Add(quantity);
+        OnGetNewOrder.Invoke();
     }
 
     protected override void OnTheWay()
