@@ -3,7 +3,22 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     private Animator anim;
-    void Start() => anim = GetComponentInChildren<Animator>();
-    void Update() => anim.SetBool("input", Input.GetMouseButton(0));
+    private Joystick joystic;
+
+    void Start()
+    {
+        joystic = FindObjectOfType<Joystick>();
+        anim = GetComponentInChildren<Animator>();
+    }
+    void Update()
+    {
+        if (joystic == null)
+        {
+            joystic = FindObjectOfType<Joystick>();
+            if (joystic == null)
+                return;
+        }
+        anim.SetBool("input", joystic.Direction.magnitude > 0.01f);
+    }
     
 }
