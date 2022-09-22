@@ -6,6 +6,7 @@ public class LinearMotion : MonoBehaviour
 {
     [Header("Motion Setup")]
     [SerializeField] private float speed = 1;
+    [SerializeField] private Transform target;
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
 
@@ -13,12 +14,16 @@ public class LinearMotion : MonoBehaviour
     [SerializeField] private UnityEvent OnMotinBegin;
     [SerializeField] private UnityEvent OnMotinEnd;
 
-
-    public void StartMotion()
+    private void OnEnable()
     {
         StopAllCoroutines();
         StartCoroutine(MotionRoutine(pointA.position, pointB.position));
     }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+        
 
     private IEnumerator MotionRoutine(Vector3 a, Vector3 b)
     { 
@@ -28,7 +33,7 @@ public class LinearMotion : MonoBehaviour
         {
             t += speed * Time.fixedDeltaTime;
             t = Mathf.Clamp01(t);
-            transform.position = Vector3.Lerp(a, b, t);
+            target.position = Vector3.Lerp(a, b, t);
             yield return null;
         }
         OnMotinEnd.Invoke();
