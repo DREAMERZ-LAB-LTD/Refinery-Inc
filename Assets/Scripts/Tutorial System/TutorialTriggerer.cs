@@ -17,7 +17,7 @@ namespace Tutorial
 
         [Header("Triggerer Setup")]
         [SerializeField] TriggerMode triggerBeginMode = TriggerMode.Awake;
-        [SerializeField] TriggerMode triggerEndMode = TriggerMode.OnDestroy;
+        [SerializeField] TriggerMode triggerEndMode = TriggerMode.OnMouseDown;
         [SerializeField] private string triggerMask;
 
 
