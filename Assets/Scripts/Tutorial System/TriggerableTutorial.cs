@@ -1,23 +1,49 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Tutorial
 {
     public class TriggerableTutorial : MonoBehaviour
     {
-        public delegate void OnEvent();
-        public OnEvent OnTriggerBegin;
-        public OnEvent OnTriggerEnd;
+        [Header("Persistent Setup")]
+        [SerializeField, Tooltip("Persistent ID")]
+        private string id;
 
-        public virtual void TriggerBegin()
+        [Header("Callback Events")]
+        [SerializeField] private UnityEvent m_OnTriggerBegin;
+        [SerializeField] private UnityEvent m_OnTriggerEnd;
+        [SerializeField] private UnityEvent m_OnTriggered;
+
+        protected bool isTriggered
         {
-            if (OnTriggerBegin != null)
-                OnTriggerBegin.Invoke();
+            set => PlayerPrefs.SetInt(id + name, value ? 1 : 0);
+            get => PlayerPrefs.GetInt(id + name) == 1;
         }
 
-        public virtual void TriggerEnd()
+        /// <summary>
+        /// Fire the event to execute the tutorial content
+        /// </summary>
+        /// <param name="state">'Trigger Begin = 0', 'Trigger End = 1', 'Triggered = 2' </param>
+        public void FireEvent(int state)
         {
-            if (OnTriggerEnd != null)
-                OnTriggerEnd.Invoke();
+            if (isTriggered) return;
+            
+            switch (state)
+            {
+                case 0:
+                    m_OnTriggerBegin.Invoke();
+                    break;
+                case 1:
+                    isTriggered = true;
+                    m_OnTriggerEnd.Invoke();
+                    break;
+            }
+        }
+
+        protected virtual void Awake()
+        {
+            if (isTriggered)
+                m_OnTriggered.Invoke();
         }
     }
 }

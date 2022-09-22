@@ -1,79 +1,74 @@
-using System.Collections;
 using UnityEngine;
-using Tutorial;
-
-public class TutorialTriggerer : TriggerableTutorial
+using UnityEngine.Events;
+namespace Tutorial
 {
-    private enum TriggerMode
+    public class TutorialTriggerer : TriggerableTutorial
     {
-        OnEnable,
-        OnDisable,
-        OnMouseDown,
-        OnMouseUp,
-        OnTriggerEnter,
-        OnTriggerExit
-    }
-
-
-    [SerializeField] private string triggerMask;
-    [SerializeField] TriggerMode triggerBeginMode = TriggerMode.OnEnable;
-    [SerializeField] TriggerMode triggerEndMode = TriggerMode.OnDisable;
-
-    protected virtual void OnEnable()
-    {
-        StartCoroutine(FrameSkipRoutine());
-        IEnumerator FrameSkipRoutine()
+        private enum TriggerMode
         {
-            yield return new WaitForEndOfFrame();
-            if (triggerBeginMode == TriggerMode.OnEnable)
-                TriggerBegin();
-            if (triggerEndMode == TriggerMode.OnEnable)
-                TriggerEnd();
+            None,
+            Awake,
+            OnDestroy,
+            OnMouseDown,
+            OnMouseUp,
+            OnTriggerEnter,
+            OnTriggerExit
         }
-    }
-    protected virtual void OnDisable()
-    {
-        if (triggerBeginMode == TriggerMode.OnDisable)
-            TriggerBegin();
-        if (triggerEndMode == TriggerMode.OnDisable)
-            TriggerEnd();
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag != triggerMask) return;
+        [Header("Triggerer Setup")]
+        [SerializeField] TriggerMode triggerBeginMode = TriggerMode.Awake;
+        [SerializeField] TriggerMode triggerEndMode = TriggerMode.OnDestroy;
+        [SerializeField] private string triggerMask;
 
-        if (triggerBeginMode == TriggerMode.OnTriggerEnter)
-            TriggerBegin();
-        if (triggerEndMode == TriggerMode.OnTriggerEnter)
-            TriggerEnd();
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag != triggerMask) return;
-
-        if (triggerBeginMode == TriggerMode.OnTriggerExit)
-            TriggerBegin();
-        if (triggerEndMode == TriggerMode.OnTriggerExit)
-            TriggerEnd();
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        protected override void Awake()
         {
-            if (triggerBeginMode == TriggerMode.OnMouseDown)
-                TriggerBegin();
-            if (triggerEndMode == TriggerMode.OnMouseDown)
-                TriggerEnd();
+            base.Awake();
+
+            if(triggerBeginMode == TriggerMode.Awake)
+                FireEvent(0);
+            else if (triggerEndMode == TriggerMode.Awake)
+                FireEvent(1);
+            
         }
-        if (Input.GetMouseButtonUp(0))
+        protected virtual void OnDestroy()
         {
-            if (triggerBeginMode == TriggerMode.OnMouseUp)
-                TriggerBegin();
-            if (triggerEndMode == TriggerMode.OnMouseUp)
-                TriggerEnd();
+            if (triggerBeginMode == TriggerMode.OnDestroy)
+                FireEvent(0);
+            else if (triggerEndMode == TriggerMode.OnDestroy)
+                FireEvent(1);
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (triggerBeginMode == TriggerMode.OnTriggerEnter)
+                FireEvent(0);
+            else if (triggerEndMode == TriggerMode.OnTriggerEnter)
+                FireEvent(1);
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (triggerBeginMode == TriggerMode.OnTriggerExit)
+                FireEvent(0);
+            else if (triggerEndMode == TriggerMode.OnTriggerExit)
+                FireEvent(1);
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (triggerBeginMode == TriggerMode.OnMouseDown)
+                    FireEvent(0);
+                else if (triggerEndMode == TriggerMode.OnMouseDown)
+                    FireEvent(1);
+            }
+            else if (Input.GetMouseButtonUp(0))
+            { 
+                if (triggerBeginMode == TriggerMode.OnMouseUp)
+                    FireEvent(0);
+                else if(triggerEndMode == TriggerMode.OnMouseUp)
+                    FireEvent(1);
+            }
         }
     }
 }
