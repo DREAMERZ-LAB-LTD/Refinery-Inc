@@ -4,21 +4,20 @@ namespace Tutorial
 {
     public class TriggerableTutorial : MonoBehaviour
     {
-   
-        public delegate void OnEvent(int index);
+        public delegate void OnEvent();
         public OnEvent OnTriggerBegin;
         public OnEvent OnTriggerEnd;
 
-        public virtual void TriggerBegin(int index)
+        public virtual void TriggerBegin()
         {
             if (OnTriggerBegin != null)
-                OnTriggerBegin.Invoke(index);
+                OnTriggerBegin.Invoke();
         }
 
-        public virtual void TriggerEnd(int index)
+        public virtual void TriggerEnd()
         {
             if (OnTriggerEnd != null)
-                OnTriggerEnd.Invoke(index);
+                OnTriggerEnd.Invoke();
         }
     }
 }
