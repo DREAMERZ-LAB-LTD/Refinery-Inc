@@ -5,14 +5,12 @@ using UnityEngine;
 public class CameraZoomEffect : MonoBehaviour
 {
     CinemachineVirtualCamera cam;
-    private Joystick joystic;
     [SerializeField] private Vector2 zoomRange = new Vector2(15, 12);
     [SerializeField] private float zoomInSpeed = 1;
     [SerializeField] private float zoomOutSpeed = 1;
     float t = 0;
     private void Start()
     {
-        joystic = FindObjectOfType<Joystick>();
         cam = GetComponent<CinemachineVirtualCamera>();
        
         if(cam)
@@ -23,14 +21,10 @@ public class CameraZoomEffect : MonoBehaviour
         if (cam == null)
             return;
 
-        if (joystic == null)
-        { 
-            joystic = FindObjectOfType<Joystick>();
-            if (joystic == null)
-                return;
-        }
+        if (GameManager.instance.Joystic == null) return;
+        
 
-        if (joystic.Direction.magnitude > 0.01f)
+        if (GameManager.instance.Joystic.Direction.magnitude > 0.01f)
         {
             t += zoomInSpeed * Time.fixedDeltaTime;
             t = Mathf.Clamp01(t);

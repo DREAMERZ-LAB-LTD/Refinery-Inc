@@ -8,7 +8,6 @@ public class PlayerCarController : MonoBehaviour
     [SerializeField] private float turnSpeed = 1;
 
     private Rigidbody rb;
-    private Joystick joystick;
 
     //Cache to optimize Dynamic memory allocation
     private Vector3 inputDir;
@@ -19,21 +18,20 @@ public class PlayerCarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        joystick = FindObjectOfType <Joystick>();
     }
 
     void FixedUpdate()
     {
-        if (joystick == null || rb == null)
+        if (GameManager.instance.Joystic == null || rb == null)
             return;
-        if (joystick.Horizontal == 0 && joystick.Vertical == 0)
+        if (GameManager.instance.Joystic.Horizontal == 0 && GameManager.instance.Joystic.Vertical == 0)
         {
             rb.velocity *= 0.8f;
             return;
         }
 
 
-        inputDir = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        inputDir = new Vector3(GameManager.instance.Joystic.Horizontal, 0, GameManager.instance.Joystic.Vertical);
         rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(inputDir), turnSpeed * Time.fixedDeltaTime);
 
         velocity = rb.velocity;

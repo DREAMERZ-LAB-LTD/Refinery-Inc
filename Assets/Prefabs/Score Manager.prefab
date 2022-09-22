@@ -44,5 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80780a2437c6ee842880369710fe0ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreDatas:
-  - {fileID: 11400000, guid: 60ca0979dd0ab134f85b8fe6573f1551, type: 2}
+  preMessage: $
+  postMessage: 
+  coin_text: {fileID: 0}
+  scoreData: {fileID: 11400000, guid: 60ca0979dd0ab134f85b8fe6573f1551, type: 2}
+  priceLists: []

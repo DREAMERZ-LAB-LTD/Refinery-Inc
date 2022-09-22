@@ -16,11 +16,35 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (_instance == null)
+        { 
             _instance = this;
+            OnInit();
+        }
         if (_instance != this)
             Destroy(gameObject);
     }
     #endregion
 
+
     [HideInInspector] public PlayerExprence playerExprence;
+    private Joystick joystick = null;
+    
+    
+    public Joystick Joystic
+    {
+        get
+        {
+            if (joystick == null)
+                joystick = FindObjectOfType<Joystick>();
+
+            return joystick;
+        }
+    }
+   
+    
+    private void OnInit()
+    {
+        if (joystick == null)
+            joystick = FindObjectOfType<Joystick>();
+    }
 }

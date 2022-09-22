@@ -12,17 +12,18 @@ public class Unlockable : Entity
     private TransactionContainer container;
     private  void Start()
     {
-
         var data = UpgradeSystem.instance.GetDataField(GetID);
-        if (data == null) return;
-
-        UnlockStatus(data.isUnlocked);
-
-        if(!data.isUnlocked)
+        var isUnlcok = data.isUnlocked;
+        UnlockStatus(isUnlcok);
+        
+        if(!isUnlcok)
         {
             container = GetComponent<TransactionContainer>();
             if (container)
+            {
+                container.amountLimit.range.y = data.unlockPrice;
                 container.OnFilled += Unlock;
+            }
         }
     }
 
@@ -34,11 +35,6 @@ public class Unlockable : Entity
     private void Unlock()
     {
         var data = UpgradeSystem.instance.GetDataField(GetID);
-        if (data == null)
-        {
-            Time.timeScale =0;
-            return;
-        }
 
         data.isUnlocked = true;
         UnlockStatus(true);
