@@ -9,6 +9,8 @@ namespace Tutorial
             None,
             Awake,
             OnDestroy,
+            OnEnable,
+            OnDisable,
             OnMouseDown,
             OnMouseUp,
             OnTriggerEnter,
@@ -20,11 +22,18 @@ namespace Tutorial
         [SerializeField] TriggerMode triggerEndMode = TriggerMode.OnMouseDown;
         [SerializeField] private string triggerMask;
 
-
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
 
+            if (triggerBeginMode == TriggerMode.OnEnable)
+                FireEvent(0);
+            else if (triggerEndMode == TriggerMode.OnEnable)
+                FireEvent(1);
+        }
+
+        private  void Awake()
+        {
             if(triggerBeginMode == TriggerMode.Awake)
                 FireEvent(0);
             else if (triggerEndMode == TriggerMode.Awake)
@@ -38,6 +47,14 @@ namespace Tutorial
             else if (triggerEndMode == TriggerMode.OnDestroy)
                 FireEvent(1);
         }
+        private void OnDisable()
+        {
+            if (triggerBeginMode == TriggerMode.OnDisable)
+                FireEvent(0);
+            else if (triggerEndMode == TriggerMode.OnDisable)
+                FireEvent(1);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (triggerBeginMode == TriggerMode.OnTriggerEnter)

@@ -5,6 +5,11 @@ using TMPro;
 
 public class PlayerExprence : Limiter
 {
+    public interface IExprenceLevel
+    {
+        public void OnChangeEcperience(int level);
+    }
+
     [Header("Progress Text Setup")]
     [SerializeField] private string preMessage;
     [SerializeField] private string centerMessage;

@@ -32,22 +32,10 @@ public class Client : MonoBehaviour
         car = GetComponent<ClientCar>();
         car.OnExportSide += AddToAvailable;
         car.OnImportSide += ApplyContainerMask;
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(InitialDealyRoutine());
-        IEnumerator InitialDealyRoutine()
-        {
-            yield return new WaitForEndOfFrame();
             AddToAvailable();
-        }
     }
 
-    private void OnDisable()
-    {
-        RemoveFromAvailable();
-    }
+
     private void OnDestroy()
     {
         for (int i = 0; i < containers.Length; i++)
@@ -55,6 +43,7 @@ public class Client : MonoBehaviour
 
         car.OnExportSide -= AddToAvailable;
         car.OnImportSide -= ApplyContainerMask;
+        RemoveFromAvailable();
     }
 
     private void AddToAvailable()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OrderManagement : MonoBehaviour
 {
@@ -19,8 +20,12 @@ public class OrderManagement : MonoBehaviour
 
     private List<Order> pendingOrders = new List<Order>();
     private List<Order> acceptedOrders = new List<Order>();
-   
 
+    [Header("Callback Events")]
+    [SerializeField] private UnityEvent m_OnGenerateOrder;
+    [SerializeField] private UnityEvent m_OnOrderAccepted;
+    [SerializeField] private UnityEvent m_OnOrderCompleted;
+    [SerializeField] private UnityEvent m_OnOnOrderFailed;
 
     private void Awake()
     {
@@ -37,14 +42,26 @@ public class OrderManagement : MonoBehaviour
             acceptedOrders[i].Update();
     }
 
-    private void RemoveFromActive(Order order)
+    private void OnOrderCompleted(Order order)
     {
         if (acceptedOrders.Contains(order))
         { 
             acceptedOrders.Remove(order);
-            order.OnCompleted -= RemoveFromActive;
-            order.OnFailed -= RemoveFromActive;
+            order.OnCompleted -= OnOrderCompleted;
+            order.OnFailed -= OnOrderCompleted;
         }
+        m_OnOrderCompleted.Invoke();
+    }
+
+    private void OnOrderFailed(Order order)
+    {
+        if (acceptedOrders.Contains(order))
+        {
+            acceptedOrders.Remove(order);
+            order.OnCompleted -= OnOrderCompleted;
+            order.OnFailed -= OnOrderFailed;
+        }
+        m_OnOnOrderFailed.Invoke();
     }
 
     private void OnOrderAccepted(Order order)
@@ -54,9 +71,10 @@ public class OrderManagement : MonoBehaviour
         if (!acceptedOrders.Contains(order))
         { 
             acceptedOrders.Add(order);
-            order.OnCompleted += RemoveFromActive;
-            order.OnFailed += RemoveFromActive;
+            order.OnCompleted += OnOrderCompleted;
+            order.OnFailed += OnOrderFailed;
         }
+        m_OnOrderAccepted.Invoke();
     }
 
     private void RemoveFromPending(Order order)
@@ -151,6 +169,7 @@ public class OrderManagement : MonoBehaviour
                 newOrder.OnAccepted += client.OnOrderAccepted;
                 newOrder.OnRejected += client.OnOrderCanceled;
                 newOrder.OnCanceled += client.OnOrderCanceled;
+                m_OnGenerateOrder.Invoke();
             }
         }
     }

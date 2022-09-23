@@ -40,7 +40,7 @@ namespace Tutorial
             }
         }
 
-        protected virtual void Awake()
+        protected virtual void OnEnable()
         {
             if (isTriggered)
                 m_OnTriggered.Invoke();
