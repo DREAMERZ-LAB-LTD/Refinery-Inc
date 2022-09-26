@@ -4,69 +4,64 @@ namespace Tutorial
 {
     public class TutorialTriggerer : TriggerableTutorial
     {
-        private enum TriggerMode
+        [System.Flags]private enum TriggerMode
         {
-            None,
-            Awake,
-            OnDestroy,
-            OnEnable,
-            OnDisable,
-            OnMouseDown,
-            OnMouseUp,
-            OnTriggerEnter,
-            OnTriggerExit
+            None        = 0x000000,
+            Awake       = 0x000001,
+            OnDestroy   = 0x000010,
+            OnEnable    = 0x000100,
+            OnDisable   = 0x001000,
+            OnMouseDown = 0x010000,
+            OnMouseUp   = 0x100000
         }
 
         [Header("Triggerer Setup")]
         [SerializeField] TriggerMode triggerBeginMode = TriggerMode.Awake;
         [SerializeField] TriggerMode triggerEndMode = TriggerMode.OnMouseDown;
+        [SerializeField] TriggerMode triggeredMode = TriggerMode.Awake;
         [SerializeField] private string triggerMask;
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
 
-            if (triggerBeginMode == TriggerMode.OnEnable)
+            if ((triggeredMode & TriggerMode.OnEnable) == TriggerMode.OnEnable)
+                OnTriggered();
+
+            if ((triggerBeginMode & TriggerMode.OnEnable) == TriggerMode.OnEnable)
                 FireEvent(0);
-            else if (triggerEndMode == TriggerMode.OnEnable)
+            if ((triggerEndMode & TriggerMode.OnEnable) == TriggerMode.OnEnable)
                 FireEvent(1);
         }
 
         private  void Awake()
         {
-            if(triggerBeginMode == TriggerMode.Awake)
+            if ((triggeredMode & TriggerMode.Awake) == TriggerMode.Awake)
+                OnTriggered();
+
+            if ((triggerBeginMode & TriggerMode.Awake) == TriggerMode.Awake)
                 FireEvent(0);
-            else if (triggerEndMode == TriggerMode.Awake)
+            if((triggerEndMode & TriggerMode.Awake) == TriggerMode.Awake)
                 FireEvent(1);
             
         }
         protected virtual void OnDestroy()
         {
-            if (triggerBeginMode == TriggerMode.OnDestroy)
+            if ((triggeredMode & TriggerMode.OnDestroy) == TriggerMode.OnDestroy)
+                OnTriggered();
+
+            if ((triggerBeginMode & TriggerMode.OnDestroy) == TriggerMode.OnDestroy)
                 FireEvent(0);
-            else if (triggerEndMode == TriggerMode.OnDestroy)
+            if ((triggerEndMode & TriggerMode.OnDestroy) == TriggerMode.OnDestroy)
                 FireEvent(1);
         }
         private void OnDisable()
         {
-            if (triggerBeginMode == TriggerMode.OnDisable)
-                FireEvent(0);
-            else if (triggerEndMode == TriggerMode.OnDisable)
-                FireEvent(1);
-        }
+            if ((triggeredMode & TriggerMode.OnDisable) == TriggerMode.OnDisable)
+                OnTriggered();
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (triggerBeginMode == TriggerMode.OnTriggerEnter)
+            if ((triggerBeginMode & TriggerMode.OnDisable) == TriggerMode.OnDisable)
                 FireEvent(0);
-            else if (triggerEndMode == TriggerMode.OnTriggerEnter)
-                FireEvent(1);
-        }
-        private void OnTriggerExit(Collider other)
-        {
-            if (triggerBeginMode == TriggerMode.OnTriggerExit)
-                FireEvent(0);
-            else if (triggerEndMode == TriggerMode.OnTriggerExit)
+            if ((triggerEndMode & TriggerMode.OnDisable) == TriggerMode.OnDisable)
                 FireEvent(1);
         }
 
@@ -74,16 +69,22 @@ namespace Tutorial
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (triggerBeginMode == TriggerMode.OnMouseDown)
+                if ((triggeredMode & TriggerMode.OnMouseDown) == TriggerMode.OnMouseDown)
+                    OnTriggered();
+
+                if ((triggerBeginMode & TriggerMode.OnMouseDown) == TriggerMode.OnMouseDown)
                     FireEvent(0);
-                else if (triggerEndMode == TriggerMode.OnMouseDown)
+                if ((triggerEndMode & TriggerMode.OnMouseDown) == TriggerMode.OnMouseDown)
                     FireEvent(1);
             }
             else if (Input.GetMouseButtonUp(0))
-            { 
-                if (triggerBeginMode == TriggerMode.OnMouseUp)
+            {
+                if ((triggeredMode & TriggerMode.OnMouseUp) == TriggerMode.OnMouseUp)
+                    OnTriggered();
+
+                if ((triggerBeginMode & TriggerMode.OnMouseUp) == TriggerMode.OnMouseUp)
                     FireEvent(0);
-                else if(triggerEndMode == TriggerMode.OnMouseUp)
+                if ((triggerEndMode & TriggerMode.OnMouseUp) == TriggerMode.OnMouseUp)
                     FireEvent(1);
             }
         }

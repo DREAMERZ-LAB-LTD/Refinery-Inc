@@ -40,8 +40,8 @@ namespace Tutorial
             }
         }
 
-        protected virtual void OnEnable()
-        {
+        protected void OnTriggered()
+        { 
             if (isTriggered)
                 m_OnTriggered.Invoke();
         }
