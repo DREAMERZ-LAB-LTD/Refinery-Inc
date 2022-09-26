@@ -43,8 +43,6 @@ public class PlayerExprence : MonoBehaviour
 
     private void Start()
     {
-        Level = 0;
-        Progress = 0;
         UpdateUI(Level, Progress);
         GameManager.instance.playerExprence = this;
     }
@@ -67,7 +65,6 @@ public class PlayerExprence : MonoBehaviour
     {
         int min = levelIndex == 0 ? range.x : levelSegment[levelIndex - 1];
         int max = levelIndex == levelSegment.Length - 1 ?  range.y : levelSegment[levelIndex];
-        Debug.Log("Min " + min + " MAx " + max + " level " + levelIndex + "  Progress " + Progress);
 
         if (progressBar)
             progressBar.fillAmount = Mathf.InverseLerp(min, max, progress);
@@ -83,5 +80,9 @@ public class PlayerExprence : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
             AddReview(-5);
     }
- 
+    private void OnDisable()
+    {
+      //  Level = 0;
+      //  Progress = 0;
+    }
 }

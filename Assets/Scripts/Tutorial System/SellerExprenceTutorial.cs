@@ -1,9 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class SellerExprenceTutorial : MonoBehaviour
 {
+    [SerializeField] private PlayerExprence playerExprence;
     [SerializeField] private string id;
     [SerializeField] private int targetLevel = 1;
     [Header("Callback Events")]
@@ -15,19 +15,18 @@ public class SellerExprenceTutorial : MonoBehaviour
     }
 
 
-    private void Start()
+    private void Awake()
     {
-        StartCoroutine(SkipFrame());
-        IEnumerator SkipFrame()
-        {
-            yield return new WaitForEndOfFrame();
-            GameManager.instance.playerExprence.OnChangeLevel += OnChangeEcperience;
-        }
+       // playerExprence.Progress = 5;
+      //  playerExprence.Level = 1;
+
+        playerExprence.OnChangeLevel += OnChangeEcperience;
+        if (playerExprence.Level >= targetLevel)
+            OnLevel.Invoke();
     }
     private void OnDestroy()
     {
-        if(GameManager.instance)
-            GameManager.instance.playerExprence.OnChangeLevel -= OnChangeEcperience;
+        playerExprence.OnChangeLevel -= OnChangeEcperience;
     }
     public void OnChangeEcperience(int level)
     {

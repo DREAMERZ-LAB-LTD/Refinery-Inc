@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using IdleArcade.Core;
 using UnityEngine.Events;
 
 public class EmergencyEvent : MonoBehaviour
@@ -15,6 +14,9 @@ public class EmergencyEvent : MonoBehaviour
 
     public void OnBegin()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         var delay = Random.Range(delayRange.x, delayRange.y);
         StopAllCoroutines();
         StartCoroutine(EventRoutine(delay));
