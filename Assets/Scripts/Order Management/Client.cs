@@ -1,11 +1,13 @@
 using UnityEngine;
 using IdleArcade.Core;
 using UnityEngine.Events;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Client : MonoBehaviour
 {
+    [SerializeField] private int positiveReview = 5;
+    [SerializeField] private int negativeReview = -5;
+
     public int sellsPoint = 0;
     public static List<Client> availables = new List<Client>();
 
@@ -13,8 +15,8 @@ public class Client : MonoBehaviour
     [SerializeField] private OrderStatusUI carOrderStatus;
 
     [SerializeReference]private TransactionContainer cacheContaier;
+    [SerializeField] private WareHouseCoinContainer warehouseCoinContaier;
     [SerializeField]private TransactionContainer[] containers;
-    private WareHouseCoinContainer warehouseCoinContaier;
 
     private Order order;
     private ClientCar car;
@@ -28,7 +30,6 @@ public class Client : MonoBehaviour
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue += OnTransact;
 
-        warehouseCoinContaier = FindObjectOfType<WareHouseCoinContainer>();
         car = GetComponent<ClientCar>();
         car.OnExportSide += AddToAvailable;
         car.OnImportSide += ApplyContainerMask;
@@ -92,6 +93,8 @@ public class Client : MonoBehaviour
 
         cacheContaier.Add(total);
         warehouseCoinContaier.TransactFrom(total, cacheContaier);
+
+        GameManager.instance.playerExprence.AddReview(positiveReview);
     }
 
     public void OnFailed(Order order)
@@ -110,6 +113,8 @@ public class Client : MonoBehaviour
 
         ApplyContainerMask();
         m_OnOrderRemoved.Invoke();
+
+        GameManager.instance.playerExprence.AddReview(negativeReview);
     }
 
     public void OnOrderAccepted(Order order)

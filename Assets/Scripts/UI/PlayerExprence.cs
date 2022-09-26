@@ -1,64 +1,87 @@
 using UnityEngine;
-using IdleArcade.Core;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerExprence : Limiter
+public class PlayerExprence : MonoBehaviour
 {
-    public interface IExprenceLevel
-    {
-        public void OnChangeEcperience(int level);
-    }
+    public delegate void ChangeLevel(int level);
+    public ChangeLevel OnChangeLevel;
+
+    [Header("Level Setup")]
+    [SerializeField] private Vector2Int range = new Vector2Int(0, 100);
+    [SerializeField] private int[] levelSegment;
 
     [Header("Progress Text Setup")]
     [SerializeField] private string preMessage;
-    [SerializeField] private string centerMessage;
     [SerializeField] private string postMessage;
     [SerializeReference] private TextMeshProUGUI progressText;
 
     [Header("Progress Image Setup")]
     [SerializeReference] private Image progressBar;
 
+    public int Progress
+    {
+        get { return PlayerPrefs.GetInt("Experience_Progress"); }
+        set
+        {
+            value = Mathf.Clamp(value, range.x, range.y);
+            PlayerPrefs.SetInt("Experience_Progress", value);
+        }
+    }
+    public int Level
+    {
+        get { return PlayerPrefs.GetInt("Exprence_Level"); }
+        set 
+        {
+            if(Level != value)
+                if (OnChangeLevel != null)
+                    OnChangeLevel.Invoke(value);
+
+            PlayerPrefs.SetInt("Exprence_Level", value);
+        }
+    }
+
     private void Start()
     {
-        t = SavedValue;
-        UpdateUI(t, range);
+        Level = 0;
+        Progress = 0;
+        UpdateUI(Level, Progress);
         GameManager.instance.playerExprence = this;
     }
 
-    private float SavedValue
+
+    public void AddReview(int dt)
     {
-        get
-        {
-            if (PlayerPrefs.HasKey(GetID))
-                return PlayerPrefs.GetFloat(GetID);
-            else
-                PlayerPrefs.SetFloat(GetID, t);
-            return t;
-        }
-        set
-        {
-            PlayerPrefs.SetFloat(GetID, value);
-        }
+        int progress = Progress + dt;
+        for (int index = 0; index < levelSegment.Length; index++)
+            if (progress < levelSegment[index])
+            {
+                Level = index;
+                break;
+            }
+        Progress = progress;
+        UpdateUI(Level, progress);
     }
 
-    private void UpdateUI(float t, Vector2 range)
+    private void UpdateUI(int levelIndex, int progress)
     {
-        if(progressBar)
-            progressBar.fillAmount = t;
+        int min = levelIndex == 0 ? range.x : levelSegment[levelIndex - 1];
+        int max = levelIndex == levelSegment.Length - 1 ?  range.y : levelSegment[levelIndex];
+        Debug.Log("Min " + min + " MAx " + max + " level " + levelIndex + "  Progress " + Progress);
+
+        if (progressBar)
+            progressBar.fillAmount = Mathf.InverseLerp(min, max, progress);
 
         if (progressText)
-        { 
-            var message = preMessage + Mathf.Lerp(range.x, range.y, t) +centerMessage + range.y + postMessage;
-            progressText.text = message;
-        }
+            progressText.text = preMessage + (levelIndex + 1) + postMessage;
     }
-    public void AddExprence(float dt)
-    {
-        t += dt;
-        t = Mathf.Clamp01(t);
-        SavedValue = t;
 
-        UpdateUI(t, range);
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+            AddReview(5);
+        if (Input.GetKeyDown(KeyCode.B))
+            AddReview(-5);
     }
+ 
 }
