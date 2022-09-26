@@ -37,4 +37,9 @@ public class CameraZoomEffect : MonoBehaviour
             cam.m_Lens.OrthographicSize = Mathf.Lerp(zoomRange.x, zoomRange.y, t);
         }
     }
+
+    private void OnDisable()
+    {
+        cam.m_Lens.OrthographicSize = zoomRange.x;
+    }
 }

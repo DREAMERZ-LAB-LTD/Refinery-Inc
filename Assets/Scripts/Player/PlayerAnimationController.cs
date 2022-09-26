@@ -14,5 +14,11 @@ public class PlayerAnimationController : MonoBehaviour
         
         anim.SetBool("input", GameManager.instance.Joystic.Direction.magnitude > 0.01f);
     }
+     
     
+    private void OnDestroy()
+    {
+        anim.SetBool("input", false);
+    }
+
 }

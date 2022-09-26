@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerCarController : MonoBehaviour
@@ -14,6 +15,20 @@ public class PlayerCarController : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 velocity;
 
+
+    [SerializeField] private UnityEvent m_OnEnable;
+    [SerializeField] private UnityEvent m_OnDisable;
+
+    private void OnEnable()
+    {
+        m_OnEnable.Invoke();
+    }
+    private void OnDisable()
+    {
+        if (rb)
+            rb.velocity = Vector3.zero;
+        m_OnDisable.Invoke();
+    }
 
     void Start()
     {
