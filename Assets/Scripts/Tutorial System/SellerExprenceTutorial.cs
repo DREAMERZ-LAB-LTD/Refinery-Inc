@@ -17,8 +17,8 @@ public class SellerExprenceTutorial : MonoBehaviour
 
     private void Awake()
     {
-        playerExprence.Progress = 10;
-        playerExprence.Level = 3;
+        //playerExprence.Progress = 0;
+      //  playerExprence.Level = 0;
 
         playerExprence.OnChangeLevel += OnChangeEcperience;
         if (playerExprence.Level >= targetLevel)

@@ -31,7 +31,7 @@ public class LinearMotion : MonoBehaviour
         OnMotinBegin.Invoke();
         while (t < 1)
         {
-            t += speed * Time.fixedDeltaTime;
+            t += speed * Time.deltaTime;
             t = Mathf.Clamp01(t);
             target.position = Vector3.Lerp(a, b, t);
             yield return null;

@@ -9,7 +9,7 @@ public class ElementBuyPoint : MonoBehaviour, TriggerDetector.ITriggerable
     [SerializeReference] RawGarbageImporterNPC npc;
     [Header("Pricing Setup")]
     [SerializeField] private int buyAmount = 20;
-    [SerializeField] private int unitPrice = 5;
+    [SerializeField] private int unitPrice = 1;
     private IEnumerator BuyRoutine()
     {
         while (Input.GetMouseButton(0))
