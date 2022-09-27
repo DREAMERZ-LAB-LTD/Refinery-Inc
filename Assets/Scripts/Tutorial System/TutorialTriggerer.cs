@@ -21,9 +21,11 @@ namespace Tutorial
         [SerializeField] TriggerMode triggeredMode = TriggerMode.Awake;
         [SerializeField] private string triggerMask;
 
+        float arrivalTime = 0;
+
         protected void OnEnable()
         {
-
+            arrivalTime = Time.time;
             if ((triggeredMode & TriggerMode.OnEnable) == TriggerMode.OnEnable)
                 OnTriggered();
 
@@ -67,6 +69,8 @@ namespace Tutorial
 
         private void Update()
         {
+            if (arrivalTime + 1f > Time.time) return;
+
             if (Input.GetMouseButtonDown(0))
             {
                 if ((triggeredMode & TriggerMode.OnMouseDown) == TriggerMode.OnMouseDown)

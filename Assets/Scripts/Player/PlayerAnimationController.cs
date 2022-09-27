@@ -16,7 +16,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
      
     
-    private void OnDestroy()
+    private void OnDisable()
     {
         anim.SetBool("input", false);
     }

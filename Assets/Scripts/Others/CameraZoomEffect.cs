@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CinemachineVirtualCamera))]
@@ -38,8 +39,27 @@ public class CameraZoomEffect : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        StopAllCoroutines();
+    }
     private void OnDisable()
     {
-        cam.m_Lens.OrthographicSize = zoomRange.x;
+        StartCoroutine(ZoomOutRoutnie());
+        IEnumerator ZoomOutRoutnie()
+        {
+            float startZoom = cam.m_Lens.OrthographicSize;
+
+            float t;
+            float startTime = Time.time;
+            float endTime = startTime + 1;
+            while (Time.time < endTime)
+            {
+                t = Mathf.InverseLerp(startTime, endTime, Time.time);
+                cam.m_Lens.OrthographicSize = Mathf.Lerp(startZoom, zoomRange.x, t);
+                yield return null;
+            }
+        }
     }
+
 }

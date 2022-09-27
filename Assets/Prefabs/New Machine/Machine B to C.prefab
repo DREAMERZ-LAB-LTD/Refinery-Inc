@@ -2016,9 +2016,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294e109c571a27144bdd49e125c4be76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Capacity Exporter NPC 4
+  id: B to C Exporter Capacity
   range: {x: 0, y: 10}
-  t: 0.5
+  t: 0.3
   OnLocked:
     m_PersistentCalls:
       m_Calls:
@@ -2430,7 +2430,7 @@ MonoBehaviour:
   lookAhead: 0
   sizeToAdd: 0
   timeValue: 1
-  speed: 4
+  speed: 2.5
   animEaseType:
     serializedVersion: 2
     m_Curve: []
@@ -3464,7 +3464,7 @@ MonoBehaviour:
   lookAhead: 0
   sizeToAdd: 0
   timeValue: 1
-  speed: 3
+  speed: 2.5
   animEaseType:
     serializedVersion: 2
     m_Curve: []
@@ -8939,9 +8939,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294e109c571a27144bdd49e125c4be76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Capacity Importer NPC 3
-  range: {x: 0, y: 20}
-  t: 0.5
+  id: B to C Importer Capacity
+  range: {x: 0, y: 10}
+  t: 0.3
   OnLocked:
     m_PersistentCalls:
       m_Calls:
@@ -15064,8 +15064,16 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1786897160035655097, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: t
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786897160035655097, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: id
       value: Export Delay 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786897160035655097, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: range.x
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1951903667970749025, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: fromPrefab
@@ -15076,8 +15084,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9021399340271973834, guid: 0cd0dcd35598f224fab6aff294ff3439, type: 3}
     - target: {fileID: 2362233417257479088, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: t
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362233417257479088, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: id
-      value: Import Amount 1
+      value: Machine B to C Import Capacity
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362233417257479088, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: range.y
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2870415383862857428, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15262,6 +15278,14 @@ PrefabInstance:
     - target: {fileID: 8130863810456030832, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519742642288616654, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: t
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519742642288616654, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
+      propertyPath: range.y
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2994271708405947051, guid: 6a7114eb491916b41beec1942b2896b0, type: 3}
@@ -15716,7 +15740,7 @@ PrefabInstance:
       objectReference: {fileID: 1673355365416383103}
     - target: {fileID: 6799432912043515140, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
       propertyPath: upgradebaleID
-      value: Import Amount 1
+      value: Machine B to C Import Capacity
       objectReference: {fileID: 0}
     - target: {fileID: 8190128930535463682, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
       propertyPath: m_fontColor.b

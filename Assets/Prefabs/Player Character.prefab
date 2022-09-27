@@ -116,6 +116,12 @@ MonoBehaviour:
   moveSpeed: 420
   maxVelocity: 10
   turnSpeed: 7
+  m_OnEnable:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDisable:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &301228047103828243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,9 +498,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbf77dbdf1668d4cb7a9cbef37aff27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Player Capacity 8
-  range: {x: 0, y: 100}
-  t: 0.15
+  id: Player Capacity
+  range: {x: 0, y: 16}
+  t: 0.25
   OnLocked:
     m_PersistentCalls:
       m_Calls: []
