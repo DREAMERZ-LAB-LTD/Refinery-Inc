@@ -24,6 +24,7 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
         if (destinationContainer == null)
             return;
 
+        var fps = Application.targetFrameRate > 0 ? Application.targetFrameRate : 60;
         foreach (var storePoint in containers)
             if (destinationContainer.GetID == storePoint.GetID)
             {
@@ -36,7 +37,7 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
                         if (!unlockable.isValidToUnlock())
                             return;
                     }
-                    var frameLength = 1 / 60f;
+                    var frameLength = 1 / (float)fps;
                     target *= frameLength;
                     StopAllCoroutines();
                     StartCoroutine(TransactionRoutine(storePoint, destinationContainer, (int)target));
