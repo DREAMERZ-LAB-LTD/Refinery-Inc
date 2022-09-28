@@ -66,6 +66,34 @@ namespace IdleArcade.Core
         /// <param name="A">Source Containe</param>
         protected abstract void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B);
 
+
+        /// <summary>
+        /// return next pullable visual element ID using FIFO
+        /// </summary>
+        /// <returns></returns>
+        public string GetNextID_UsingFIFO()
+        {
+            if (visualAmounts.Count == 0)
+                return string.Empty;
+
+            int index = visualAmounts.Count - 1;
+            return visualAmounts[index].GetID;
+        }
+
+        /// <summary>
+        ///  return next pullable visual element ID using LIFO
+        /// </summary>
+        /// <returns></returns>
+        public string GetNextID_UsingLIFO()
+        {
+            if (visualAmounts.Count == 0)
+                return string.Empty;
+
+            return visualAmounts[0].GetID;
+        }
+
+
+
         /// <summary>
         /// return next pullable Entity from the collection Usning FiFO
         /// </summary>
