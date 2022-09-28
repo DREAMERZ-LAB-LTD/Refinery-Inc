@@ -36,6 +36,7 @@ public class LinearMotion : MonoBehaviour
             target.position = Vector3.Lerp(a, b, t);
             yield return null;
         }
+        target.position = b;
         OnMotinEnd.Invoke();
     }
  

@@ -23,7 +23,7 @@ namespace Tutorial
 
         float arrivalTime = 0;
 
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
             arrivalTime = Time.time;
             if ((triggeredMode & TriggerMode.OnEnable) == TriggerMode.OnEnable)
@@ -35,7 +35,7 @@ namespace Tutorial
                 FireEvent(1);
         }
 
-        private  void Awake()
+        protected virtual void Awake()
         {
             if ((triggeredMode & TriggerMode.Awake) == TriggerMode.Awake)
                 OnTriggered();
@@ -56,7 +56,7 @@ namespace Tutorial
             if ((triggerEndMode & TriggerMode.OnDestroy) == TriggerMode.OnDestroy)
                 FireEvent(1);
         }
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             if ((triggeredMode & TriggerMode.OnDisable) == TriggerMode.OnDisable)
                 OnTriggered();

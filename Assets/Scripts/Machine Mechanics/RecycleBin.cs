@@ -2,6 +2,7 @@ using UnityEngine;
 using IdleArcade.Core;
 using General.Library;
 using System.Collections;
+using UnityEngine.Events;
 
 public class RecycleBin : MonoBehaviour, TriggerDetector.ITriggerable
 {
@@ -22,7 +23,9 @@ public class RecycleBin : MonoBehaviour, TriggerDetector.ITriggerable
     [SerializeField] TransactionContainer garbageSource;
     [SerializeField] private MaterialSet[] recycleSets;
 
-
+    [Header("Callback Events")]
+    [SerializeField] private UnityEvent OnRecycleBegin;
+    [SerializeField] private UnityEvent OnRecycleEnd;
     private Coroutine recycleRoutine = null;
 
     public void OnEnter(Collider other)
@@ -60,6 +63,7 @@ public class RecycleBin : MonoBehaviour, TriggerDetector.ITriggerable
 
         if (materialSet == null)
             yield break;
+        OnRecycleBegin.Invoke();
 
         while (sourceContainer)
         {
@@ -76,7 +80,6 @@ public class RecycleBin : MonoBehaviour, TriggerDetector.ITriggerable
                 entity.transform.parent = transform;
                 StartCoroutine(MoveTo(entity, target.position, visualFlowDuration));
 
-
                 if (timeInterval > 0)
                     yield return new WaitForSeconds(timeInterval);
                 else
@@ -90,6 +93,8 @@ public class RecycleBin : MonoBehaviour, TriggerDetector.ITriggerable
             if (materialSet == null)
                 yield break;
         }
+
+        OnRecycleEnd.Invoke();
     }
 
     private IEnumerator MoveTo(Entity entity, Vector3 target, float duration)
