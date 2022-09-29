@@ -14444,6 +14444,61 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3379143117504544963, guid: 2aab99d908bba59408635473b4854f82, type: 3}
   m_PrefabInstance: {fileID: 1314918228}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1516708534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1516708536}
+  - component: {fileID: 1516708535}
+  m_Layer: 0
+  m_Name: Object Pulling System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1516708535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516708534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4ac3ea7f9855742a1cb60562bd6620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - pullAmount: 30
+    entity: {fileID: 3324909748409890731, guid: 6ccb7f6a6bd1ee34da4d3eb44bd01674, type: 3}
+  - pullAmount: 30
+    entity: {fileID: 9021399340271973834, guid: 0cd0dcd35598f224fab6aff294ff3439, type: 3}
+  - pullAmount: 30
+    entity: {fileID: 9021399340271973834, guid: d14040cb226f363469588e89cc656723, type: 3}
+  - pullAmount: 30
+    entity: {fileID: 9021399340271973834, guid: a660120b4cd35fa4cb10dd4ea7ea000e, type: 3}
+  - pullAmount: 30
+    entity: {fileID: 9199528691962667329, guid: 9b7ddbc081a637b4fa75ce8a45717d8e, type: 3}
+--- !u!4 &1516708536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516708534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.10756, y: 6.828648, z: -14.932376}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523025417
 GameObject:
   m_ObjectHideFlags: 0
@@ -18404,6 +18459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerExprence: {fileID: 0}
+  pullingSystem: {fileID: 0}
 --- !u!4 &1945378277
 Transform:
   m_ObjectHideFlags: 0

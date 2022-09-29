@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
 
 
     [HideInInspector] public PlayerExprence playerExprence;
+    [HideInInspector]public ObjectPullingSystem pullingSystem;
     private Joystick joystick = null;
-    
     
     public Joystick Joystic
     {

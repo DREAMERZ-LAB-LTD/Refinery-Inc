@@ -9,8 +9,8 @@ public class TransactionDestinationVisual : TransactionVisualCore
         delta = UnityEngine.Mathf.Abs(delta);
         for (int i = 0; i < delta; i++)
         {
-            var amount = Pull_UsingLIFO(A.GetID);
-            Destroy(amount.gameObject);
+            var visualEntity = Pull_UsingLIFO(A.GetID);
+            GameManager.instance.pullingSystem.Push(visualEntity);
         }
     }
 }

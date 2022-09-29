@@ -110,6 +110,6 @@ public class RecycleBin : MonoBehaviour, TriggerDetector.ITriggerable
             yield return null;
         }
 
-        Destroy(entity.gameObject);
+        GameManager.instance.pullingSystem.Push(entity);
     }
 }
