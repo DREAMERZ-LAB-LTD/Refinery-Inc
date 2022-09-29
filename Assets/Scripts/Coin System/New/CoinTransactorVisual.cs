@@ -38,6 +38,7 @@ public class CoinTransactorVisual : TransactionVisualCore
                 coin.transform.localScale = Vector3.Lerp(initialSale, targetSale, t);
                 yield return null;
             }
+            coin.transform.localScale = initialSale;
             GameManager.instance.pullingSystem.Push(coin);
         }
     }
@@ -57,16 +58,17 @@ public class CoinTransactorVisual : TransactionVisualCore
             float starTime = Time.time;
             float endTime = starTime + flowDuration;
             float t;
-            Vector3 initialSale = coin.transform.localScale * 0.3f;
-            Vector3 targetSale = coin.transform.localScale;
+            Vector3 initialSale = coin.transform.localScale;
+            Vector3 targetSale = coin.transform.localScale * 0.3f;
             while (Time.time < endTime)
             {
                 t = Mathf.InverseLerp(starTime, endTime, Time.time);
                 coin.transform.position = Vector3.Slerp(from.position, to.position, t);
                 coin.transform.rotation = Quaternion.Slerp(from.rotation, to.rotation, t);
-                coin.transform.localScale = Vector3.Lerp(initialSale, targetSale, t);
+                coin.transform.localScale = Vector3.Lerp(targetSale, initialSale, t);
                 yield return null;
             }
+            coin.transform.localScale = initialSale;
             GameManager.instance.pullingSystem.Push(coin);
         }
     }

@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 3872679393072742037}
   - component: {fileID: 5128287160977829098}
   - component: {fileID: 5128287160977829099}
+  - component: {fileID: 5218197059264261955}
   m_Layer: 0
   m_Name: Transaction Bridge Setup
   m_TagString: Player
@@ -527,6 +528,30 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5218197059264261955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301228047963573853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14412f21a889a4d48adc435d47077409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: {x: 0, y: 150}
+  levelSegment: 0a000000190000003c00000064000000
+  preMessage: 'L : '
+  postMessage: 
+  progressText: {fileID: 0}
+  progressBar: {fileID: 0}
+  OnLevelUp:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLevelDown:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &301228048152375449
