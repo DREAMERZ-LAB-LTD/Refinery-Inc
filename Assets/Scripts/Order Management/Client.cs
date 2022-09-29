@@ -23,7 +23,8 @@ public class Client : MonoBehaviour
 
     [Header("Callback Events")]
     [SerializeField] private UnityEvent m_OnOrderAccepted;
-    [SerializeField] private UnityEvent m_OnOrderRemoved;
+    [SerializeField] private UnityEvent OnOrderCompleted;
+    [SerializeField] private UnityEvent OnOrderFailed;
 
     private void Start()
     {
@@ -85,7 +86,7 @@ public class Client : MonoBehaviour
         this.order = null;
 
         ApplyContainerMask();
-        m_OnOrderRemoved.Invoke();
+        OnOrderCompleted.Invoke();
 
         int total = 0;
         for (int i = 0; i < order.items.Count; i++)
@@ -112,7 +113,7 @@ public class Client : MonoBehaviour
         this.order = null;
 
         ApplyContainerMask();
-        m_OnOrderRemoved.Invoke();
+        OnOrderFailed.Invoke();
 
         GameManager.instance.playerExprence.AddReview(negativeReview);
     }

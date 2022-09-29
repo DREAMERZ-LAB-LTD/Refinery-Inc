@@ -1,6 +1,5 @@
 using IdleArcade.Core;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class CoinTransactorVisual : TransactionVisualCore
 {
@@ -12,21 +11,17 @@ public class CoinTransactorVisual : TransactionVisualCore
     protected override void OnAdding(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B) 
     {
         var coinVisual = A.GetComponent<TransactionVisualCore>();
-        var fromPoint = transform.position;
-        List<Entity> entitys = new List<Entity>();
-        for (int i = 0; i < delta; i++)
-            entitys.Add(coinVisual.Pull_UsingFIFO(A.GetID));
-
+    
         float startinDelay = 0;
         float dt = Application.targetFrameRate > 0 ? 1 / (float)Application.targetFrameRate : 1 / 60f; 
-        for (int i = entitys.Count -1; i >= 0 ; i--)
+        for (int i = 0; i < delta; i++)
         {
-            var coin = entitys[i];
-            StartCoroutine(MoveTo(coin, coin.transform.position, fromPoint, 0.2f, startinDelay));
+            var coin = coinVisual.Pull_UsingFIFO(A.GetID);
+            StartCoroutine(MoveTo(coin, coin.transform.position, transform, 0.2f, startinDelay));
             startinDelay += dt;
         }
 
-        IEnumerator MoveTo(Entity coin, Vector3 fromPoint, Vector3 toPoint, float flowDuration, float startingDelay = 0)
+        IEnumerator MoveTo(Entity coin, Vector3 fromPoint, Transform to, float flowDuration, float startingDelay = 0)
         {
             if (startingDelay > 0)
                 yield return new WaitForSeconds(startingDelay);
@@ -34,11 +29,13 @@ public class CoinTransactorVisual : TransactionVisualCore
             float starTime = Time.time;
             float endTime = starTime + flowDuration;
             float t;
-
+            Vector3 initialSale = coin.transform.localScale;
+            Vector3 targetSale = coin.transform.localScale * 0.3f;
             while (Time.time < endTime)
             {
                 t = Mathf.InverseLerp(starTime, endTime, Time.time);
-                coin.transform.position = Vector3.Lerp(fromPoint, toPoint, t);
+                coin.transform.position = Vector3.Lerp(fromPoint, to.position, t);
+                coin.transform.localScale = Vector3.Lerp(initialSale, targetSale, t);
                 yield return null;
             }
             GameManager.instance.pullingSystem.Push(coin);
@@ -60,13 +57,14 @@ public class CoinTransactorVisual : TransactionVisualCore
             float starTime = Time.time;
             float endTime = starTime + flowDuration;
             float t;
-
+            Vector3 initialSale = coin.transform.localScale * 0.3f;
+            Vector3 targetSale = coin.transform.localScale;
             while (Time.time < endTime)
             {
                 t = Mathf.InverseLerp(starTime, endTime, Time.time);
                 coin.transform.position = Vector3.Slerp(from.position, to.position, t);
                 coin.transform.rotation = Quaternion.Slerp(from.rotation, to.rotation, t);
-
+                coin.transform.localScale = Vector3.Lerp(initialSale, targetSale, t);
                 yield return null;
             }
             GameManager.instance.pullingSystem.Push(coin);
