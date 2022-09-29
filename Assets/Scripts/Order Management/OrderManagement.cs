@@ -26,6 +26,7 @@ public class OrderManagement : MonoBehaviour
     [SerializeField] private UnityEvent m_OnOrderAccepted;
     [SerializeField] private UnityEvent m_OnOrderCompleted;
     [SerializeField] private UnityEvent m_OnOnOrderFailed;
+    [SerializeField] private UnityEvent m_OnOnOrderRejected;
 
     private void Awake()
     {
@@ -102,6 +103,11 @@ public class OrderManagement : MonoBehaviour
         }
     }
 
+    private void OnOrderReject(Order order)
+    {
+        order.OnRejected -= OnOrderReject;
+        m_OnOnOrderRejected.Invoke();
+    }
     private void OnClickPendingButton(Order order)
     {
         var isValidAmount = acceptedOrders.Count < maxActiveOrderCount;
@@ -165,9 +171,10 @@ public class OrderManagement : MonoBehaviour
                 newOrder.destination = sp.point.position;
 
                 AddToPending(newOrder);
+                newOrder.OnRejected += OnOrderReject;
                 newOrder.OnAccepted += wareHouse.OnOrderAccepted;
-                newOrder.OnAccepted += client.OnOrderAccepted;
                 newOrder.OnRejected += client.OnOrderCanceled;
+                newOrder.OnAccepted += client.OnOrderAccepted;
                 newOrder.OnCanceled += client.OnOrderCanceled;
                 m_OnGenerateOrder.Invoke();
             }

@@ -4707,6 +4707,7 @@ GameObject:
   - component: {fileID: 329775653}
   - component: {fileID: 329775651}
   - component: {fileID: 329775652}
+  - component: {fileID: 329775654}
   m_Layer: 5
   m_Name: Order Management
   m_TagString: Untagged
@@ -4789,6 +4790,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 329775654}
+        m_TargetAssemblyTypeName: OrderButtonBlinkEffect, Assembly-CSharp
+        m_MethodName: OnNewOrderGenerated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_OnOrderAccepted:
     m_PersistentCalls:
       m_Calls:
@@ -4796,6 +4809,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 329775654}
+        m_TargetAssemblyTypeName: OrderButtonBlinkEffect, Assembly-CSharp
+        m_MethodName: OnOrderAccepted
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4834,6 +4859,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_OnOnOrderRejected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &329775653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4850,6 +4878,52 @@ MonoBehaviour:
   progressBar: {fileID: 0}
   itemFieldPrefab: {fileID: 2210853234226950257, guid: 65833ecf498e1584fbce8d558a3cb8bb, type: 3}
   fieldContainer: {fileID: 1754370627}
+--- !u!114 &329775654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329775649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab96a1d53141d294dac7491a0d301e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: aaadda
+  m_OnTriggerBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTriggerEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 329775654}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_OnTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 329775654}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &335558426 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8128147988980163853, guid: 4a59c4a9b1b4b184c8df5090231cf226, type: 3}
