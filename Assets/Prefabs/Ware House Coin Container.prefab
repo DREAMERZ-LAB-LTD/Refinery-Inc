@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766347701973307487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.08, z: 0}
   m_LocalScale: {x: 2.2499995, y: 0.049999997, z: 2.2499995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,15 +126,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3802808905048211998}
   - component: {fileID: 7031227117598051937}
-  - component: {fileID: 3570630345605370524}
-  - component: {fileID: 8929239463555193561}
+  - component: {fileID: 2403894521378354416}
   - component: {fileID: 1086415813115597690}
   - component: {fileID: 7528761547734104592}
-  - component: {fileID: 6027906297910723463}
-  - component: {fileID: 8515565353914750084}
+  - component: {fileID: 7159821913371305959}
   m_Layer: 0
   m_Name: WareHouse Mechanics
-  m_TagString: Destination
+  m_TagString: CoinSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,14 +144,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3803021806317725101}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 371784070846471854}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7031227117598051937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,7 +165,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.422224, y: 1.5369741, z: 1.4157777}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3570630345605370524
+--- !u!114 &2403894521378354416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,22 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3803021806317725101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43cb15c9cf46c242aea43a5e9da13b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
-  range: {x: 1, y: 0}
-  t: 0.2
---- !u!114 &8929239463555193561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3803021806317725101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e0697b36bdea6478480200935d9856, type: 3}
+  m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: coin1
@@ -222,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containers:
-  - {fileID: 8929239463555193561}
+  - {fileID: 2403894521378354416}
 --- !u!114 &7528761547734104592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,20 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabID: coin1
---- !u!114 &6027906297910723463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3803021806317725101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c05b6d4265607b049b120d2f16a34102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gride: {x: 1, y: 1}
---- !u!114 &8515565353914750084
+--- !u!114 &7159821913371305959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

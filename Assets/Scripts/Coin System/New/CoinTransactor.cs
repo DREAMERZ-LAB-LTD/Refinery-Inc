@@ -2,15 +2,13 @@ using IdleArcade.Core;
 using System.Collections;
 using UnityEngine;
 
-public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
+public class CoinTransactor : TransactionBridge, TriggerDetector.ITriggerable
 {
-
-    [SerializeField] private KeyCode interruptKey = KeyCode.None;
-
     [Tooltip("Where we will store all of the collection data based on Point ID")]
     private TransactionContainer[] containers;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         //assign all of the points to use for store all of the collecting data
         containers = GetComponents<TransactionContainer>();
     }
@@ -18,8 +16,46 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
     public void OnEnter(Collider collider)
     {
         var destinationPoint = collider.GetComponent<TransactionDestination>();
-        if (destinationPoint == null) return;
+        if (destinationPoint)
+        { 
+            OnDistribute(destinationPoint);
+            return;
+        }
 
+        var coinSource = collider.GetComponent<TransactionSource>();
+        if (coinSource)
+            OnCoinCollect(coinSource);
+    }
+
+    private void OnCoinCollect(TransactionSource coinSource)
+    {
+        TransactionContainer playerCoinContainer = null;
+        TransactionContainer coinSourceContainer = null;
+    
+        for (int i = 0; i < containers.Length; i++)
+        {
+            playerCoinContainer = containers[i];
+            coinSourceContainer = coinSource.GetContainer(playerCoinContainer.GetID);
+            if (coinSourceContainer)
+                break;
+        }
+
+       if(coinSourceContainer && playerCoinContainer)
+         StartTransiction(coinSourceContainer, playerCoinContainer, coinSourceContainer.Getamount);
+    }
+
+
+    /// <summary>
+    /// Called when collider trigger exit from destination object
+    /// </summary>
+    /// <param name="collider">destination collider</param>
+    public void OnExit(Collider collider)
+    {
+        StopTransiction();
+    }
+
+    private void OnDistribute(TransactionDestination destinationPoint)
+    {
         var destinationContainer = destinationPoint.GetContainer(containers[0].GetID);//////////////////////////////////////////////////////////
         if (destinationContainer == null)
             return;
@@ -44,15 +80,6 @@ public class CoinDistributor : MonoBehaviour, TriggerDetector.ITriggerable
                 }
                 break;
             }
-    }
-
-    /// <summary>
-    /// Called when collider trigger exit from destination object
-    /// </summary>
-    /// <param name="collider">destination collider</param>
-    public void OnExit(Collider collider)
-    {
-
     }
 
 

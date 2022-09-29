@@ -11,7 +11,7 @@ namespace IdleArcade.Core
         [Tooltip("How many time to delay in between transiction frame")]
         [SerializeField] protected Limiter timeIntervalLimit;
 
-        [SerializeField] private KeyCode interruptKey = KeyCode.None;
+        [SerializeField] protected KeyCode interruptKey = KeyCode.None;
         [SerializeField,Tooltip("Where we will store all of the collection data based on Point ID")]
         private Coroutine routine; //store existin transiction routine
         protected virtual void Awake()

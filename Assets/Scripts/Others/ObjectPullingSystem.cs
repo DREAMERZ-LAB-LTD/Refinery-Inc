@@ -84,7 +84,7 @@ public class ObjectPullingSystem : MonoBehaviour
         {
             obj = Instantiate(entity.gameObject, transform);
             obj.SetActive(false);
-            obj.AddComponent<PullingErrorDebugger>();
+
             e = obj.GetComponent<Entity>();
             pullable.objects.Push(e);
         }

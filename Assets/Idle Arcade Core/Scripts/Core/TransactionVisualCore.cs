@@ -243,13 +243,13 @@ namespace IdleArcade.Core
             catch (Exception e)
             { 
                 var scale = visualAmounts[0].transform.localScale;
-
+                var rotation = Quaternion.identity;
                 for (int i = visualAmounts.Count - 1; i >= 0; i--)
                 {
                     var amount = visualAmounts[i];
                     var position = GetLocalPointOf(i, scale);
                     amount.transform.localPosition = position;
-                    amount.transform.localRotation = Quaternion.identity;
+                    amount.transform.localRotation = rotation;
                 }
             }
 

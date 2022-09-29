@@ -10,12 +10,13 @@ namespace IdleArcade.Core
         public virtual void OnChanged(List<Entity> entitys)
         {
             Transform entity = null;
+            var rotation = Quaternion.identity;
             for (int i = 0; i < entitys.Count; i++)
             {
                 entity = entitys[i].transform;
                 entity.parent = transform;
                 entity.localPosition = GetLocalPointOf(i, entity.localScale);
-                entity.localRotation = Quaternion.identity;
+                entity.localRotation = rotation;
             }
         }
 

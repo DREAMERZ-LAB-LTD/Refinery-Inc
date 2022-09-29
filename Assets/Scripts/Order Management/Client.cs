@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     [SerializeField] private OrderStatusUI carOrderStatus;
 
     [SerializeReference]private TransactionContainer cacheContaier;
-    [SerializeField] private WareHouseCoinContainer warehouseCoinContaier;
+    [SerializeField] private TransactionContainer warehouseCoinContaier;
     [SerializeField]private TransactionContainer[] containers;
 
     private Order order;
