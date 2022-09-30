@@ -18,16 +18,17 @@ public class Client : MonoBehaviour
     [SerializeField] private TransactionContainer warehouseCoinContaier;
     [SerializeField]private TransactionContainer[] containers;
 
-    private Order order;
+    private Order order = null;
     private ClientCar car;
 
     [Header("Callback Events")]
-    [SerializeField] private UnityEvent m_OnOrderAccepted;
+    [SerializeField] private UnityEvent m_ShiftBegin;
     [SerializeField] private UnityEvent OnOrderCompleted;
     [SerializeField] private UnityEvent OnOrderFailed;
 
     private void Start()
     {
+        ApplyContainerMask();
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue += OnTransact;
 
@@ -67,9 +68,36 @@ public class Client : MonoBehaviour
             order.FillUpItem(B.GetID, delta);
     }
 
-    public void OnOrderCanceled(Order order)
+    private void ApplyContainerMask()
     {
-        AddToAvailable();
+        for (int i = 0; i < containers.Length; i++)
+        {
+            containers[i].enabled = false;
+            if (order != null)
+                for (int j = 0; j < order.items.Count; j++)
+                    if (containers[i].GetID == order.items[j].iD)
+                    {
+                        containers[i].amountLimit.range.y = order.items[j].quantity;
+                        containers[i].enabled = true;
+                        break;
+                    }
+        }
+    }
+
+    public void ShiftOrder(Order newOrder)
+    {
+        if (arrowProgress)
+        {
+            arrowProgress.enabled = true;
+            newOrder.OnChangeDeliveryTime += arrowProgress.SetProgress;
+        }
+        newOrder.OnCompleted += OnCompleted;
+        newOrder.OnFailed += OnFailed;
+        order = newOrder;
+        ApplyContainerMask();
+
+        carOrderStatus.ShowOrder(order);
+        m_ShiftBegin.Invoke();
     }
 
     public void OnCompleted(Order order)
@@ -77,14 +105,13 @@ public class Client : MonoBehaviour
         order.OnCompleted -= OnCompleted;
         order.OnFailed -= OnFailed;
 
-        order.OnAccepted -= OnOrderAccepted;
         if (arrowProgress)
         {
             order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
             arrowProgress.enabled = false;
         }
-        this.order = null;
 
+        this.order = null;
         ApplyContainerMask();
         OnOrderCompleted.Invoke();
 
@@ -104,7 +131,6 @@ public class Client : MonoBehaviour
         order.OnFailed -= OnFailed;
 
 
-        order.OnAccepted -= OnOrderAccepted;
         if (arrowProgress)
         {
             order.OnChangeDeliveryTime -= arrowProgress.SetProgress;
@@ -117,38 +143,4 @@ public class Client : MonoBehaviour
 
         GameManager.instance.playerExprence.AddReview(negativeReview);
     }
-
-    public void OnOrderAccepted(Order order)
-    {
-        ApplyContainerMask();
-        if (arrowProgress)
-        { 
-            arrowProgress.enabled = true;
-            order.OnChangeDeliveryTime += arrowProgress.SetProgress;
-        }
-
-        order.OnCompleted += OnCompleted;
-        order.OnFailed += OnFailed;
-        this.order = order;
-
-        carOrderStatus.ShowOrder(order);
-        m_OnOrderAccepted.Invoke();
-    }
-
-    private void ApplyContainerMask()
-    {
-        for (int i = 0; i < containers.Length; i++)
-        {
-            containers[i].enabled = false;
-            if(order != null)
-                for (int j = 0; j < order.items.Count; j++)
-                    if (containers[i].GetID == order.items[j].iD)
-                    {
-                        containers[i].amountLimit.range.y = order.items[j].quantity;
-                        containers[i].enabled = true;
-                        break;
-                    }
-        }
-    }
-
 }

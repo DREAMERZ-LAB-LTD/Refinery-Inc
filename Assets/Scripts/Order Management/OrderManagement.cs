@@ -32,6 +32,7 @@ public class OrderManagement : MonoBehaviour
     {
         Client.availables.Clear();
         StartCoroutine(OrderGeneratorRoutine());
+        StartCoroutine(OrderShiftingRoutine());
     }
 
     private void Update()
@@ -143,39 +144,54 @@ public class OrderManagement : MonoBehaviour
         return order;
     }
 
-
-    private IEnumerator OrderGeneratorRoutine()
+    private IEnumerator OrderShiftingRoutine()
     {
-        Client client = null;
         while (true)
         {
+        
             while (Client.availables.Count == 0)
-                yield return new WaitForSeconds(2);
-            
+                yield return new WaitForSeconds(3);
+          
+            if (acceptedOrders.Count > 0)
+            {
+                Order newOrder = null;
+                for (int i = 0; i < acceptedOrders.Count; i++)
+                    if (!acceptedOrders[i].isShifting)
+                        newOrder = acceptedOrders[i];
+
+                if (newOrder != null)
+                {
+                    int index = Random.Range(0, Client.availables.Count);
+                    var client = Client.availables[index];
+                    Client.availables.RemoveAt(index);
+
+                    var sp = wareHouse.sellsPoints[client.sellsPoint];
+                    newOrder.destination = sp.point.position;
+
+                    newOrder.isShifting = true;
+                    client.ShiftOrder(newOrder);
+                }
+            }
+
+            yield return new WaitForSeconds(1);
+        }
+    }
+    private IEnumerator OrderGeneratorRoutine()
+    {
+        while (true)
+        {
             while(pendingOrders.Count >= maxPendingOrderCount)
                 yield return new WaitForSeconds(2);
 
             int delay = Random.Range(delayBetweenOrder.x, delayBetweenOrder.y);
             yield return new WaitForSeconds(delay);
 
-
-           
             var newOrder = GenerateNewOrder();
             if (newOrder != null)
             {
-                int index = Random.Range(0, Client.availables.Count);
-                client = Client.availables[index];
-                Client.availables.RemoveAt(index);
-
-                var sp = wareHouse.sellsPoints[client.sellsPoint];
-                newOrder.destination = sp.point.position;
-
                 AddToPending(newOrder);
                 newOrder.OnRejected += OnOrderReject;
                 newOrder.OnAccepted += wareHouse.OnOrderAccepted;
-                newOrder.OnRejected += client.OnOrderCanceled;
-                newOrder.OnAccepted += client.OnOrderAccepted;
-                newOrder.OnCanceled += client.OnOrderCanceled;
                 m_OnGenerateOrder.Invoke();
             }
         }
