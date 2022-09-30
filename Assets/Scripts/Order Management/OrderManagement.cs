@@ -170,6 +170,7 @@ public class OrderManagement : MonoBehaviour
 
                     newOrder.isShifting = true;
                     client.ShiftOrder(newOrder);
+                    wareHouse.ShiftOrder(newOrder);
                 }
             }
 
@@ -191,7 +192,6 @@ public class OrderManagement : MonoBehaviour
             {
                 AddToPending(newOrder);
                 newOrder.OnRejected += OnOrderReject;
-                newOrder.OnAccepted += wareHouse.OnOrderAccepted;
                 m_OnGenerateOrder.Invoke();
             }
         }

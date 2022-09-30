@@ -94,7 +94,6 @@ public class Client : MonoBehaviour
         newOrder.OnCompleted += OnCompleted;
         newOrder.OnFailed += OnFailed;
         order = newOrder;
-        ApplyContainerMask();
 
         carOrderStatus.ShowOrder(order);
         m_ShiftBegin.Invoke();

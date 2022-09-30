@@ -6,7 +6,7 @@ public class WareHouse : MonoBehaviour
 {
     [SerializeField] private PathNode[] itemPoints;
     [SerializeField] public PathNode[] sellsPoints;
-    private List<Order> acceptedOrders = new List<Order>();
+    private List<Order> shiftingOrders = new List<Order>();
     private void Awake()
     {
         WareHouseNPC.availables.Clear();
@@ -18,7 +18,7 @@ public class WareHouse : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void OnOrderAccepted(Order order)
+    public void ShiftOrder(Order order)
     {
         if (order == null)
             return;
@@ -29,9 +29,8 @@ public class WareHouse : MonoBehaviour
             order.items[i].pickPoint = pickPoint;
         }
         
-        acceptedOrders.Add(order);
+        shiftingOrders.Add(order);
 
-        order.OnAccepted -= OnOrderAccepted;
         order.OnCompleted += OnOrderRemoved;
         order.OnFailed += OnOrderRemoved;
     }
@@ -39,11 +38,10 @@ public class WareHouse : MonoBehaviour
 
     private void OnOrderRemoved(Order order)
     {
-        if (!acceptedOrders.Contains(order))
+        if (!shiftingOrders.Contains(order))
             return;
-        acceptedOrders.Remove(order);
+        shiftingOrders.Remove(order);
 
-        order.OnCompleted -= OnOrderRemoved;
         order.OnFailed -= OnOrderRemoved;
     }
 
@@ -68,12 +66,12 @@ public class WareHouse : MonoBehaviour
                 yield return new WaitForSeconds(2);
 
             int index = 0;
-            while (WareHouseNPC.availables.Count > 0 && acceptedOrders.Count > 0)
+            while (WareHouseNPC.availables.Count > 0 && shiftingOrders.Count > 0)
             {
-                var order = acceptedOrders[index];
+                var order = shiftingOrders[index];
                 var npc = WareHouseNPC.availables[index];
                 WareHouseNPC.availables.RemoveAt(index);
-                acceptedOrders.RemoveAt(index);
+                shiftingOrders.RemoveAt(index);
 
                 npc.Assigned(order);
                 yield return null;
