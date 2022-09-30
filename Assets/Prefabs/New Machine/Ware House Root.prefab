@@ -189,8 +189,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3661428621477473393}
-  - component: {fileID: 6883020284423970321}
   - component: {fileID: 1275514759}
+  - component: {fileID: 5666609095758390036}
   m_Layer: 0
   m_Name: Ware House Root
   m_TagString: Destination
@@ -215,30 +215,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6883020284423970321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3661428621477473394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777585f618414754586d2f8afa9094b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPoints:
-  - id: C
-    point: {fileID: 81414800121414005}
-  - id: D
-    point: {fileID: 81414800865226401}
-  - id: E
-    point: {fileID: 81414799036998140}
-  sellsPoints:
-  - id: Point 0
-    point: {fileID: 4995406678929243135}
-  - id: Point 1
-    point: {fileID: 786966449631780073}
 --- !u!114 &1275514759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +236,22 @@ MonoBehaviour:
   OnUnlocked:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5666609095758390036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661428621477473394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe29a41137953f4e89ca5bfea7904e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containers:
+  - {fileID: 81414798777114065}
+  - {fileID: 81414799524917765}
+  - {fileID: 81414799844244824}
 --- !u!1 &5731927057886717174
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +510,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5064002295717322316}
     m_Modifications:
+    - target: {fileID: 1692716475864636555, guid: f89370a2e56271647bf377c82185c9de, type: 3}
+      propertyPath: warehouseContainable
+      value: 
+      objectReference: {fileID: 5666609095758390036}
     - target: {fileID: 1692716475864636555, guid: f89370a2e56271647bf377c82185c9de, type: 3}
       propertyPath: warehouseContainers.Array.data[0]
       value: 
@@ -871,11 +867,6 @@ PrefabInstance:
       objectReference: {fileID: 1275514759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d113b8e631a0c2408fe8c7971005d95, type: 3}
---- !u!4 &81414799036998140 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3742842836206093019, guid: 7d113b8e631a0c2408fe8c7971005d95, type: 3}
-  m_PrefabInstance: {fileID: 3661428621821698855}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &81414799160377983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3742842836124131672, guid: 7d113b8e631a0c2408fe8c7971005d95, type: 3}
@@ -1103,11 +1094,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3742842836124131672, guid: 7d113b8e631a0c2408fe8c7971005d95, type: 3}
   m_PrefabInstance: {fileID: 3661428622443015290}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &81414800865226401 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3742842836206093019, guid: 7d113b8e631a0c2408fe8c7971005d95, type: 3}
-  m_PrefabInstance: {fileID: 3661428622443015290}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3661428622903493550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1216,11 +1202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b097bf0463f60a64fb09dfe0058eca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &81414800121414005 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3742842836206093019, guid: 7d113b8e631a0c2408fe8c7971005d95, type: 3}
-  m_PrefabInstance: {fileID: 3661428622903493550}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &81414800241271542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3742842836124131672, guid: 7d113b8e631a0c2408fe8c7971005d95, type: 3}

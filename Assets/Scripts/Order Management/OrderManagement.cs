@@ -7,7 +7,7 @@ public class OrderManagement : MonoBehaviour
 {
     [Header("References")]
     [SerializeReference] private OrderPanelButtonEventHandler orderManagementUI;
-    [SerializeReference] private WareHouse wareHouse;
+    [SerializeReference] private WareHouseNPC wareHouseNPC;
 
     [Header("Management Controls")]
     [SerializeField] private int timeSegment = 5;
@@ -165,12 +165,9 @@ public class OrderManagement : MonoBehaviour
                     var client = Client.availables[index];
                     Client.availables.RemoveAt(index);
 
-                    var sp = wareHouse.sellsPoints[client.sellsPoint];
-                    newOrder.destination = sp.point.position;
-
                     newOrder.isShifting = true;
                     client.ShiftOrder(newOrder);
-                    wareHouse.ShiftOrder(newOrder);
+                    wareHouseNPC.ShiftOrder(newOrder, client.sellsPoint);
                 }
             }
 

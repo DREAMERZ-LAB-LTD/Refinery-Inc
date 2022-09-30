@@ -16,5 +16,11 @@ namespace IdleArcade.Core
             }
             return null;
         }
+
+        public void SetActiveContainers(bool active)
+        {
+            for (int i = 0; i < containers.Length; i++)
+                containers[i].enabled = active;
+        }
     }
 }
