@@ -44,6 +44,16 @@ public class OrderManagement : MonoBehaviour
             acceptedOrders[i].Update();
     }
 
+    public void SetmaxPendingOrderCount(int count)
+    {
+        maxPendingOrderCount = count;
+    }
+     
+    public void SetmaxActiveOrderCount(int count)
+    {
+        maxActiveOrderCount = count;
+    }
+
     private void OnOrderCompleted(Order order)
     {
         if (acceptedOrders.Contains(order))

@@ -19,9 +19,28 @@ public class PlayerExprence : MonoBehaviour
 
     [Header("Progress Image Setup")]
     [SerializeReference] private Image progressBar;
+    
 
+    [Header("Callback Events")]
     [SerializeField] private UnityEvent OnLevelUp;
     [SerializeField] private UnityEvent OnLevelDown;
+
+#if UNITY_EDITOR
+    [Header("Debug Setup")]
+    [SerializeField] private int m_Progress;
+    [SerializeField] private int m_Level;
+
+    private void OnDrawGizmosSelected()
+    {
+        Progress = m_Progress;
+        Level = m_Level;
+    }
+
+#endif
+
+
+
+
     public int Progress
     {
         get { return PlayerPrefs.GetInt("Experience_Progress"); }
@@ -29,6 +48,9 @@ public class PlayerExprence : MonoBehaviour
         {
             value = Mathf.Clamp(value, range.x, range.y);
             PlayerPrefs.SetInt("Experience_Progress", value);
+#if UNITY_EDITOR
+            m_Progress = value;
+#endif
         }
     }
     public int Level
@@ -49,6 +71,10 @@ public class PlayerExprence : MonoBehaviour
                 else
                     OnLevelDown.Invoke();
             }
+
+#if UNITY_EDITOR
+            m_Level = value;
+#endif
         }
     }
 

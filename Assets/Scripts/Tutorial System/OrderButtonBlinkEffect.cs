@@ -8,7 +8,7 @@ public class OrderButtonBlinkEffect : TriggerableTutorial
 
         FireEvent(0);
 
-        if (!isTriggered)
+        if (!isTriggred)
         { 
             var exploreBtn = GetComponentsInChildren<PendingButton>();
             for (int i = 0; i < exploreBtn.Length; i++)
@@ -24,7 +24,7 @@ public class OrderButtonBlinkEffect : TriggerableTutorial
     {
         if (!enabled) return;
 
-        if (!isTriggered)
+        if (!isTriggred)
         { 
             var exploreBtn = GetComponentsInChildren<PendingButton>();
             for (int i = 0; i < exploreBtn.Length; i++)
