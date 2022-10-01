@@ -28,14 +28,15 @@ public class Client : MonoBehaviour
 
     private void Start()
     {
+        AddToAvailable();
         ApplyContainerMask();
+
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue += OnTransact;
 
         car = GetComponent<ClientCar>();
         car.OnExportSide += AddToAvailable;
         car.OnImportSide += ApplyContainerMask;
-            AddToAvailable();
     }
 
 
@@ -46,19 +47,15 @@ public class Client : MonoBehaviour
 
         car.OnExportSide -= AddToAvailable;
         car.OnImportSide -= ApplyContainerMask;
-        RemoveFromAvailable();
+       
+        if (availables.Contains(this))
+            availables.Remove(this);
     }
 
     private void AddToAvailable()
     {
         if (!availables.Contains(this))
             availables.Add(this);
-    }
-
-    private void RemoveFromAvailable()
-    {
-        if (availables.Contains(this))
-            availables.Remove(this);
     }
 
 
