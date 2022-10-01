@@ -30,7 +30,6 @@ public class OrderManagement : MonoBehaviour
 
     private void Awake()
     {
-        Client.availables.Clear();
         StartCoroutine(OrderGeneratorRoutine());
         StartCoroutine(OrderShiftingRoutine());
     }

@@ -28,7 +28,6 @@ public class Client : MonoBehaviour
 
     private void Start()
     {
-        AddToAvailable();
         ApplyContainerMask();
 
         for (int i = 0; i < containers.Length; i++)
@@ -38,8 +37,6 @@ public class Client : MonoBehaviour
         car.OnExportSide += AddToAvailable;
         car.OnImportSide += ApplyContainerMask;
     }
-
-
     private void OnDestroy()
     {
         for (int i = 0; i < containers.Length; i++)
@@ -47,11 +44,18 @@ public class Client : MonoBehaviour
 
         car.OnExportSide -= AddToAvailable;
         car.OnImportSide -= ApplyContainerMask;
-       
+    }
+
+    private void OnEnable()
+    {
+        AddToAvailable();
+    }
+
+    private void OnDisable()
+    {
         if (availables.Contains(this))
             availables.Remove(this);
     }
-
     private void AddToAvailable()
     {
         if (!availables.Contains(this))
