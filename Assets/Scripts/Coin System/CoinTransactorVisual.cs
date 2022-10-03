@@ -10,6 +10,9 @@ public class CoinTransactorVisual : TransactionVisualCore
 
     protected override void OnAdding(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B) 
     {
+        if (A == null)
+            return;
+
         var coinVisual = A.GetComponent<TransactionVisualCore>();
     
         float startinDelay = 0;
@@ -47,6 +50,9 @@ public class CoinTransactorVisual : TransactionVisualCore
 
     protected override void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
+        if (A == null)
+            return;
+
         var coin = GameManager.instance.pullingSystem.Pull(A.GetID);
         StartCoroutine( MoveTo(coin, B.transform, A.transform, .5f));
 

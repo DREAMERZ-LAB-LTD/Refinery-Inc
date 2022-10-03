@@ -23,7 +23,7 @@ public class ElementBuyPoint : MonoBehaviour, TriggerDetector.ITriggerable
         if (newTarget > available)
             dt = available;
 
-        if (ScoreManager.instance.AddScore(-Mathf.Abs(dt * unitPrice)))
+        if (GameManager.instance.coinContainer.Add(-Mathf.Abs(dt * unitPrice)))
                 npc.AddNewOrder(dt);
 
     }

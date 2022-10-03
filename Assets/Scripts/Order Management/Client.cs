@@ -74,14 +74,19 @@ public class Client : MonoBehaviour
         for (int i = 0; i < containers.Length; i++)
         {
             containers[i].enabled = false;
+            containers[i].amountLimit.range.y = 0;
             if (order != null)
+            { 
                 for (int j = 0; j < order.items.Count; j++)
+                { 
                     if (containers[i].GetID == order.items[j].iD)
                     {
                         containers[i].amountLimit.range.y = order.items[j].quantity;
                         containers[i].enabled = true;
                         break;
                     }
+                }
+            }
         }
     }
 
@@ -100,7 +105,7 @@ public class Client : MonoBehaviour
         m_ShiftBegin.Invoke();
     }
 
-    public void OnCompleted(Order order)
+    private void OnCompleted(Order order)
     {
         order.OnCompleted -= OnCompleted;
         order.OnFailed -= OnFailed;
@@ -125,7 +130,7 @@ public class Client : MonoBehaviour
         GameManager.instance.playerExprence.AddReview(positiveReview);
     }
 
-    public void OnFailed(Order order)
+    private void OnFailed(Order order)
     {
         order.OnCompleted -= OnCompleted;
         order.OnFailed -= OnFailed;

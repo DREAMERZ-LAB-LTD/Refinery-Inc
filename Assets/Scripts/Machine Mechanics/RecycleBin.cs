@@ -74,7 +74,7 @@ public class RecycleBin : MonoBehaviour, TriggerDetector.ITriggerable
                 if (bridgeLimit)
                     bridgeLimit.Transact(-1);
 
-                ScoreManager.instance.AddScore(materialSet.price);
+                GameManager.instance.coinContainer.Add(materialSet.price);
 
                 var entity = visual.Pull_UsingFIFO(targetID);
                 entity.transform.parent = transform;

@@ -35,5 +35,6 @@ public class OrderButtonBlinkEffect : TriggerableTutorial
             }
         }
         FireEvent(1);
+        OnTriggered();
     }
 }
