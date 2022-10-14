@@ -13,16 +13,14 @@ public class UnlockableContainer : TransactionContainer
 
     public bool isValidToUnlock()
     {
-        var currentLevel = (int)GameManager.instance.playerExprence.Level;
+        var currentLevel = GameManager.instance.playerExprence.Level;
         if (currentLevel >= targetLevel)
         {
-            Debug.Log("Valid Level to Unlock" + targetLevel);
             OnEnoughLevel.Invoke();
             return true;
         }
         else
         {
-            Debug.Log("InValid Level to Unlock" + targetLevel);
             OnLowLevel.Invoke();
             return false;
         }

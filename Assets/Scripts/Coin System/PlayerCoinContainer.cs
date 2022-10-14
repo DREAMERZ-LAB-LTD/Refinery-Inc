@@ -41,7 +41,5 @@ public class PlayerCoinContainer : TransactionContainer
     private void OnChange(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
     {
         scoreData.AddScore(delta);
-        if (name == "Conin Collector")
-            Debug.Log("Delta " + delta);
     }
 }
