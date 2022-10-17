@@ -5025,7 +5025,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5047,24 +5047,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 329775652}
         m_TargetAssemblyTypeName: OrderManagement, Assembly-CSharp
-        m_MethodName: SetmaxActiveOrderCount
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 329775652}
-        m_TargetAssemblyTypeName: OrderManagement, Assembly-CSharp
         m_MethodName: SetmaxPendingOrderCount
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5098,24 +5086,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 329775652}
         m_TargetAssemblyTypeName: OrderManagement, Assembly-CSharp
-        m_MethodName: SetmaxActiveOrderCount
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 329775652}
-        m_TargetAssemblyTypeName: OrderManagement, Assembly-CSharp
         m_MethodName: SetmaxPendingOrderCount
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10320,7 +10296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371784070846471854, guid: a7291eb79459f524e9970b4849434bee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 371784070846471854, guid: a7291eb79459f524e9970b4849434bee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21225,6 +21201,56 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1065311934060013764, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
   m_PrefabInstance: {fileID: 1691684466}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789910322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789910321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b348a0ee45dbc574680722593f141f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: 
+  targetTime: 0
+  startSource: 256
+  updateMode: 0
+  showLeftTime: 0
+  preMessage: 
+  postMessage: 
+  valueRender: {fileID: 0}
+  OnTimerStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 329775652}
+        m_TargetAssemblyTypeName: OrderManagement, Assembly-CSharp
+        m_MethodName: SetmaxActiveOrderCount
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTimerUpdating:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTimerOver:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTimerPause:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTimerResume:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTimerStop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1805703440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25812,6 +25838,10 @@ PrefabInstance:
     - target: {fileID: 1673355365416383103, guid: 07bbe658a740c2e479a2cd1dff1cf387, type: 3}
       propertyPath: m_OnAdding.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2197034585512533704, guid: 07bbe658a740c2e479a2cd1dff1cf387, type: 3}
+      propertyPath: t
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3229826835047947067, guid: 07bbe658a740c2e479a2cd1dff1cf387, type: 3}
       propertyPath: m_LocalPosition.y
