@@ -27,10 +27,6 @@ public class Item : MonoBehaviour
     [SerializeField] private Identity identity;
     public static List<Identity> availables = new List<Identity>();
 
-    private void Awake()
-    {
-        availables.Clear();
-    }
     private void Start()
     {
         for (int i = 0; i < availables.Count; i++)

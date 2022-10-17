@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class PlayerExprence : MonoBehaviour
 {
@@ -18,6 +19,27 @@ public class PlayerExprence : MonoBehaviour
 
     [Header("Progress Image Setup")]
     [SerializeReference] private Image progressBar;
+    
+
+    [Header("Callback Events")]
+    [SerializeField] private UnityEvent OnLevelUp;
+    [SerializeField] private UnityEvent OnLevelDown;
+
+#if UNITY_EDITOR
+    [Header("Debug Setup")]
+    [SerializeField] private int m_Progress;
+    [SerializeField] private int m_Level;
+
+    private void OnDrawGizmosSelected()
+    {
+        Progress = m_Progress;
+        Level = m_Level;
+    }
+
+#endif
+
+
+
 
     public int Progress
     {
@@ -26,6 +48,9 @@ public class PlayerExprence : MonoBehaviour
         {
             value = Mathf.Clamp(value, range.x, range.y);
             PlayerPrefs.SetInt("Experience_Progress", value);
+#if UNITY_EDITOR
+            m_Progress = value;
+#endif
         }
     }
     public int Level
@@ -33,11 +58,23 @@ public class PlayerExprence : MonoBehaviour
         get { return PlayerPrefs.GetInt("Exprence_Level"); }
         set 
         {
-            if(Level != value)
+            int lastLevel = Level;
+            PlayerPrefs.SetInt("Exprence_Level", value);
+
+            if (lastLevel != value)
+            {
                 if (OnChangeLevel != null)
                     OnChangeLevel.Invoke(value);
 
-            PlayerPrefs.SetInt("Exprence_Level", value);
+                if (lastLevel < value)
+                    OnLevelUp.Invoke();
+                else
+                    OnLevelDown.Invoke();
+            }
+
+#if UNITY_EDITOR
+            m_Level = value;
+#endif
         }
     }
 

@@ -22,6 +22,7 @@ public class Order
 
     public bool isAccepted = false;
     public bool isRejected = false;
+    public bool isShifting = false;
 
     public List<Item.Identity> items = new List<Item.Identity>();
 

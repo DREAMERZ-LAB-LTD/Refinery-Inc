@@ -7,7 +7,7 @@ public class OrderManagement : MonoBehaviour
 {
     [Header("References")]
     [SerializeReference] private OrderPanelButtonEventHandler orderManagementUI;
-    [SerializeReference] private WareHouse wareHouse;
+    [SerializeReference] private WareHouseNPC wareHouseNPC;
 
     [Header("Management Controls")]
     [SerializeField] private int timeSegment = 5;
@@ -26,11 +26,12 @@ public class OrderManagement : MonoBehaviour
     [SerializeField] private UnityEvent m_OnOrderAccepted;
     [SerializeField] private UnityEvent m_OnOrderCompleted;
     [SerializeField] private UnityEvent m_OnOnOrderFailed;
+    [SerializeField] private UnityEvent m_OnOnOrderRejected;
 
     private void Awake()
     {
-        Client.availables.Clear();
         StartCoroutine(OrderGeneratorRoutine());
+        StartCoroutine(OrderShiftingRoutine());
     }
 
     private void Update()
@@ -40,6 +41,16 @@ public class OrderManagement : MonoBehaviour
 
         for (int i = 0; i < acceptedOrders.Count; i++)
             acceptedOrders[i].Update();
+    }
+
+    public void SetmaxPendingOrderCount(int count)
+    {
+        maxPendingOrderCount = count;
+    }
+     
+    public void SetmaxActiveOrderCount(int count)
+    {
+        maxActiveOrderCount = count;
     }
 
     private void OnOrderCompleted(Order order)
@@ -102,6 +113,11 @@ public class OrderManagement : MonoBehaviour
         }
     }
 
+    private void OnOrderReject(Order order)
+    {
+        order.OnRejected -= OnOrderReject;
+        m_OnOnOrderRejected.Invoke();
+    }
     private void OnClickPendingButton(Order order)
     {
         var isValidAmount = acceptedOrders.Count < maxActiveOrderCount;
@@ -137,38 +153,51 @@ public class OrderManagement : MonoBehaviour
         return order;
     }
 
-
-    private IEnumerator OrderGeneratorRoutine()
+    private IEnumerator OrderShiftingRoutine()
     {
-        Client client = null;
         while (true)
         {
+        
             while (Client.availables.Count == 0)
-                yield return new WaitForSeconds(2);
-            
+                yield return new WaitForSeconds(3);
+          
+            if (acceptedOrders.Count > 0)
+            {
+                Order newOrder = null;
+                for (int i = 0; i < acceptedOrders.Count; i++)
+                    if (!acceptedOrders[i].isShifting)
+                        newOrder = acceptedOrders[i];
+
+                if (newOrder != null)
+                {
+                    int index = Random.Range(0, Client.availables.Count);
+                    var client = Client.availables[index];
+                    Client.availables.RemoveAt(index);
+
+                    newOrder.isShifting = true;
+                    client.ShiftOrder(newOrder);
+                    wareHouseNPC.ShiftOrder(newOrder, client.sellsPoint);
+                }
+            }
+
+            yield return new WaitForSeconds(1);
+        }
+    }
+    private IEnumerator OrderGeneratorRoutine()
+    {
+        while (true)
+        {
             while(pendingOrders.Count >= maxPendingOrderCount)
                 yield return new WaitForSeconds(2);
 
             int delay = Random.Range(delayBetweenOrder.x, delayBetweenOrder.y);
             yield return new WaitForSeconds(delay);
 
-
-           
             var newOrder = GenerateNewOrder();
             if (newOrder != null)
             {
-                int index = Random.Range(0, Client.availables.Count);
-                client = Client.availables[index];
-                Client.availables.RemoveAt(index);
-
-                var sp = wareHouse.sellsPoints[client.sellsPoint];
-                newOrder.destination = sp.point.position;
-
                 AddToPending(newOrder);
-                newOrder.OnAccepted += wareHouse.OnOrderAccepted;
-                newOrder.OnAccepted += client.OnOrderAccepted;
-                newOrder.OnRejected += client.OnOrderCanceled;
-                newOrder.OnCanceled += client.OnOrderCanceled;
+                newOrder.OnRejected += OnOrderReject;
                 m_OnGenerateOrder.Invoke();
             }
         }

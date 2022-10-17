@@ -6,240 +6,171 @@ using IdleArcade.Core;
 
 public class WareHouseNPC : Containable
 {
-    class NodePeer
-    {
-        public TransactionContainer selfContainer;
-        public TransactionContainer wareHouseContainer;
-        public Item.Identity itemIdentity;
-    }
-
-    [SerializeReference] TransactionContainer[] warehouseContainers;
+    [SerializeReference] Containable warehouseContainable;
     [SerializeReference] TransactionBridgeLimit bridgeLimit;
+
     [Header("Movement Setup")]
     [SerializeReference] private NavMeshAgent agent;
+    [SerializeField] private PathNode[] collectingPoints;
+    [SerializeField] public PathNode[] sellsPoints;
 
-    private bool isDelivering = false;
+    private List<Order> shiftingOrders = new List<Order>();
+    private bool isWorking = false;
     private Vector3 homePoint;
-    private Coroutine reCollectRoutine;
 
 
-    public static List<WareHouseNPC> availables = new List<WareHouseNPC>();
-    private TransactionContainer GetWarehouseContainer(string id)
-    {
-        for (int i = 0; i < warehouseContainers.Length; i++)
-            if (id == warehouseContainers[i].GetID)
-                return warehouseContainers[i];
-
-        return null;
-    }
-
-    
+    #region NPC Initilization
 
     private void OnChangedValue(int delta, int currnet, int max, string containerID, TransactionContainer A, TransactionContainer B)
-    {    
-        if (delta < 0)
-        {
-            var isEmpty = true;
-            for (int i = 0; i < containers.Length; i++)
-                if (containers[i].enabled)
-                    isEmpty &= containers[i].isEmpty;
-
-            if (isEmpty)
-                isDelivering = false;
-        }
+    {
+        isWorking = true;
     }
 
-
-    #region NPC Registrtion
     private void Start()
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue += OnChangedValue;
 
         homePoint = transform.position;
-        AddToAvailable();
+
+        StartCoroutine(ServeRoutine());
     }
     private void OnDestroy()
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue -= OnChangedValue;
     }
-    private void OnEnable()
-    {
-        AddToAvailable();
-    }
-    private void OnDisable()
-    {
-        RemoveFromAvailable();
-    }
-    private void AddToAvailable()
-    {
-        if (!availables.Contains(this))
-            availables.Add(this);
-    }
-    private void RemoveFromAvailable()
-    {
-        if (availables.Contains(this))
-            availables.Remove(this);
-    }
-    #endregion NPC Registrtion
+
+    #endregion NPC Initilization
+
 
 
     #region NPC Task Assigning
 
-    private void OnOrderUpdate(Order order)
-    {
-        if (reCollectRoutine != null)
-            StopCoroutine(reCollectRoutine);
-
-        reCollectRoutine = StartCoroutine(RecollectingRoutine());
-
-        IEnumerator RecollectingRoutine()
-        {
-            yield return new WaitForSeconds(2f);
-            isDelivering = false;
-        }
-
-    }
     private void OnOrderRemoved(Order order)
     {
         order.OnCompleted -= OnOrderRemoved;
         order.OnFailed -= OnOrderRemoved;
-        order.OnChangedValue -= OnOrderUpdate;
-
-        StopAllCoroutines();
-        AddToAvailable();
-        GoHome();
+        shiftingOrders.Remove(order);
     }
-    public void Assigned(Order order)
+
+    public void ShiftOrder(Order order, int destinationPoint)
     {
         if (order == null)
             return;
 
         order.OnCompleted += OnOrderRemoved;
         order.OnFailed += OnOrderRemoved;
-        order.OnChangedValue += OnOrderUpdate;
 
-        RemoveFromAvailable();
-
-        for (int i = 0; i < containers.Length; i++)
-            containers[i].enabled = false;
-
-        List<NodePeer> nodePeers = new List<NodePeer>();
-        TransactionContainer warHouseCont;
-        TransactionContainer SelfCont;
-        Item.Identity itemIdentity;
         for (int i = 0; i < order.items.Count; i++)
-        {
-            itemIdentity = order.items[i];
-            warHouseCont = GetWarehouseContainer(itemIdentity.iD);
-            SelfCont = GetContainer(itemIdentity.iD);
+            for (int p = 0; p < collectingPoints.Length; p++)
+                if (order.items[i].iD == collectingPoints[p].id)
+                    order.items[i].pickPoint = collectingPoints[p].point.position;
 
-            var ns = new NodePeer();
-            ns.itemIdentity = itemIdentity;
-            ns.selfContainer = SelfCont;
-            ns.wareHouseContainer = warHouseCont;
-            nodePeers.Add(ns);
-        }
+        var sp = sellsPoints[destinationPoint];
+        order.destination = sp.point.position;
 
-        isDelivering = false;
-        StopAllCoroutines();
-        StartCoroutine(ServeRoutine(nodePeers, order.destination));
+        shiftingOrders.Add(order);
     }
-
-
-
     #endregion NPC Task Assigning
 
 
     #region Movement System
-
-
-    private IEnumerator ServeRoutine(List<NodePeer> nodePeers, Vector3 destination)
-    {
-        if (nodePeers.Count == 0)
-            yield break;
-
-        for (int i = 0; i < nodePeers.Count; i++)
-            nodePeers[i].selfContainer.enabled = true;
-
-
-        var tempPeer = new List<NodePeer>(nodePeers);
-        int peerNo = 0;
-        bool sourceIsEmpty;
-        bool hasLeft;
-        bool hasAvailableToDeliver = false;
-        while (tempPeer.Count > 0)
-        {
-            var peer = tempPeer[peerNo];
-            sourceIsEmpty = peer.wareHouseContainer.isEmpty;
-            hasLeft = peer.itemIdentity.quantity > peer.selfContainer.Getamount;
-
-            if (!sourceIsEmpty && hasLeft)
-                agent.SetDestination(peer.itemIdentity.pickPoint);
-            
-
-            if (agent.hasPath)
-            {
-                for (int i = 0; i < nodePeers.Count; i++)
-                    nodePeers[i].selfContainer.enabled = false;
-
-                while (agent.hasPath)
-                    yield return null;
-
-                for (int i = 0; i < nodePeers.Count; i++)
-                    nodePeers[i].selfContainer.enabled = true;
-            }
-
-            while (!sourceIsEmpty && hasLeft && !bridgeLimit.isFilledUp)
-            {
-                hasAvailableToDeliver = true;
-                sourceIsEmpty = peer.wareHouseContainer.isEmpty;
-                hasLeft = peer.itemIdentity.quantity > peer.selfContainer.Getamount;
-                yield return null;
-            }
-
-            if (!hasLeft)
-            {
-                hasAvailableToDeliver = true;
-                tempPeer.RemoveAt(peerNo);
-                peerNo--;
-            }
-            
-             peerNo++;
-            if (tempPeer.Count > 0)
-            {
-                if (peerNo == tempPeer.Count)
-                { 
-                    isDelivering = hasAvailableToDeliver;
-                    hasAvailableToDeliver = false;
-                }
-
-                peerNo = peerNo % tempPeer.Count;
-            }
-            if (isDelivering)
-            { 
-                agent.SetDestination(destination);
-                while (agent.hasPath)
-                    yield return null;
-
-                for (int i = 0; i < nodePeers.Count; i++)
-                    nodePeers[i].selfContainer.enabled = true;
-
-                while (isDelivering)
-                    yield return null;
-                GoHome();
-            }
-            yield return null;
-        }
-
-        for (int i = 0; i < nodePeers.Count; i++)
-            nodePeers[i].selfContainer.enabled = true;
-        agent.SetDestination(destination);
-    }
     private void GoHome()
     {
         agent.SetDestination(homePoint);
     }
+
+    private IEnumerator ServeRoutine()
+    {
+        SetActiveContainers(false);
+
+        while (true)
+        {
+            if (shiftingOrders.Count == 0)
+            {
+                GoHome();
+                while (shiftingOrders.Count == 0)
+                    yield return new WaitForSeconds(1.5f);
+            }
+
+            while (shiftingOrders.Count > 0)
+            {
+                //collecting
+                for (int i = 0; i < shiftingOrders.Count; i++)
+                {
+                    for (int j = 0; j < shiftingOrders[i].items.Count; j++)
+                    {
+                        if (shiftingOrders[i].items[j].quantity > 0)
+                        {
+                            var selfCon = GetContainer(shiftingOrders[i].items[j].iD);
+                            bool isLeft() => shiftingOrders[i].items[j].quantity - selfCon.Getamount > 0;
+                            if (isLeft())
+                            { 
+                                var warehouseCon = warehouseContainable.GetContainer(shiftingOrders[i].items[j].iD);
+                                bool isValidContainer() => !warehouseCon.isEmpty && !bridgeLimit.isFilledUp;
+                         
+
+                                if (isValidContainer())
+                                {
+                                    agent.SetDestination(shiftingOrders[i].items[j].pickPoint);
+                                    yield return new WaitForSeconds(1);
+                                    
+                                    selfCon.enabled = true;
+
+                                    while (isValidContainer() && isLeft())
+                                        yield return null;
+                                    
+                                    SetActiveContainers(false);
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+
+
+                if (shiftingOrders.Count > 0)
+                {
+                    TransactionContainer container;
+                   SetActiveContainers(true);
+                    for (int i = 0; i < shiftingOrders.Count; i++)
+                    {
+                        for (int j = 0; j < shiftingOrders[i].items.Count; j++)
+                        {
+                            if (shiftingOrders[i].items[j].quantity > 0)
+                            { 
+                                container = GetContainer(shiftingOrders[i].items[j].iD);
+                                if(!container.isEmpty)
+                                { 
+                                    agent.SetDestination(shiftingOrders[i].destination);
+                                    yield return new WaitForSeconds(1);
+                        
+                                    while (agent.velocity.magnitude > 0)
+                                        yield return new WaitForSeconds(1);
+                        
+
+                                    while (isWorking)
+                                    { 
+                                        isWorking = false;
+                                        yield return new WaitForSeconds(1.5f);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    SetActiveContainers(false);
+                    GoHome();
+                }
+            
+                yield return null;
+            }
+            yield return null;
+        }
+
+    }
+
     #endregion Movement System
 }

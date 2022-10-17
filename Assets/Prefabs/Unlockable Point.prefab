@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &734514191
 Transform:
   m_ObjectHideFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734514190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.03, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70,7 +70,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5047207475191270210}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.988, z: 0.77}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 7873690419738214897}
   m_Layer: 0
   m_Name: Unlockable Point
-  m_TagString: Destination
+  m_TagString: CoinDestination
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.4076674, y: 2, z: 2.3819864}
-  m_Center: {x: -0.039592776, y: 0, z: 0.7892535}
+  m_Center: {x: -0.039592776, y: 1, z: 0.7892535}
 --- !u!1001 &8190128931041614450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -396,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8190128930957741370, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.99
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 8190128930957741370, guid: 488d0a519499245419bd90f9c31d8a25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using General.Library;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,8 +28,9 @@ public class GameManager : MonoBehaviour
 
 
     [HideInInspector] public PlayerExprence playerExprence;
+    [HideInInspector]public ObjectPullingSystem pullingSystem;
+    [HideInInspector]public PlayerCoinContainer coinContainer;
     private Joystick joystick = null;
-    
     
     public Joystick Joystic
     {

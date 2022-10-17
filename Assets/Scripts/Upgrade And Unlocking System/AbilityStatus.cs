@@ -59,7 +59,7 @@ namespace IdleArcade.Core
 
         private void OnClickUnlock()
         {
-            if (!ScoreManager.instance.AddScore(-Mathf.Abs(data.unlockPrice)))
+            if (!GameManager.instance.coinContainer.Add(-Mathf.Abs(data.unlockPrice)))
                 return;
 
             data.isUnlocked = true;
@@ -72,7 +72,7 @@ namespace IdleArcade.Core
 
         private void OnClickUpgrade()
         {
-            if (!ScoreManager.instance.AddScore(-Mathf.Abs(data.upgradePrice)))
+            if (!GameManager.instance.coinContainer.Add(-Mathf.Abs(data.upgradePrice)))
                 return;
 
             data.T += data.dt;

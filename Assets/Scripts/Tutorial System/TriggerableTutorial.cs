@@ -14,19 +14,34 @@ namespace Tutorial
         [SerializeField] private UnityEvent m_OnTriggerEnd;
         [SerializeField] private UnityEvent m_OnTriggered;
 
-        protected bool isTriggered
+        protected bool isTriggred
         {
-            set => PlayerPrefs.SetInt(id + name, value ? 1 : 0);
             get => PlayerPrefs.GetInt(id + name) == 1;
+            set
+            { 
+                PlayerPrefs.SetInt(id + name, value ? 1 : 0);
+#if UNITY_EDITOR
+                m_IsTriggred = value;
+#endif
+
+            }
         }
 
+#if UNITY_EDITOR
+        [Header("Debug Setup")]
+        [SerializeField] private bool m_IsTriggred = false;
+        private void OnDrawGizmosSelected()
+        {
+            isTriggred = m_IsTriggred ;
+        }
+#endif
         /// <summary>
         /// Fire the event to execute the tutorial content
         /// </summary>
         /// <param name="state">'Trigger Begin = 0', 'Trigger End = 1', 'Triggered = 2' </param>
         public void FireEvent(int state)
         {
-            if (isTriggered) return;
+            if (isTriggred) return;
             
             switch (state)
             {
@@ -34,7 +49,7 @@ namespace Tutorial
                     m_OnTriggerBegin.Invoke();
                     break;
                 case 1:
-                    isTriggered = true;
+                    isTriggred = true;
                     m_OnTriggerEnd.Invoke();
                     break;
             }
@@ -42,7 +57,7 @@ namespace Tutorial
 
         protected void OnTriggered()
         { 
-            if (isTriggered)
+            if (isTriggred)
                 m_OnTriggered.Invoke();
         }
     }

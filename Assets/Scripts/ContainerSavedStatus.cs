@@ -1,28 +1,28 @@
 using UnityEngine;
+using System.Collections;
 
 namespace IdleArcade.Core
 {
-    public class ContainerSavedStatus : MonoBehaviour
+    public class ContainerSavedStatus : Entity
     {
         [SerializeField] private TransactionContainer container;
 
         protected virtual int SavedAmount
         {
-            set { PlayerPrefs.SetInt("Progress", value); }
-            get
-            {
-                if (PlayerPrefs.HasKey("Progress"))
-                    return PlayerPrefs.GetInt("Progress");
-                else
-                    return 0;
-            }
+            set => PlayerPrefs.SetInt(GetID, value);
+            get => PlayerPrefs.GetInt(GetID);
         }
 
 
         protected virtual void Start()
         {
-            container.Add(SavedAmount);
-            container.OnChangedValue += OnUpdate;
+            StartCoroutine(SkipFrame());
+            IEnumerator SkipFrame()
+            {
+                yield return null;
+                container.Add(SavedAmount);
+                container.OnChangedValue += OnUpdate;
+            }
         }
 
         protected virtual void OnDestroy()

@@ -17,9 +17,9 @@ public class TransactorVisual : TransactionVisualCore
 
     protected override void OnRemoving(int delta, int currnet, int max, TransactionContainer A, TransactionContainer B)
     {
+        if (A == null) return;
         var destination = A.GetComponent<TransactionVisualCore>();
-        if (destination == null)
-            return;
+        if (destination == null) return;
 
         var visualEntity = Pull_UsingLIFO(A.GetID);
         if (visualEntity)

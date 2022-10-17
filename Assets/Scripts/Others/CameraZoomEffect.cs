@@ -12,6 +12,8 @@ public class CameraZoomEffect : MonoBehaviour
     float t = 0;
     private void Start()
     {
+        Application.quitting += StopAllCoroutines;
+
         cam = GetComponent<CinemachineVirtualCamera>();
        
         if(cam)
@@ -45,6 +47,7 @@ public class CameraZoomEffect : MonoBehaviour
     }
     private void OnDisable()
     {
+
         StartCoroutine(ZoomOutRoutnie());
         IEnumerator ZoomOutRoutnie()
         {

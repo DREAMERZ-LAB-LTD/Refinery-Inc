@@ -2,6 +2,7 @@ using UnityEngine;
 using IdleArcade.Core;
 using System.Collections;
 using General.Library;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(TriggerDetector))]
 public class ElementBuyPoint : MonoBehaviour, TriggerDetector.ITriggerable
@@ -10,6 +11,9 @@ public class ElementBuyPoint : MonoBehaviour, TriggerDetector.ITriggerable
     [Header("Pricing Setup")]
     [SerializeField] private int buyAmount = 20;
     [SerializeField] private int unitPrice = 1;
+
+    [SerializeField] private UnityEvent OnPurchase;
+
     private IEnumerator BuyRoutine()
     {
         while (Input.GetMouseButton(0))
@@ -23,8 +27,11 @@ public class ElementBuyPoint : MonoBehaviour, TriggerDetector.ITriggerable
         if (newTarget > available)
             dt = available;
 
-        if (ScoreManager.instance.AddScore(-Mathf.Abs(dt * unitPrice)))
-                npc.AddNewOrder(dt);
+        if (GameManager.instance.coinContainer.Add(-Mathf.Abs(dt * unitPrice)))
+        { 
+            npc.AddNewOrder(dt);
+            OnPurchase.Invoke();
+        }
 
     }
 
