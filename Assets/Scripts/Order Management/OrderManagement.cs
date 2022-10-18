@@ -172,9 +172,7 @@ public class OrderManagement : MonoBehaviour
                 {
                     int index = Random.Range(0, Client.availables.Count);
                     var client = Client.availables[index];
-                    Client.availables.RemoveAt(index);
 
-                    newOrder.isShifting = true;
                     client.ShiftOrder(newOrder);
                     wareHouseNPC.ShiftOrder(newOrder, client.sellsPoint);
                 }

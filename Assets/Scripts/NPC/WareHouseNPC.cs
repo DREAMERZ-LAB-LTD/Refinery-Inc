@@ -32,13 +32,21 @@ public class WareHouseNPC : Containable
             containers[i].OnChangedValue += OnChangedValue;
 
         homePoint = transform.position;
-
-        StartCoroutine(ServeRoutine());
     }
+
+
     private void OnDestroy()
     {
         for (int i = 0; i < containers.Length; i++)
             containers[i].OnChangedValue -= OnChangedValue;
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(ServeRoutine());
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     #endregion NPC Initilization
@@ -75,7 +83,7 @@ public class WareHouseNPC : Containable
     #endregion NPC Task Assigning
 
 
-    #region Movement System
+    #region Life Cycle
     private void GoHome()
     {
         agent.SetDestination(homePoint);
@@ -172,5 +180,5 @@ public class WareHouseNPC : Containable
 
     }
 
-    #endregion Movement System
+    #endregion Life Cycle
 }

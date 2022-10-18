@@ -92,6 +92,9 @@ public class Client : MonoBehaviour
 
     public void ShiftOrder(Order newOrder)
     {
+        availables.Remove(this);
+        newOrder.isShifting = true;
+
         if (arrowProgress)
         {
             arrowProgress.enabled = true;
