@@ -163,7 +163,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 5
-  AndroidMinSdkVersion: 22
+  AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 31
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -241,10 +241,10 @@ PlayerSettings:
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 1
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 0
-  useCustomLauncherGradleManifest: 0
-  useCustomBaseGradleTemplate: 0
-  useCustomGradlePropertiesTemplate: 0
+  useCustomMainGradleTemplate: 1
+  useCustomLauncherGradleManifest: 1
+  useCustomBaseGradleTemplate: 1
+  useCustomGradlePropertiesTemplate: 1
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
   AndroidTargetDevices: 0
@@ -711,7 +711,9 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: TTP_REWARDED_INTERSTITIALS;TTP_PRIVACY_SETTINGS;TTP_GAMEPROGRESSION;TTP_APPSFLYER;TTP_RATEUS;TTP_BANNERS;TTP_REWARDED_ADS;TTP_POPUPMGR;TTP_PROMOTION;TTP_CRASHTOOL;TTP_INTERSTITIALS;TTP_OPENADS;TTP_ANALYTICS
+    iPhone: TTP_REWARDED_INTERSTITIALS;TTP_PRIVACY_SETTINGS;TTP_GAMEPROGRESSION;TTP_APPSFLYER;TTP_RATEUS;TTP_BANNERS;TTP_REWARDED_ADS;TTP_POPUPMGR;TTP_PROMOTION;TTP_CRASHTOOL;TTP_INTERSTITIALS;TTP_OPENADS;TTP_ANALYTICS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

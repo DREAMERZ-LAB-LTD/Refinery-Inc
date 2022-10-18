@@ -118,7 +118,6 @@ public class Order
             if (item.iD == id)
             { 
                 item.quantity -= delta;
-                Debug.Log("Filled " + delta);
                 if (OnChangedValue != null)
                     OnChangedValue.Invoke(this);
             }
