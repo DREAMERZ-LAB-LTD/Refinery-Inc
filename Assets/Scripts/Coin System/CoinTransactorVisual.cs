@@ -16,10 +16,10 @@ public class CoinTransactorVisual : TransactionVisualCore
         var coinVisual = A.GetComponent<TransactionVisualCore>();
     
         float startinDelay = 0;
-        float dt = Application.targetFrameRate > 0 ? 1 / (float)Application.targetFrameRate : 1 / 60f; 
+        float dt = Application.targetFrameRate > 0 ? 1 / (float)Application.targetFrameRate : 1 / 40f; 
         for (int i = 0; i < delta; i++)
         {
-            var coin = coinVisual.Pull_UsingFIFO(A.GetID);
+            var coin = coinVisual.Pull_UsingFIFO();
             StartCoroutine(MoveTo(coin, coin.transform.position, transform, 0.2f, startinDelay));
             startinDelay += dt;
         }

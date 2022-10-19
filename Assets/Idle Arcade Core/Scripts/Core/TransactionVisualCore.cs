@@ -159,6 +159,7 @@ namespace IdleArcade.Core
             return null;
         }
 
+
         /// <summary>
         /// return Entity and remove it from the collection Usning LIFO
         /// </summary>
@@ -185,11 +186,41 @@ namespace IdleArcade.Core
         }
 
         /// <summary>
+        /// return top (last index) element from the current visual element
+        /// </summary>
+        /// <returns></returns>
+        public Entity Pull_UsingFIFO()
+        {
+            if (visualAmounts.Count == 0)
+                return null;
+
+            int index = visualAmounts.Count - 1;
+            Entity result = visualAmounts[index];
+            visualAmounts.RemoveAt(index);
+            return result;  
+        }
+
+        /// <summary>
+        /// return bottom (first index) element from the current visual element
+        /// </summary>
+        /// <returns></returns>
+        public Entity Pull_UsingLIFO()
+        {
+            if (visualAmounts.Count == 0)
+                return null;
+
+            int index = 0;
+            Entity result = visualAmounts[index];
+            visualAmounts.RemoveAt(index);
+            return result;
+        }
+
+        /// <summary>
         /// Push Entity to the collection
         /// </summary>
         /// <param name="entity">Entity item</param>
         /// <returns></returns>
-        public bool Push(Entity entity)
+        public bool Push(Entity entity, bool refresh = true)
         {
             if (entity == null)
                 return false;
@@ -211,7 +242,7 @@ namespace IdleArcade.Core
                 var to = GetLocalPointOf(visualAmounts.Count-1, entity.transform.localScale);
                 visualEffect.OnAdding(entity, from, to, Refresh);
             }
-            else
+            else if(refresh)
                 Refresh();
             return true;
         }
