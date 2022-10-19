@@ -148,23 +148,23 @@ public class OrderManagement : MonoBehaviour
     public Order GenerateNewOrder()
     {
         var itemCount = Random.Range(itemCountRange.x, itemCountRange.y + 1);
-        var tempItemSets = new List<Item.Identity>(Item.availables);
+        var tempItemSets = new List<Item.ItemSet>(Item.availables);
         var extraItems = tempItemSets.Count - itemCount;
         for (int i = 0; i < extraItems; i++)
             tempItemSets.RemoveAt(Random.Range(0, tempItemSets.Count));
 
         Order order = null;
-        Item.Identity item;
+        Item.ItemSet itemSet;
 
         for (int i = 0; i < tempItemSets.Count; i++)
         { 
-            item = tempItemSets[i];
+            itemSet = tempItemSets[i];
 
             if (order == null)
                 order = new Order();
 
-            var quantity = Random.Range(quantityRange.x, quantityRange.y);
-            var newItem = new Item.Identity(item.iD, item.name, item.price, quantity, item.icon);
+            var quantity = Random.Range(itemSet.quantityRaneg.x, itemSet.quantityRaneg.y);
+            var newItem = new Item.Identity(itemSet.identity.iD, itemSet.identity.name, itemSet.identity.price, quantity, itemSet.identity.icon);
             order.items.Add(newItem);
 
         }
