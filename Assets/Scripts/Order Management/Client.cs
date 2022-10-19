@@ -81,7 +81,7 @@ public class Client : MonoBehaviour
                 { 
                     if (containers[i].GetID == order.items[j].iD)
                     {
-                        containers[i].amountLimit.range.y = order.items[j].quantity;
+                        containers[i].amountLimit.range.y = order.items[j].quantity + 1;
                         containers[i].enabled = true;
                         break;
                     }
@@ -92,6 +92,9 @@ public class Client : MonoBehaviour
 
     public void ShiftOrder(Order newOrder)
     {
+        availables.Remove(this);
+        newOrder.isShifting = true;
+
         if (arrowProgress)
         {
             arrowProgress.enabled = true;

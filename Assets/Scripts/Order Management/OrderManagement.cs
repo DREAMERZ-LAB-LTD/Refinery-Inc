@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class OrderManagement : MonoBehaviour
 {
+    public delegate void OrderCompletedStatus (int completedCount);
+    public OrderCompletedStatus OnCompleteOrder;
+
     [Header("References")]
     [SerializeReference] private OrderPanelButtonEventHandler orderManagementUI;
     [SerializeReference] private WareHouseNPC wareHouseNPC;
@@ -27,6 +30,22 @@ public class OrderManagement : MonoBehaviour
     [SerializeField] private UnityEvent m_OnOrderCompleted;
     [SerializeField] private UnityEvent m_OnOnOrderFailed;
     [SerializeField] private UnityEvent m_OnOnOrderRejected;
+
+
+
+    public int CompletedOrderCount
+    {
+        get => PlayerPrefs.GetInt("CompletedOrterCount");
+        set
+        { 
+            PlayerPrefs.SetInt("CompletedOrterCount", value);
+            
+            if(OnCompleteOrder!= null)
+                OnCompleteOrder.Invoke(value);
+        }
+    }
+
+
 
     private void Awake()
     {
@@ -61,6 +80,8 @@ public class OrderManagement : MonoBehaviour
             order.OnCompleted -= OnOrderCompleted;
             order.OnFailed -= OnOrderCompleted;
         }
+
+        CompletedOrderCount++;
         m_OnOrderCompleted.Invoke();
     }
 
@@ -127,23 +148,23 @@ public class OrderManagement : MonoBehaviour
     public Order GenerateNewOrder()
     {
         var itemCount = Random.Range(itemCountRange.x, itemCountRange.y + 1);
-        var tempItemSets = new List<Item.Identity>(Item.availables);
+        var tempItemSets = new List<Item.ItemSet>(Item.availables);
         var extraItems = tempItemSets.Count - itemCount;
         for (int i = 0; i < extraItems; i++)
             tempItemSets.RemoveAt(Random.Range(0, tempItemSets.Count));
 
         Order order = null;
-        Item.Identity item;
+        Item.ItemSet itemSet;
 
         for (int i = 0; i < tempItemSets.Count; i++)
         { 
-            item = tempItemSets[i];
+            itemSet = tempItemSets[i];
 
             if (order == null)
                 order = new Order();
 
-            var quantity = Random.Range(quantityRange.x, quantityRange.y);
-            var newItem = new Item.Identity(item.iD, item.name, item.price, quantity, item.icon);
+            var quantity = Random.Range(itemSet.quantityRaneg.x, itemSet.quantityRaneg.y);
+            var newItem = new Item.Identity(itemSet.identity.iD, itemSet.identity.name, itemSet.identity.price, quantity, itemSet.identity.icon);
             order.items.Add(newItem);
 
         }
@@ -172,9 +193,7 @@ public class OrderManagement : MonoBehaviour
                 {
                     int index = Random.Range(0, Client.availables.Count);
                     var client = Client.availables[index];
-                    Client.availables.RemoveAt(index);
 
-                    newOrder.isShifting = true;
                     client.ShiftOrder(newOrder);
                     wareHouseNPC.ShiftOrder(newOrder, client.sellsPoint);
                 }

@@ -285,6 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3324909748409890731, guid: 6ccb7f6a6bd1ee34da4d3eb44bd01674, type: 3}
+  prefabID: 
 --- !u!114 &3505623089886107367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,13 +363,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e01c1a5d7da4de43845f962531bd3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  identity:
-    iD: C
-    name: Silver Bar
-    price: 5
-    icon: {fileID: 21300000, guid: 7b2df96a73bea834eaa7084a9c9872bb, type: 3}
-    quantity: 0
-    pickPoint: {x: 0, y: 0, z: 0}
+  itemSet:
+    quantityRaneg: {x: 1, y: 2}
+    identity:
+      iD: C
+      name: Iron Bar
+      price: 5
+      icon: {fileID: 21300000, guid: 7b2df96a73bea834eaa7084a9c9872bb, type: 3}
+      quantity: 0
+      pickPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &2994271709507061534
 GameObject:
   m_ObjectHideFlags: 0
