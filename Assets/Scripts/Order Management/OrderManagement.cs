@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class OrderManagement : MonoBehaviour
 {
+    public delegate void OrderCompletedStatus (int completedCount);
+    public OrderCompletedStatus OnCompleteOrder;
+
     [Header("References")]
     [SerializeReference] private OrderPanelButtonEventHandler orderManagementUI;
     [SerializeReference] private WareHouseNPC wareHouseNPC;
@@ -27,6 +30,22 @@ public class OrderManagement : MonoBehaviour
     [SerializeField] private UnityEvent m_OnOrderCompleted;
     [SerializeField] private UnityEvent m_OnOnOrderFailed;
     [SerializeField] private UnityEvent m_OnOnOrderRejected;
+
+
+
+    public int CompletedOrderCount
+    {
+        get => PlayerPrefs.GetInt("CompletedOrterCount");
+        set
+        { 
+            PlayerPrefs.SetInt("CompletedOrterCount", value);
+            
+            if(OnCompleteOrder!= null)
+                OnCompleteOrder.Invoke(value);
+        }
+    }
+
+
 
     private void Awake()
     {
@@ -61,6 +80,8 @@ public class OrderManagement : MonoBehaviour
             order.OnCompleted -= OnOrderCompleted;
             order.OnFailed -= OnOrderCompleted;
         }
+
+        CompletedOrderCount++;
         m_OnOrderCompleted.Invoke();
     }
 

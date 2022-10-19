@@ -118,10 +118,13 @@ public class Order
             if (item.iD == id)
             { 
                 item.quantity -= delta;
+                if (item.quantity < 0)
+                    item.quantity = 0;
+
                 if (OnChangedValue != null)
                     OnChangedValue.Invoke(this);
             }
-            isCompleted &= item.quantity == 0;
+            isCompleted &= item.quantity <= 0;
         }
 
         if (isCompleted)

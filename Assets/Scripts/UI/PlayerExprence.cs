@@ -39,8 +39,6 @@ public class PlayerExprence : MonoBehaviour
 #endif
 
 
-
-
     public int Progress
     {
         get { return PlayerPrefs.GetInt("Experience_Progress"); }
@@ -108,18 +106,5 @@ public class PlayerExprence : MonoBehaviour
 
         if (progressText)
             progressText.text = preMessage + (levelIndex + 1) + postMessage;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-            AddReview(5);
-        if (Input.GetKeyDown(KeyCode.B))
-            AddReview(-5);
-    }
-    private void OnDisable()
-    {
-      //  Level = 0;
-      //  Progress = 0;
     }
 }
