@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: {x: 0, y: 150}
-  levelSegment: 0a000000190000003c00000064000000
+  levelSegment: 0f000000190000003c00000064000000
   preMessage: 'L : '
   postMessage: 
   progressText: {fileID: 0}
@@ -554,6 +554,8 @@ MonoBehaviour:
   OnLevelDown:
     m_PersistentCalls:
       m_Calls: []
+  m_Progress: 0
+  m_Level: 0
 --- !u!1 &301228048152375449
 GameObject:
   m_ObjectHideFlags: 0

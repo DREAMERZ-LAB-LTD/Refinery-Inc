@@ -22,6 +22,7 @@ public class LinearMotion : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+        target.position = pointB.position;
     }
         
 
