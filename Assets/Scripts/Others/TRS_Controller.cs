@@ -93,18 +93,17 @@ public class TRS_Controller : MonoBehaviour
 
     private void ApplyTRS(float t)
     {
-        Vector3 position = Vector3.Lerp(a.localPosition, b.localPosition, t);
-        Vector3 scale = Vector3.Lerp(a.localScale, b.localScale, t);
-        Vector3 rotation = Vector3.Lerp(a.localEulerAngles, b.localEulerAngles, t);
-
         if ((tRS_Mode & TRS_Mode.Rotating) == TRS_Mode.Rotating)
-            transform.localEulerAngles = rotation;
+            transform.localEulerAngles = Vector3.Lerp(a.localEulerAngles, b.localEulerAngles, t);
 
         if ((tRS_Mode & TRS_Mode.Transforming) == TRS_Mode.Transforming)
-            transform.localPosition = position;
-
+            transform.localPosition = Vector3.Lerp(a.localPosition, b.localPosition, t);
+        
         if ((tRS_Mode & TRS_Mode.Scaling) == TRS_Mode.Scaling)
-            transform.localScale = scale;
+        { 
+            t = Mathf.Sin(Mathf.Pow(t * Mathf.PI / 2, 2)) * Mathf.PI / 2;
+            transform.localScale = Vector3.LerpUnclamped(a.localScale, b.localScale, t);
+        }
     }
     
 }
