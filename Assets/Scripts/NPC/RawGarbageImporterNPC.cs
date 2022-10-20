@@ -56,18 +56,20 @@ public class RawGarbageImporterNPC : WayPointNPC
 
         StopAllCoroutines();
        StartCoroutine(OnImportSide());
-        
+
 
         IEnumerator OnImportSide()
         {
             mover.Pause();
+
             while (orders.Count == 0)
                 yield return new WaitForSeconds(1);
-
+            yield return null;
+            
             var orderItemCount = orders[0];
             orders.RemoveAt(0);
-            selfContainer.amountLimit.range.y = orderItemCount;
 
+            selfContainer.amountLimit.range.y = orderItemCount;
             selfContainer.enabled = true;
 
             while (selfContainer.isEmpty)
@@ -77,7 +79,7 @@ public class RawGarbageImporterNPC : WayPointNPC
             while (preAmount != selfContainer.Getamount)
             {
                 preAmount = selfContainer.Getamount;
-                yield return new WaitForSeconds(1.3f);
+                yield return new WaitForSeconds(1f);
             }
 
             selfContainer.enabled = false;
