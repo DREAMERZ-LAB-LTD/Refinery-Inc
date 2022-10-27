@@ -10,15 +10,23 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.instance.Joystic == null) return;
-        
-        anim.SetBool("input", GameManager.instance.Joystic.Direction.magnitude > 0.01f);
+        if (GameManager.instance.Joystic) 
+            anim.SetBool("input", GameManager.instance.Joystic.Direction.magnitude > 0.01f);
     }
      
     
     private void OnDisable()
     {
         anim.SetBool("input", false);
+    }
+
+    public void OnHurry(bool ishurry)
+    {
+        anim.SetBool("hurry", ishurry);
+    }  
+    public void OnFailed(bool isFailed)
+    {
+        anim.SetBool("failed", isFailed);
     }
 
 }
