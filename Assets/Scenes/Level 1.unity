@@ -1935,7 +1935,19 @@ MonoBehaviour:
   pointB: {fileID: 116452142}
   OnMotinBegin:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4248399211766135791}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnMotinEnd:
     m_PersistentCalls:
       m_Calls:
@@ -8214,7 +8226,19 @@ MonoBehaviour:
   pointB: {fileID: 384474678}
   OnMotinBegin:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4248399211766135791}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnMotinEnd:
     m_PersistentCalls:
       m_Calls:
@@ -17457,7 +17481,7 @@ Camera:
   far clip plane: 60
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19557,7 +19581,19 @@ MonoBehaviour:
   pointB: {fileID: 1113908536}
   OnMotinBegin:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4248399211766135791}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnMotinEnd:
     m_PersistentCalls:
       m_Calls:
@@ -20367,7 +20403,7 @@ MonoBehaviour:
   m_Follow: {fileID: 4529343330116213475}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12
+    OrthographicSize: 15
     NearClipPlane: 0.3
     FarClipPlane: 60
     Dutch: 0
@@ -32858,7 +32894,19 @@ MonoBehaviour:
   pointB: {fileID: 1875034898}
   OnMotinBegin:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4248399211766135791}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnMotinEnd:
     m_PersistentCalls:
       m_Calls:
@@ -39367,6 +39415,10 @@ PrefabInstance:
     - target: {fileID: 2197034585512533704, guid: 07bbe658a740c2e479a2cd1dff1cf387, type: 3}
       propertyPath: t
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2197034585512533704, guid: 07bbe658a740c2e479a2cd1dff1cf387, type: 3}
+      propertyPath: range.y
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 3229826835047947067, guid: 07bbe658a740c2e479a2cd1dff1cf387, type: 3}
       propertyPath: m_LocalPosition.y
