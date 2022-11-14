@@ -11176,6 +11176,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.54
       objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065311932902741859, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 1065311934060013764, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_Name
       value: NPC Car (Buyer)
@@ -11238,11 +11246,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1065311934825699241, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.32
+      value: 16.34
       objectReference: {fileID: 0}
     - target: {fileID: 1065311934825699241, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.45
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1065311934825699242, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_TagString
@@ -11287,6 +11295,42 @@ PrefabInstance:
     - target: {fileID: 7315630800817025998, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557324053625780109, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.29883623
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.64085644
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.29883623
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208971799686392469, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 8262096292908734909, guid: 46ded8a180c44564fb63de970bb6271d, type: 3}
       propertyPath: warehouseCoinContaier
