@@ -7,6 +7,7 @@ public class OrderManagement : MonoBehaviour
 {
     public delegate void OrderCompletedStatus (int completedCount);
     public OrderCompletedStatus OnCompleteOrder;
+    [SerializeField] private string levelSavedID = "CompletedOrterCount";
 
     [Header("References")]
     [SerializeReference] private OrderPanelButtonEventHandler orderManagementUI;
@@ -35,10 +36,10 @@ public class OrderManagement : MonoBehaviour
 
     public int CompletedOrderCount
     {
-        get => PlayerPrefs.GetInt("CompletedOrterCount");
+        get => PlayerPrefs.GetInt(levelSavedID);
         set
         { 
-            PlayerPrefs.SetInt("CompletedOrterCount", value);
+            PlayerPrefs.SetInt(levelSavedID, value);
             
             if(OnCompleteOrder!= null)
                 OnCompleteOrder.Invoke(value);
@@ -195,7 +196,9 @@ public class OrderManagement : MonoBehaviour
                     var client = Client.availables[index];
 
                     client.ShiftOrder(newOrder);
-                    wareHouseNPC.ShiftOrder(newOrder, client.sellsPoint);
+                    
+                    if(wareHouseNPC)
+                        wareHouseNPC.ShiftOrder(newOrder, client.sellsPoint);
                 }
             }
 

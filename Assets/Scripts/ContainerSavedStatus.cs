@@ -6,7 +6,7 @@ namespace IdleArcade.Core
     public class ContainerSavedStatus : Entity
     {
         [SerializeField] private TransactionContainer container;
-
+        [SerializeField] private int initialAmount = 0;
         protected virtual int SavedAmount
         {
             set => PlayerPrefs.SetInt(GetID, value);
@@ -22,6 +22,8 @@ namespace IdleArcade.Core
                 yield return null;
                 container.Add(SavedAmount);
                 container.OnChangedValue += OnUpdate;
+                if(SavedAmount == 0)
+                    container.Add(initialAmount);
             }
         }
 
